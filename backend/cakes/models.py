@@ -5,7 +5,7 @@ from django.conf import settings
 class Cake(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
-    image = models.ImageField(upload_to="images/cakes")
+    image = models.ImageField(upload_to="cakes/", blank=True)
 
     def __str__(self):
         return self.title

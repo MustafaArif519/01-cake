@@ -12,6 +12,7 @@ class CakeViewSet(viewsets.ModelViewSet):
     queryset = Cake.objects.all()
     serializer_class = CakeSerializer
 
+
 class CakeLikeViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthorOrReadOnly,)
     queryset = CakeLike.objects.all()
