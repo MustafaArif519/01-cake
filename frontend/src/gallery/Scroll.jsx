@@ -97,6 +97,7 @@ export default function Scroll({ url }) {
             <div key={item.id}>
                 <h2>{item.title}</h2>
                 <p>{item.description}</p>
+                {/* <img src = {item.image}></img> */}
                 {/* Additional formatting based on your data structure */}
             </div>
             ))}
