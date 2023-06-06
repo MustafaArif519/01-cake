@@ -1,8 +1,8 @@
 // import './index.css'
-import Navigation from './Navigation'
-import Gallery from './gallery/Gallery'
-import Home from "./home/Home"
-import Orders from "./orders/Orders"
+import Navigation from './Navigation';
+import Gallery from './gallery/Gallery';
+import Home from "./home/Home";
+import Orders from "./orders/Orders";
 import { useState, useCallback } from "react";
 
 function App() {
