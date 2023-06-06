@@ -5,7 +5,9 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-function Navigation() {
+
+const Navigation = ({onPage}) => {
+
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
@@ -25,10 +27,10 @@ function Navigation() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#gallery">Gallery</Nav.Link>
+            <Nav.Link href="#home" onClick={() => onPage("home")} >Home</Nav.Link>
+            <Nav.Link href="#gallery" onClick={() => onPage("gallery")}>Gallery</Nav.Link>
             <NavDropdown title="Orders" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#placeOrder">Place Order</NavDropdown.Item>
+              <NavDropdown.Item href="#placeOrder" onClick={() => onPage("orders")}>Place Order</NavDropdown.Item>
               <NavDropdown.Item href="#pastOrders">Past Orders</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action5">

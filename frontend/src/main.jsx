@@ -1,14 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-// import './index.css'
-import Navigation from './Navigation'
-import Gallery from './gallery/Gallery'
+import App from './App'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Navigation />
-    <Gallery />
-    {/* <App /> */}
+    <App />
   </React.StrictMode>,
 )

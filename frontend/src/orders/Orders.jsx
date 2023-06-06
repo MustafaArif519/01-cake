@@ -6,7 +6,7 @@ function Gallery() {
 
   return (
     <>
-      
+      <h1>Place Orders Page</h1>
     </>
   )
 }
