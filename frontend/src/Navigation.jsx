@@ -6,7 +6,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 
-const Navigation = ({onPage}) => {
+// eslint-disable-next-line react/prop-types
+function Navigation ({onPage})  {
 
   return (
     <Navbar bg="light" expand="lg">
@@ -61,5 +62,4 @@ const Navigation = ({onPage}) => {
     </Navbar>
   );
 }
-
 export default Navigation;
