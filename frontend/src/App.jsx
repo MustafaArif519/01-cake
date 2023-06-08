@@ -3,6 +3,7 @@ import Navigation from './Navigation';
 import Gallery from './gallery/Gallery';
 import Home from "./home/Home";
 import Orders from "./orders/Orders";
+import Login from "./administration/Login"
 import { useState, useCallback } from "react";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
     {page == "gallery" && <Gallery />}
     {page == "home" && <Home />}
     {page == "orders" && <Orders />}
+    {page == "login" && <Login />}
 
     </>
   )

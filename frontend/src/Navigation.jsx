@@ -54,7 +54,7 @@ function Navigation ({onPage})  {
             />
 
           </Form>
-          <Nav.Link href="#login">
+          <Nav.Link href="#login" onClick={() => onPage("login")}>
           <Button variant="outline-success">Login</Button>
             </Nav.Link>
         </Navbar.Collapse>
