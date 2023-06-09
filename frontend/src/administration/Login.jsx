@@ -1,19 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-const Login = () => {
+function Login ({token, recievedToken, onPage}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  
-  useEffect(() => {
-    // Check if a token is already saved in local storage
-    const savedToken = localStorage.getItem('token');
-    
-    if (savedToken) {
-      // TODO: Use the saved token for authenticated requests
-      console.log('Token from local storage:', savedToken);
-    }
-  }, []);
 
+  console.log('login prop loaded');
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -29,7 +20,7 @@ const Login = () => {
         const data = await response.json();
         
         // Save the token to local storage
-        localStorage.setItem('token', data.key);
+        recievedToken(data.key);
         
         // TODO: Use the token for authenticated requests
         console.log('Login successful. Token:', data.key);
@@ -43,28 +34,30 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <button type="submit">Login</button>
-    </form>
+    <>
+      { !token && <form onSubmit={handleSubmit}> 
+        <div>
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button type="submit">Login</button>
+      </form> }
+    </>
   );
-};
+}
 
 export default Login;

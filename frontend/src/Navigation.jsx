@@ -7,7 +7,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 
 // eslint-disable-next-line react/prop-types
-function Navigation ({onPage})  {
+function Navigation ({onPage, token, resetToken})  {
 
   return (
     <Navbar bg="light" expand="lg">
@@ -54,9 +54,12 @@ function Navigation ({onPage})  {
             />
 
           </Form>
-          <Nav.Link href="#login" onClick={() => onPage("login")}>
+          {!token && <Nav.Link href="#login" onClick={() => onPage("login")}>
           <Button variant="outline-success">Login</Button>
-            </Nav.Link>
+            </Nav.Link> }
+          {token && <Nav.Link href="#logout" onClick={() => resetToken()}>
+          <Button variant="outline-success">Logout</Button>
+            </Nav.Link> }
         </Navbar.Collapse>
       </Container>
     </Navbar>
