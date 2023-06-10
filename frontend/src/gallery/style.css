@@ -1,0 +1,7 @@
+.my-div {
+    margin: 20px;
+  }
+
+  .embed-responsive-16by9 .img-fluid .rounded .card-img-top {
+    object-fit: cover;
+}

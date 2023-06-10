@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import InfiniteScroll from "react-infinite-scroll-component";
+import './style.css';
+import Cake from "./Cake"
+import {
+  MDBCardGroup,
+  MDBCard,
+  MDBRow,
+  MDBCol,
+} from 'mdb-react-ui-kit';
 
 // The parameter of this function is an object with a string called url inside it.
 // url is a prop for the Cake component.
@@ -78,10 +86,11 @@ export default function Scroll({ url }) {
 
   // Render cake image and cake owner
   return (
+    <>
+    <link rel="stylesheet" href="style.css"/>
     <div className="cakes" 
     id="scrollableDiv"
     style={{
-      height: 400,
       overflow: 'auto',
       display: 'flex',
     }}>
@@ -92,18 +101,19 @@ export default function Scroll({ url }) {
         loader={<h4>Loading...</h4>}
       >
         {/* {renderedcakes} */}
-        <div>
-            {results.map(item => (
-            <div key={item.id}>
-                <h2>{item.title}</h2>
-                <p>{item.description}</p>
-                {/* <img src = {item.image}></img> */}
-                {/* Additional formatting based on your data structure */}
-            </div>
-            ))}
+        <div className="my-div">
+        
+        <MDBRow row-cols="1" className="row-cols-md-2 row-cols-lg-3 g-4">
+              {results.map(item => (
+                <MDBCol key={item.id}>
+                  <Cake title = {item.title} description = {item.description} image = {item.image} />
+                </MDBCol>
+              ))}
+        </MDBRow>
         </div>
       </InfiniteScroll>
     </div>
+    </>
   );
 }
 
