@@ -7,7 +7,7 @@ import Login from "./administration/Login"
 import { useState, useCallback, useEffect} from "react";
 
 function App() {
-  const [page, setPage] = useState("gallery");
+  const [page, setPage] = useState("home");
   const [token, setToken] = useState(localStorage.getItem('token') || '');
 
   const onPage = useCallback((temp) => {
