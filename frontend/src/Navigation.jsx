@@ -15,7 +15,7 @@ function Navigation ({onPage, token, resetToken})  {
       <Navbar.Brand href="#home">
             <img
               alt=""
-              src="/img/logo.svg"
+              src="./src/images/icon.jpg"
               width="30"
               height="30"
               className="d-inline-block align-top"
