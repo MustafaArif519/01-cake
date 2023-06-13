@@ -2,7 +2,7 @@ import 'mdb-react-ui-kit';
 
 
 function Home() {
-  
+  console.log("Home component has loaded!")
 
   return (
     <>

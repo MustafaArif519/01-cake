@@ -9,7 +9,7 @@ import {
   MDBRipple,
   MDBCardOverlay
 } from 'mdb-react-ui-kit';
-import "./style.css"
+//import "./style.css"
 
 export default function Cake({title, description, image}) {
   //console.log(description);

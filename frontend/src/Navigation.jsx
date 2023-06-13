@@ -3,16 +3,20 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import { MDBBadge, MDBBtn } from 'mdb-react-ui-kit';
+//import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Outlet, Link } from "react-router-dom";
 
 
 // eslint-disable-next-line react/prop-types
-function Navigation ({onPage, token, resetToken})  {
+function Navigation ({token, resetToken})  {
 
   return (
+  <>
     <Navbar bg="light" expand="lg">
       <Container fluid>
-      <Navbar.Brand href="#home">
+      <Navbar.Brand>
+      <Link to={`/`}>
             <img
               alt=""
               src="./src/images/icon.jpg"
@@ -20,6 +24,7 @@ function Navigation ({onPage, token, resetToken})  {
               height="30"
               className="d-inline-block align-top"
             />
+            </Link>
       </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -28,24 +33,21 @@ function Navigation ({onPage, token, resetToken})  {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#home" onClick={() => onPage("home")} >Home</Nav.Link>
-            <Nav.Link href="#gallery" onClick={() => onPage("gallery")}>Gallery</Nav.Link>
-            <NavDropdown title="Orders" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#placeOrder" onClick={() => onPage("orders")}>Place Order</NavDropdown.Item>
+            <Nav.Link as={Link} to={`/`}>Home</Nav.Link>
+            <Nav.Link as={Link} to={`/gallery`}>Gallery</Nav.Link>
+            {/* <NavDropdown title="Orders" id="navbarScrollingDropdown">
+              <NavDropdown.Item href="#placeOrder">Place Order</NavDropdown.Item>
               <NavDropdown.Item href="#pastOrders">Past Orders</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action5">
                 Something else here
               </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link href="#contact">
-              Contact
-            </Nav.Link>
-            <Nav.Link href="#about">
-              About
-            </Nav.Link>
+            </NavDropdown> */}
+            <Nav.Link as={Link} to={`/orders`}>Orders</Nav.Link>
+            <Nav.Link as={Link} to={`/contact`}>Contact</Nav.Link>
+            <Nav.Link as={Link} to={`/about`}>About</Nav.Link>
           </Nav>
-          <Form className="d-flex">
+          {/* <Form className="d-flex">
             <Form.Control
               type="search"
               placeholder="Search"
@@ -53,16 +55,23 @@ function Navigation ({onPage, token, resetToken})  {
               aria-label="Search"
             />
 
-          </Form>
-          {!token && <Nav.Link href="#login" onClick={() => onPage("login")}>
-          <Button variant="outline-success">Login</Button>
-            </Nav.Link> }
-          {token && <Nav.Link href="#logout" onClick={() => resetToken()}>
-          <Button variant="outline-success">Logout</Button>
-            </Nav.Link> }
+          </Form> */}
+          <MDBBtn>
+            Orders Recieved
+            <MDBBadge className='ms-2' color='danger'>
+              8
+            </MDBBadge>
+          </MDBBtn>
+          &emsp;
+          {!token &&
+            <Nav.Link as={Link} to={`/login`}><Button variant="outline-success">Login</Button></Nav.Link> }
+          {token &&
+            <Nav.Link><Button onClick = {resetToken} variant="outline-success">Logout</Button></Nav.Link> }
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    <Outlet />
+</>
   );
 }
 export default Navigation;

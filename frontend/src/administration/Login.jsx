@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function Login ({token, recievedToken, onPage}) {
+function Login ({token, recievedToken}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -24,6 +24,7 @@ function Login ({token, recievedToken, onPage}) {
         
         // TODO: Use the token for authenticated requests
         console.log('Login successful. Token:', data.key);
+        
       } else {
         // Login failed, handle the error
         console.log('Login failed');
@@ -54,7 +55,7 @@ function Login ({token, recievedToken, onPage}) {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">Submit Login</button>
       </form> }
     </>
   );

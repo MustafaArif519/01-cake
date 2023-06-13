@@ -1,18 +1,15 @@
-// import './index.css'
+import { useEffect, useCallback, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import Navigation from './Navigation';
 import Gallery from './gallery/Gallery';
-import Home from "./home/Home";
-import Orders from "./orders/Orders";
-import Login from "./administration/Login"
-import { useState, useCallback, useEffect} from "react";
+import Home from './home/Home';
+import Orders from './orders/Orders';
+import Login from './administration/Login';
+import ErrorPage from './error-page';
 
 function App() {
-  const [page, setPage] = useState("home");
   const [token, setToken] = useState(localStorage.getItem('token') || '');
-
-  const onPage = useCallback((temp) => {
-    setPage(temp);
-  }, []);
 
   useEffect(() =>{
     localStorage.setItem('token', token);
@@ -27,19 +24,17 @@ function App() {
   }, []);
 
   return (
-    <>
-    <Navigation onPage = {onPage} token = {token} resetToken = {resetToken}/>
-    {page == "gallery" && <Gallery token = {token}/>}
-    {page == "home" && <Home token = {token}/>}
-    {page == "orders" && <Orders token = {token}/>}
-    {page == "login" && <Login token = {token} recievedToken = {recievedToken}
-                                onPage = {onPage}/>}
-
-    </>
-  )
+    <Router>
+      <Navigation token = {token} resetToken = {resetToken}/>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/login" element={<Login token = {token} recievedToken = {recievedToken}/>} />
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
-
-    
-
+export default App;

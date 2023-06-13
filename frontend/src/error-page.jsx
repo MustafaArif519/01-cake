@@ -1,16 +1,19 @@
-import { useRouteError } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
+const ErrorPage = () => {
+  const location = useLocation();
+  const currentUrl = location.pathname;
+  const domainName = window.location.hostname;
 
-export default function ErrorPage() {
-  const error = useRouteError();
-  console.error(error);
 
   return (
-    <div id="error-page">
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
-      <p>
-        <i>{error.statusText || error.message}</i>
-      </p>
+    <>
+    <h1>Oh no, looks like &apos;{domainName}{currentUrl}&apos; does <b>not</b> exist!</h1>
+    <div>
+    <h1>Error 404</h1>
+      
     </div>
+    </>
   );
-}
+};
+
+export default ErrorPage;
