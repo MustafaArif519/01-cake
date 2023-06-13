@@ -2,13 +2,23 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
-//import "@fortawesome/fontawesome-free/css/all.min.css";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import { BrowserRouter } from 'react-router-dom';
+import Root from "./routes/root";
+import ErrorPage from "./error-page";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <ErrorPage />,
+  },
+]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>,
+    <RouterProvider router={router} />
   </React.StrictMode>,
 )
