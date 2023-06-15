@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import InfiniteScroll from "react-infinite-scroll-component";
-//import './style.css';
+import './style.css';
 import Cake from "./Cake"
 import {
   MDBCardGroup,
