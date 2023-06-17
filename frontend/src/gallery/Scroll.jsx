@@ -4,15 +4,13 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import './style.css';
 import Cake from "./Cake"
 import {
-  MDBCardGroup,
-  MDBCard,
   MDBRow,
   MDBCol,
 } from 'mdb-react-ui-kit';
 
 // The parameter of this function is an object with a string called url inside it.
 // url is a prop for the Cake component.
-export default function Scroll({ url }) {
+export default function Scroll({ url, token}) {
 
   const [results, setResults] = useState([]);
   const [next, setNext] = useState("");
@@ -24,7 +22,13 @@ export default function Scroll({ url }) {
     let ignoreStaleRequest = false;
 
     // Call REST API to get the cake's information
-    fetch(url)
+    fetch(url, {
+      method: 'GET', // or any other HTTP method
+      headers: {
+        'Authorization': "Token " + token, // Include the token in the Authorization header
+
+      },
+    })
       .then((response) => {
         if (!response.ok) throw Error(response.statusText);
         return response.json();
@@ -118,4 +122,5 @@ export default function Scroll({ url }) {
 
 Scroll.propTypes = {
   url: PropTypes.string.isRequired,
+  token: PropTypes.string.isRequired,
 };

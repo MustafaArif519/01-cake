@@ -24,12 +24,15 @@ export default function Cake({title, description, image}) {
           <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
         </a>
       </MDBRipple>
-      <MDBCardOverlay>
-      <MDBBtn>Like</MDBBtn>
-      </MDBCardOverlay>
+
       <MDBCardBody>
-        <MDBCardTitle className='h-50'>{title}</MDBCardTitle>
-        <MDBCardText>
+        <MDBCardTitle  
+        style={{ width: '60%', float:"left", position: "relative"}}>
+          {title}
+        </MDBCardTitle>
+        <img src = './src/images/ui/like.png' style = {{position: "relative", height:'50px', width:'50px',
+      float:"right"}} />
+        <MDBCardText style={{ float:"down", position: "absolute", bottom: "0"}}>
           {description}
         </MDBCardText>
       </MDBCardBody>
