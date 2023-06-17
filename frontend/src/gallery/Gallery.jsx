@@ -1,5 +1,5 @@
 import Scroll from './Scroll'
-
+import PropTypes from "prop-types";
 
 function Gallery({token}) {
   console.log("Gallery component has loaded!");
@@ -9,5 +9,7 @@ function Gallery({token}) {
     </>
   )
 }
-
+Gallery.propTypes = {
+  token: PropTypes.string.isRequired,
+};
 export default Gallery

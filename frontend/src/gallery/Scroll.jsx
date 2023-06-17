@@ -13,8 +13,8 @@ import {
 export default function Scroll({ url, token}) {
 
   const [results, setResults] = useState([]);
-  const [next, setNext] = useState("");
-  const [hasMore, setHasMore] = useState("");
+  const [next, setNext] = useState("null");
+  const [hasMore, setHasMore] = useState(false);
   const [resultsSize, setResultsSize] = useState(0);
 
   useEffect(() => {
@@ -40,8 +40,12 @@ export default function Scroll({ url, token}) {
           setResults([...results, ...data.results]);
 
           setNext(data.next);
-          setHasMore(true);
-          console.log("we are getting started");
+          if(data.next == 'null') {
+            setHasMore(false);
+          }
+          else{
+            setHasMore(true);
+          }
           setResultsSize(data.results.length);
         }
       })
@@ -58,7 +62,13 @@ export default function Scroll({ url, token}) {
   const getcakes = () => {
     console.log("loading more cakes");
 
-    fetch(next)
+    fetch(next, {
+      method: 'GET', // or any other HTTP method
+      headers: {
+        'Authorization': "Token " + token, // Include the token in the Authorization header
+
+      },
+      })
       .then((response) => {
         if (!response.ok) throw Error(response.statusText);
         
@@ -101,7 +111,7 @@ export default function Scroll({ url, token}) {
         dataLength={resultsSize} // This is important field to render the next data
         next={getcakes}
         hasMore={hasMore}
-        loader={<h4>Loading...</h4>}
+        loader={<h4>Baking cakes...</h4>}
       >
         {/* {renderedcakes} */}
         <div className="my-div">
@@ -113,6 +123,7 @@ export default function Scroll({ url, token}) {
                 </MDBCol>
               ))}
         </MDBRow>
+        {!hasMore && <h4 >All cakes baked!</h4>}
         </div>
       </InfiniteScroll>
     </div>

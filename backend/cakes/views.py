@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAdminUser
 
 from .models import Cake, CakeLike, CakeView, Order
 from .serializers import CakeSerializer, CakeViewSerializer, CakeLikeSerializer, OrderSerializer
-from .permissions import IsAuthorOrReadOnly
+from .permissions import IsAuthorOrReadOnly, GuestPermission
 
 
 class CustomPagination(pagination.PageNumberPagination):
@@ -13,7 +13,7 @@ class CustomPagination(pagination.PageNumberPagination):
     max_page_size = 100  # Maximum page size allowed]
 
 class CakeViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsAuthorOrReadOnly,)
+    permission_classes = (GuestPermission,)
     queryset = Cake.objects.all().order_by('-id')
     serializer_class = CakeSerializer
     pagination_class = CustomPagination
