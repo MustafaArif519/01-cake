@@ -24,10 +24,10 @@ export default function Scroll({ url, token}) {
     // Call REST API to get the cake's information
     fetch(url, {
       method: 'GET', // or any other HTTP method
-      headers: {
-        'Authorization': "Token " + token, // Include the token in the Authorization header
+      // headers: {
+      //   'Authorization': "Token " + token, // Include the token in the Authorization header
 
-      },
+      // },
     })
       .then((response) => {
         if (!response.ok) throw Error(response.statusText);
@@ -64,10 +64,10 @@ export default function Scroll({ url, token}) {
 
     fetch(next, {
       method: 'GET', // or any other HTTP method
-      headers: {
-        'Authorization': "Token " + token, // Include the token in the Authorization header
+      // headers: {
+      //   'Authorization': "Token " + token, // Include the token in the Authorization header
 
-      },
+      // },
       })
       .then((response) => {
         if (!response.ok) throw Error(response.statusText);
@@ -119,7 +119,7 @@ export default function Scroll({ url, token}) {
         <MDBRow row-cols="1" className="row-cols-md-2 row-cols-lg-3 g-4">
               {results.map(item => (
                 <MDBCol key={item.id}>
-                  <Cake title = {item.title} description = {item.description} image = {item.image} />
+                  <Cake cake = {item} token = {token}/>
                 </MDBCol>
               ))}
         </MDBRow>

@@ -5,3 +5,13 @@
   .embed-responsive-16by9 .img-fluid .rounded .card-img-top {
     object-fit: cover;
 }
+
+.zoom:hover {
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+.likesCount{
+  font-size: 25px;
+  position: relative;
+  float: left;
+  margin-left: 5px;
+}
