@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/Navbar'
 import { MDBBadge, MDBBtn } from 'mdb-react-ui-kit';
 //import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Outlet, Link } from "react-router-dom";
@@ -44,6 +45,7 @@ function Navigation ({token, resetToken})  {
               </NavDropdown.Item>
             </NavDropdown> */}
             <Nav.Link as={Link} to={`/orders`}>Orders</Nav.Link>
+
             <Nav.Link as={Link} to={`/contact`}>Contact</Nav.Link>
             <Nav.Link as={Link} to={`/about`}>About</Nav.Link>
           </Nav>
@@ -64,9 +66,9 @@ function Navigation ({token, resetToken})  {
           </MDBBtn>
           &emsp;
           {!token &&
-            <Nav.Link as={Link} to={`/login`}><Button variant="outline-success">Login</Button></Nav.Link> }
+            <Button avriant="outline-success" as={Link} to={`/login`}>Login</Button> }
           {token &&
-            <Nav.Link><Button onClick = {resetToken} variant="outline-success">Logout</Button></Nav.Link> }
+            <Button onClick = {resetToken} variant="outline-success">Logout</Button> }
         </Navbar.Collapse>
       </Container>
     </Navbar>

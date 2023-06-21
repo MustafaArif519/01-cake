@@ -8,38 +8,19 @@ import {
   MDBRipple,
   MDBCardHeader,
 } from 'mdb-react-ui-kit';
-//import "./style.css"
+import Like from "./Like"
+import "./style.css"
 
-export default function Cake({cake, token}) {
+export default function Cake({cake, token, likeData}) {
   //console.log(description);
-  const handleClick = async () => {
-    try {
-      const response = await fetch('http://127.0.0.1:8000/api/v1/cake-likes/', {
-        method: 'POST',
-        headers: {
-          'Authorization': "Token " + token,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          'cake': cake.id, 
-        }), // Replace with your data object
-      });
-      console.log(token);
-      const responseBody = await response.json();
+  let likesCount = 0;
 
-console.log(JSON.stringify(responseBody, null, 4));
+  likesCount = likeData.filter((item) => item.cake === cake.id);
+  console.log(likesCount);
+  likesCount = likesCount.length;
 
-      if (!response.ok) {
-        throw new Error('Request failed');
-      }
 
-      // Do something with the response, if needed
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+
   return (
 
     <MDBCard style={{ height:"500px"}} >
@@ -56,11 +37,7 @@ console.log(JSON.stringify(responseBody, null, 4));
         style={{ height:"50px", width: '75%', float:"left", position: "relative"}}>
           {cake.title}
         </MDBCardTitle>
-        <p className = "likesCount">23</p>
-        <img onClick = {() => handleClick()} 
-        className = "zoom" src = './src/images/ui/like.png' 
-        style = {{position: "relative", width:'10%',
-      float:"right" }} />
+        <Like token = {token} cake = {cake} lcount = {likesCount} lstatus={"like"}/>
       
         <MDBCardText style={{margin: "35px" }}>
           {cake.description}
@@ -71,6 +48,7 @@ console.log(JSON.stringify(responseBody, null, 4));
 }
 
 Cake.propTypes = {
-  cake: PropTypes.string.isRequired,
+  
   token: PropTypes.string.isRequired,
+  
 };

@@ -10,6 +10,7 @@ import {
 
 // The parameter of this function is an object with a string called url inside it.
 // url is a prop for the Cake component.
+let likeData = null;
 export default function Scroll({ url, token}) {
 
   const [results, setResults] = useState([]);
@@ -59,6 +60,34 @@ export default function Scroll({ url, token}) {
     };
   }, [url]);
 
+
+    // Declare a boolean flag that we can use to cancel the API request.
+    let ignoreStaleRequest = false;
+    fetch("http://127.0.0.1:8000/api/v1/cake-likes/", {
+        method: 'GET', // or any other HTTP method
+        headers: {
+            'Authorization': "Token " + token,
+            'Content-Type': 'application/json',
+          },
+
+        })
+        .then((response) => {
+          if (!response.ok) throw Error(response.statusText);
+          return response.json();
+        })
+        .then((data) => {
+          // If ignoreStaleRequest was set to true, we want to ignore the results of the
+          // the request. Otherwise, update the state to trigger a new render.
+          if (!ignoreStaleRequest) {
+            likeData = (data);
+            console.log(likeData);
+
+          }
+        })
+        .catch((error) => console.log(error));
+
+  
+      
   const getcakes = () => {
     console.log("loading more cakes");
 
@@ -119,7 +148,7 @@ export default function Scroll({ url, token}) {
         <MDBRow row-cols="1" className="row-cols-md-2 row-cols-lg-3 g-4">
               {results.map(item => (
                 <MDBCol key={item.id}>
-                  <Cake cake = {item} token = {token}/>
+                  <Cake cake = {(item)} token = {token} likeData = {likeData}/>
                 </MDBCol>
               ))}
         </MDBRow>

@@ -27,41 +27,16 @@ class CakeLikeViewSet(viewsets.ModelViewSet):
     queryset = CakeLike.objects.all()
     serializer_class = CakeLikeSerializer
 
-    def list(self, request, *args, **kwargs):
-        # Custom logic for handling the GET request
-        cake_id = request.body.get('cake');
-        get_like_bool = False
-        if request.body.get('get like bool'):
-            get_like_bool = True
-        
-        if cake_id and not get_like_bool:
-            # Retrieve the likes that pertain to a certain cake
-            objects = self.filter_queryset(self.get_queryset())
+    # def list(self, request, *args, **kwargs):
+    #     # Custom logic for handling the GET request
+    #     cake_id = request.header.get('cake');
+    #     if cake_id:
+    #         queryset = super().get_queryset()
+    #         # Apply filtering conditions
+    #         filtered_queryset = queryset.filter(cake=cake_id)
+    #         return filtered_queryset
 
-            # Serialize the objects
-            serializer = self.get_serializer(objects, many=True)
-
-            # Return the serialized data
-            return Response(serializer.data)
-
-        if cake_id and not get_like_bool:
-            # Retrieve the likes that pertain to a particular 
-            objects = self.filter_queryset(self.get_queryset())
-
-            # Serialize the objects
-            serializer = self.get_serializer(objects, many=True)
-
-            # Return the serialized data
-            return Response(serializer.data)
-
-        # Retrieve the objects from the queryset
-        objects = self.filter_queryset(self.get_queryset())
-
-        # Serialize the objects
-        serializer = self.get_serializer(objects, many=True)
-
-        # Return the serialized data
-        return Response(serializer.data)
+    #     return super().list(request, *args, **kwargs)
 
     def create(self, request, *args, **kwargs):
         # Get the token string from the request headers
