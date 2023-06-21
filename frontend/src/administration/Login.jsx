@@ -5,6 +5,8 @@ function Login ({token, recievedToken}) {
   const [password, setPassword] = useState('');
 
   console.log('login prop loaded');
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -33,6 +35,8 @@ function Login ({token, recievedToken}) {
       console.error('Error:', error);
     }
   };
+
+
 
   return (
     <>

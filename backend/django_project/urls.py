@@ -20,6 +20,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, Spec
 from django.conf.urls.static import static
 from django.conf import settings
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/v1/", include("cakes.urls")),
@@ -27,7 +28,9 @@ urlpatterns = [
     path("api/v1/dj-rest-auth/", include("dj_rest_auth.urls")),
     path("api/v1/dj-rest-auth/registration/",\
         include("dj_rest_auth.registration.urls")),
+    path("api/v1/", include("accounts.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path("api/v1/", include("accounts.urls")),
     path("api/schema/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
     path("api/schema/swagger/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger"),
 ] + static(
