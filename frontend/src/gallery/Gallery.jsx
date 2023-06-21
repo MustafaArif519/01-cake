@@ -1,6 +1,9 @@
 import Scroll from './Scroll'
+import { useEffect, useCallback, useState } from 'react';
 
 function Gallery() {
+
+
   console.log("Gallery component has loaded!");
   return (
     <>
