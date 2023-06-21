@@ -18,11 +18,13 @@ function App() {
 
   useEffect(() =>{
     localStorage.setItem('userId', userId);
+    console.log(userId);
   }, [userId])
 
   const recievedToken = useCallback((key) => {
+    console.log("updating token and user-id", key);
     setToken(key);
-    retrieveUserId();
+    retrieveUserId(key);
   }, []);
 
   const resetToken = useCallback(() => {
@@ -30,19 +32,20 @@ function App() {
     setUserId(-1);
   }, []);
 
-  const retrieveUserId = async () => {
+  const retrieveUserId = async (key) => {
     try {
       const response = await fetch('http://127.0.0.1:8000/api/v1/user-id/', {
         method: 'GET',
         headers: {
-          'Authorization': "Token " + token,
+          'Authorization': "Token " + key,
           'Content-Type': 'application/json',
         },
       });
       if (response.ok) {
         const data = await response.json();
         setUserId(data);
-        console.log(userId);
+        // console.log(data);
+        // console.log(userId);
         
       } else {
         // Login failed, handle the error
@@ -58,7 +61,7 @@ function App() {
       <Navigation token = {token} resetToken = {resetToken}/>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/gallery" element={<Gallery token = {token}/>} />
+        <Route path="/gallery" element={<Gallery/>} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/login" element={<Login token = {token} recievedToken = {recievedToken}/>} />
         <Route path="*" element={<ErrorPage />} />

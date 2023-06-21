@@ -6,20 +6,31 @@ import {
   MDBCardText,
   MDBCardImage,
   MDBRipple,
-  MDBCardHeader,
 } from 'mdb-react-ui-kit';
 import Like from "./Like"
 import "./style.css"
 
-export default function Cake({cake, token, likeData}) {
+export default function Cake({cake, likeData}) {
   //console.log(description);
-  let likesCount = 0;
-
-  likesCount = likeData.filter((item) => item.cake === cake.id);
-  console.log(likesCount);
-  likesCount = likesCount.length;
+  let userId = localStorage.getItem('userId');
 
 
+  function findLike() {
+    console.log(userId);
+    let temp = likeData.filter((item) => item.cake === cake.id);
+    let foundLike = temp.find((item) => item.author == userId);
+    console.log(foundLike);
+    if(foundLike){
+      return foundLike;
+    }
+    return null;
+  }
+
+  function findCount() {
+    let count = likeData.filter((item) => item.cake === cake.id);
+    console.log(count);
+    return count.length;
+  }
 
   return (
 
@@ -37,7 +48,7 @@ export default function Cake({cake, token, likeData}) {
         style={{ height:"50px", width: '75%', float:"left", position: "relative"}}>
           {cake.title}
         </MDBCardTitle>
-        <Like token = {token} cake = {cake} lcount = {likesCount} lstatus={"like"}/>
+        <Like cake = {cake} lcount = { findCount()} foundLike={findLike()}/>
       
         <MDBCardText style={{margin: "35px" }}>
           {cake.description}
@@ -48,7 +59,6 @@ export default function Cake({cake, token, likeData}) {
 }
 
 Cake.propTypes = {
-  
-  token: PropTypes.string.isRequired,
-  
+  cake: PropTypes.isRequired,
+  likeData: PropTypes.isRequired,
 };

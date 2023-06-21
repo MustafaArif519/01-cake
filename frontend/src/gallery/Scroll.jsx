@@ -11,12 +11,13 @@ import {
 // The parameter of this function is an object with a string called url inside it.
 // url is a prop for the Cake component.
 let likeData = null;
-export default function Scroll({ url, token}) {
-
+export default function Scroll({ url}) {
+  let token = localStorage.getItem('token');
   const [results, setResults] = useState([]);
   const [next, setNext] = useState("null");
   const [hasMore, setHasMore] = useState(false);
   const [resultsSize, setResultsSize] = useState(0);
+
 
   useEffect(() => {
     // Declare a boolean flag that we can use to cancel the API request.
@@ -66,7 +67,6 @@ export default function Scroll({ url, token}) {
     fetch("http://127.0.0.1:8000/api/v1/cake-likes/", {
         method: 'GET', // or any other HTTP method
         headers: {
-            'Authorization': "Token " + token,
             'Content-Type': 'application/json',
           },
 
@@ -148,7 +148,7 @@ export default function Scroll({ url, token}) {
         <MDBRow row-cols="1" className="row-cols-md-2 row-cols-lg-3 g-4">
               {results.map(item => (
                 <MDBCol key={item.id}>
-                  <Cake cake = {(item)} token = {token} likeData = {likeData}/>
+                  <Cake cake = {item} likeData = {likeData}/>
                 </MDBCol>
               ))}
         </MDBRow>
@@ -162,5 +162,4 @@ export default function Scroll({ url, token}) {
 
 Scroll.propTypes = {
   url: PropTypes.string.isRequired,
-  token: PropTypes.string.isRequired,
 };

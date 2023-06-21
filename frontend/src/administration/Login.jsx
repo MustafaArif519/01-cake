@@ -22,10 +22,10 @@ function Login ({token, recievedToken}) {
         const data = await response.json();
         
         // Save the token to local storage
-        recievedToken(data.key);
         
         // TODO: Use the token for authenticated requests
         console.log('Login successful. Token:', data.key);
+        recievedToken(data.key);
         
       } else {
         // Login failed, handle the error

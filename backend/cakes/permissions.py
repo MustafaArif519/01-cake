@@ -3,7 +3,7 @@ from rest_framework import permissions
 
 class IsAuthorOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
-        # return True
+        return True
         if request.user.is_authenticated:
             return True
         return False
