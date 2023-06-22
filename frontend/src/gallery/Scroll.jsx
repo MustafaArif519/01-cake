@@ -10,13 +10,12 @@ import {
 
 // The parameter of this function is an object with a string called url inside it.
 // url is a prop for the Cake component.
-let likeData = null;
-export default function Scroll({ url}) {
-  let token = localStorage.getItem('token');
+export default function Scroll({ url, userId, token}) {
   const [results, setResults] = useState([]);
   const [next, setNext] = useState("null");
   const [hasMore, setHasMore] = useState(false);
   const [resultsSize, setResultsSize] = useState(0);
+  const [likeData, setLikeData] = useState(null);
 
 
   useEffect(() => {
@@ -63,28 +62,36 @@ export default function Scroll({ url}) {
 
 
     // Declare a boolean flag that we can use to cancel the API request.
-    let ignoreStaleRequest = false;
-    fetch("http://127.0.0.1:8000/api/v1/cake-likes/", {
-        method: 'GET', // or any other HTTP method
+    useEffect(() => {
+      let ignoreStaleRequest = false;
+  
+      fetch('http://127.0.0.1:8000/api/v1/cake-likes/', {
         headers: {
-            'Content-Type': 'application/json',
-          },
-
-        })
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
         .then((response) => {
-          if (!response.ok) throw Error(response.statusText);
+          if (!response.ok) {
+            throw new Error(response.statusText);
+          }
           return response.json();
         })
         .then((data) => {
-          // If ignoreStaleRequest was set to true, we want to ignore the results of the
-          // the request. Otherwise, update the state to trigger a new render.
           if (!ignoreStaleRequest) {
-            likeData = (data);
-            // console.log(likeData);
-
+            setLikeData(data);
+            console.log(data);
+            // Perform any other logic with the data as needed
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+  
+      return () => {
+        ignoreStaleRequest = true;
+      };
+    }, [token]);
 
   
       
@@ -148,7 +155,7 @@ export default function Scroll({ url}) {
         <MDBRow row-cols="1" className="row-cols-md-2 row-cols-lg-3 g-4">
               {results.map(item => (
                 <MDBCol key={item.id}>
-                  <Cake cake = {item} likeData = {likeData}/>
+                  <Cake cake = {item} likeData = {likeData} userId = {userId} token = {token}/>
                 </MDBCol>
               ))}
         </MDBRow>

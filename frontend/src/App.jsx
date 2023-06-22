@@ -63,7 +63,7 @@ function App() {
           <Navigation token = {token} resetToken = {resetToken}/>
           <Routes>
             <Route path="/" element={<Home token = {token} recievedToken = {recievedToken}/>} />
-            <Route path="/gallery" element={<Gallery token = {token}/>} />
+            <Route path="/gallery" element={<Gallery userId = {userId} token = {token}/>} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/login" element={<Login token = {token} recievedToken = {recievedToken}/>} />
             <Route path="*" element={<ErrorPage />} />

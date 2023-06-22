@@ -10,32 +10,42 @@ import {
 import Like from "./Like"
 import "./style.css"
 
-export default function Cake({ cake, likeData }) {
+export default function Cake({ cake, likeData, userId, token }) {
   //console.log(description);
   // console.log(likeData);
-  let userId = localStorage.getItem('userId');
+  // let userId = localStorage.getItem('userId');
+
 
 
   function findLike() {
     // console.log(userId);
+    if(likeData == null){
+      return null;
+    }
     let temp = likeData.filter((item) => item.cake === cake.id);
     let foundLike = temp.find((item) => item.author == userId);
-    // console.log(foundLike);
-    if (foundLike) {
-      return foundLike;
+    // console.log(foundLike == null);
+    if (foundLike == null) {
+      return null;
     }
-    return null;
+    return foundLike;
   }
 
   function findCount() {
+    if(likeData == null){
+      return null;
+    }
     let count = likeData.filter((item) => item.cake === cake.id);
-    // console.log(count);
+    console.log(cake.id + " " + count.length);
     return count.length;
   }
 
+  let foundLike = findLike();
+  let foundCount = findCount();
+
   return (
     <>
-    {console.log(findLike())}
+    {/* {console.log(foundLike)} */}
       <MDBCard style={{ height: "500px" }} >
         <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-zoom'>
           <MDBCardImage overlay position='top' className='embed-responsive-16by9
@@ -50,7 +60,7 @@ export default function Cake({ cake, likeData }) {
             style={{ height: "50px", width: '75%', float: "left", position: "relative" }}>
             {cake.title}
           </MDBCardTitle>
-          <Like cake={cake} lcount={findCount()} foundLike={findLike()} />
+          <Like cake={cake} lcount={foundCount} foundLike={foundLike} token = {token}/>
 
           <MDBCardText style={{ margin: "35px" }}>
             {cake.description}

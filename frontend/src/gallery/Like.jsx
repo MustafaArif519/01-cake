@@ -3,13 +3,20 @@ import './style.css';
 import { useState, useEffect } from "react";
 
 
-export default function Like({ cake, lcount, foundLike }) {
-  const domainName = window.location.hostname;
-  let token = localStorage.getItem('token');
-  const [yourLike, setYourLike] = useState(foundLike);
-  const [likeCount, setLikeCount] = useState(lcount);
-
+export default function Like({ cake, lcount, foundLike, token }) {
+  // const domainName = window.location.hostname;
+  const [yourLike, setYourLike] = useState(null);
+  const [likeCount, setLikeCount] = useState(null);
+  // setYourLike(foundLike);
+  // setLikeCount(lcount);
   // setLikeCount(likeData.length);
+  console.log(token);
+
+  useEffect(() =>{
+    setYourLike(foundLike);
+    setLikeCount(lcount);
+  }, [foundLike, lcount])
+
 
   const like = async () => {
     // console.log(token);
