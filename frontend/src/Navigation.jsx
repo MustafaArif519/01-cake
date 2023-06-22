@@ -6,11 +6,12 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/Navbar'
 import { MDBBadge, MDBBtn } from 'mdb-react-ui-kit';
 //import NavDropdown from 'react-bootstrap/NavDropdown';
+import Modal from "./administration/Modal"
 import { Outlet, Link } from "react-router-dom";
 
 
 // eslint-disable-next-line react/prop-types
-function Navigation ({token, resetToken})  {
+function Navigation ({token, resetToken, recievedToken})  {
 
   return (
   <>
@@ -66,9 +67,11 @@ function Navigation ({token, resetToken})  {
           </MDBBtn>
           &emsp;
           {!token &&
-            <Button avriant="outline-success" as={Link} to={`/login`}>Login</Button> }
+            <Button avriant="outline-success"><Modal 
+                      token = {token} recievedToken = {recievedToken}/>
+            </Button> }
           {token &&
-            <Button onClick = {resetToken} as={Link} to={`/gallery`} variant="outline-success">Logout</Button> }
+            <Button onClick = {resetToken} variant="outline-success">Logout</Button> }
         </Navbar.Collapse>
       </Container>
     </Navbar>

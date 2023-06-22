@@ -1,6 +1,22 @@
-import { useState } from 'react';
+import  { useState } from "react";
+import {
+  MDBBtn,
+  MDBModal,
+  MDBModalDialog,
+  MDBModalContent,
+  MDBModalHeader,
+  MDBModalTitle,
+  MDBModalBody,
+  MDBModalFooter,
+} from "mdb-react-ui-kit";
+import Login from "./Login"
 
-function Login ({token, recievedToken}) {
+
+export default function Modal( {token, recievedToken}) {
+  const [basicModal, setBasicModal] = useState(false);
+
+  const toggleShow = () => setBasicModal(!basicModal);
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -36,11 +52,22 @@ function Login ({token, recievedToken}) {
     }
   };
 
-
-
   return (
     <>
-    {console.log(token)}
+      <MDBBtn onClick={toggleShow}>Login</MDBBtn>
+      <MDBModal show={basicModal} setShow={setBasicModal} tabIndex="-1">
+        <MDBModalDialog>
+          <MDBModalContent>
+            <MDBModalHeader>
+              <MDBModalTitle>Modal title</MDBModalTitle>
+              <MDBBtn
+                className="btn-close"
+                color="none"
+                onClick={toggleShow}
+              ></MDBBtn>
+            </MDBModalHeader>
+            <MDBModalBody>
+            {console.log(token)}
       { !token && <form onSubmit={handleSubmit}> 
         <div>
           <label htmlFor="username">Username</label>
@@ -62,8 +89,17 @@ function Login ({token, recievedToken}) {
         </div>
         <button type="submit">Submit Login</button>
       </form> }
+            </MDBModalBody>
+
+            <MDBModalFooter>
+              <MDBBtn color="secondary" onClick={toggleShow}>
+                Close
+              </MDBBtn>
+              <MDBBtn>Save changes</MDBBtn>
+            </MDBModalFooter>
+          </MDBModalContent>
+        </MDBModalDialog>
+      </MDBModal>
     </>
   );
 }
-
-export default Login;
