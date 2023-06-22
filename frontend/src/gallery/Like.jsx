@@ -10,7 +10,7 @@ export default function Like({ cake, lcount, foundLike, token }) {
   // setYourLike(foundLike);
   // setLikeCount(lcount);
   // setLikeCount(likeData.length);
-  console.log(token);
+  // console.log(token);
 
   useEffect(() =>{
     setYourLike(foundLike);

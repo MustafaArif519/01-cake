@@ -15,7 +15,7 @@ export default function Scroll({ url, userId, token}) {
   const [next, setNext] = useState("null");
   const [hasMore, setHasMore] = useState(false);
   const [resultsSize, setResultsSize] = useState(0);
-  const [likeData, setLikeData] = useState(null);
+  const [likeData, setLikeData] = useState([]);
 
 
   useEffect(() => {

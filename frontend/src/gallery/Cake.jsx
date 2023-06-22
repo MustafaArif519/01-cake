@@ -36,7 +36,7 @@ export default function Cake({ cake, likeData, userId, token }) {
       return null;
     }
     let count = likeData.filter((item) => item.cake === cake.id);
-    console.log(cake.id + " " + count.length);
+    // console.log(cake.id + " " + count.length);
     return count.length;
   }
 

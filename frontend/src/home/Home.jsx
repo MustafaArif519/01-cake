@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Login from "../administration/Login"
+import Modal from "../administration/Modal"
 import {
   MDBBtn,
   MDBModal,
@@ -17,6 +17,7 @@ export default function Home(token, recievedToken) {
   return (
     <>
     <h1>Home page</h1>
+    <Modal token = {token} recievedToken={recievedToken}/>
     </>
   );
 }

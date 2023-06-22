@@ -9,7 +9,7 @@ import {
   MDBModalBody,
   MDBModalFooter,
 } from "mdb-react-ui-kit";
-import Login from "./Login"
+import "./style.css"
 
 
 export default function Modal( {token, recievedToken}) {
