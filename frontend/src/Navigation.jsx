@@ -68,7 +68,7 @@ function Navigation ({token, resetToken})  {
           {!token &&
             <Button avriant="outline-success" as={Link} to={`/login`}>Login</Button> }
           {token &&
-            <Button onClick = {resetToken} variant="outline-success">Logout</Button> }
+            <Button onClick = {resetToken} as={Link} to={`/gallery`} variant="outline-success">Logout</Button> }
         </Navbar.Collapse>
       </Container>
     </Navbar>

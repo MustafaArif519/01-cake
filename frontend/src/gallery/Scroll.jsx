@@ -80,7 +80,7 @@ export default function Scroll({ url}) {
           // the request. Otherwise, update the state to trigger a new render.
           if (!ignoreStaleRequest) {
             likeData = (data);
-            console.log(likeData);
+            // console.log(likeData);
 
           }
         })
@@ -89,7 +89,7 @@ export default function Scroll({ url}) {
   
       
   const getcakes = () => {
-    console.log("loading more cakes");
+    // console.log("loading more cakes");
 
     fetch(next, {
       method: 'GET', // or any other HTTP method
@@ -116,7 +116,7 @@ export default function Scroll({ url}) {
         } else {
           setNext(data.next);
           setHasMore(true);
-          console.log(`${next} has more`);
+          // console.log(`${next} has more`);
           setResultsSize(data.results.length + resultsSize);
         }
       })

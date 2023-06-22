@@ -27,10 +27,10 @@ export default function Like({ cake, lcount, foundLike }) {
           'cake': cake.id,
         }), // Replace with your data object
       });
-      console.log(token);
+      // console.log(token);
       const responseBody = await response.json();
 
-      console.log(JSON.stringify(responseBody, null, 4));
+      // console.log(JSON.stringify(responseBody, null, 4));
 
       if (!response.ok) {
         throw new Error('Request failed');
@@ -41,7 +41,7 @@ export default function Like({ cake, lcount, foundLike }) {
       setYourLike(responseBody);
       setLikeCount(likeCount + 1);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   };
 
@@ -66,8 +66,9 @@ export default function Like({ cake, lcount, foundLike }) {
 
   return (
     <>
+    {/* {console.log("like has rendered with yourLike " + yourLike)} */}
       <p className="likesCount">{likeCount}</p>
-      {console.log(yourLike)}
+      {/* { console.log(yourLike)} */}
       {yourLike == null &&<div><img onClick={like}
         className="zoom" src='./src/images/ui/like.png'
         style={{
