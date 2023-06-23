@@ -159,13 +159,13 @@ function Navigation ({token, resetToken, recievedToken})  {
                   </MDBDropdownToggle>
                   <MDBDropdownMenu>
                     <MDBDropdownItem link>
-                      <Nav.Link as={Link} to={`/orders`}>Place Order</Nav.Link>
-                    </MDBDropdownItem>
-                    <MDBDropdownItem link>
-                      <Nav.Link as={Link} to={`/orders`}>Past Orders</Nav.Link>
+                      <Nav.Link as={Link} to={`/order`}>Place Order</Nav.Link>
                     </MDBDropdownItem>
                     <MDBDropdownItem link>
                       <Nav.Link as={Link} to={`/orders`}>Current Orders</Nav.Link>
+                    </MDBDropdownItem>
+                    <MDBDropdownItem link>
+                      <Nav.Link as={Link} to={`/orders`}>Past Orders</Nav.Link>
                     </MDBDropdownItem>
                   </MDBDropdownMenu>
               </MDBDropdown>

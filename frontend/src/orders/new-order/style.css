@@ -1,0 +1,16 @@
+.my-div {
+    margin: 20px auto;
+    text-align: center;
+  }
+
+  .fields {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .field {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    width: '200px'
+  }

@@ -150,7 +150,9 @@ export default function Scroll({ url, userId, token}) {
         loader={<h4>Baking cakes...</h4>}
       >
         {/* {renderedcakes} */}
-        <div className="my-div">
+        <div  style={{
+          margin: "20px"
+        }}>
         
         <MDBRow row-cols="1" className="row-cols-md-2 row-cols-lg-3 g-4">
               {results.map(item => (

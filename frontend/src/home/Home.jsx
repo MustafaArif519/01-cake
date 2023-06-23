@@ -17,7 +17,7 @@ export default function Home(token, recievedToken) {
   return (
     <>
     <h1>Home page</h1>
-    <Modal token = {token} recievedToken={recievedToken}/>
+    https://docs.google.com/forms/d/e/1FAIpQLScXUGXztc-mJNSmaPuNWoBMwB8xvuDbnKlYk_wK5jn54Jk7ag/viewform
     </>
   );
 }

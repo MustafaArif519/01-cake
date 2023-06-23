@@ -76,13 +76,13 @@ export default function Like({ cake, lcount, foundLike, token }) {
     {/* {console.log("like has rendered with yourLike " + yourLike)} */}
       <p className="likesCount">{likeCount}</p>
       {/* { console.log(yourLike)} */}
-      {yourLike == null &&<div><img onClick={like}
+      {yourLike == null &&<div><img onDoubleClick={like}
         className="zoom" src='./src/images/ui/like.png'
         style={{
           position: "relative", width: '10%',
           float: "right"
         }} /></div>}
-      {yourLike && <div><img onClick={unlike}
+      {yourLike && <div><img onDoubleClick={unlike}
         className="zoom" src='./src/images/ui/unlike.png'
         style={{
           position: "relative", width: '10%',
