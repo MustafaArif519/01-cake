@@ -75,6 +75,12 @@ const NewOrder = ({ token }) => {
           <MDBPaginationLink href='#'>3</MDBPaginationLink>
         </MDBPaginationItem>
         <MDBPaginationItem>
+          <MDBPaginationLink href='#'>4</MDBPaginationLink>
+        </MDBPaginationItem>
+        <MDBPaginationItem>
+          <MDBPaginationLink href='#'>5</MDBPaginationLink>
+        </MDBPaginationItem>
+        <MDBPaginationItem>
           <MDBPaginationLink href='#'>Next</MDBPaginationLink>
         </MDBPaginationItem>
       </MDBPagination>
