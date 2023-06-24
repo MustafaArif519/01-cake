@@ -60,7 +60,7 @@ function App() {
   return (
     <>
         {console.log("App componenet rendered")}
-        <Router>
+        <Router >
           <Navigation token = {token} resetToken = {resetToken} recievedToken={recievedToken}/>
           <Routes>
             <Route path="/" element={<Home token = {token} recievedToken = {recievedToken}/>} />

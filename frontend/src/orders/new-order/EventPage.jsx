@@ -23,7 +23,7 @@ export default function EventPage({updateForm, form}) {
   return (
     <>
     <MDBValidation className='fields' isValidated >
-      <MDBValidationItem className='field' invalid feedback='' style={{ width: '200px' }}>
+      <MDBValidationItem className='field' invalid feedback='' >
         <MDBInput
           value={formValue.name}
           name='name'
@@ -33,7 +33,7 @@ export default function EventPage({updateForm, form}) {
           label='Full name'
         />
       </MDBValidationItem>
-      <MDBValidationItem className='field' style={{ width: '200px' }}>
+      <MDBValidationItem className='field' >
         <MDBInput
           value={formValue.lname}
           name='lname'
@@ -77,9 +77,7 @@ export default function EventPage({updateForm, form}) {
       <MDBValidationItem className='field' invalid feedback='You must agree before submitting.' >
         <MDBCheckbox label='Agree to terms and conditions' id='invalidCheck' required />
       </MDBValidationItem>
-      <div className=''>
-        <MDBBtn type='submit'>Submit form</MDBBtn>
-      </div>
+
     </MDBValidation>
     </>
     
