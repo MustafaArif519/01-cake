@@ -6,8 +6,10 @@ import {
   MDBCheckbox,
   MDBValidation,
   MDBValidationItem,
-  MDBRadio
+  MDBRadio,
+  MDBTextArea
 } from 'mdb-react-ui-kit';
+import './style.css';
 
 export default function EventPage({ updateForm, form }) {
   //const [formValue, setFormValue] = useState(form);
@@ -52,8 +54,9 @@ export default function EventPage({ updateForm, form }) {
   return (
     <>
     {/* {console.log(formValue.name)} */}
-      <MDBValidation className='fields' isValidated >
-        <MDBValidationItem className='field' invalid feedback='' >
+    <h1>Personal Information</h1>
+    <div className='section'>
+    <MDBValidationItem className='field' invalid feedback='' >
           <MDBInput
             value={form.name}
             name='name'
@@ -73,51 +76,81 @@ export default function EventPage({ updateForm, form }) {
             label='Phone Number'
           />
         </MDBValidationItem>
-        <MDBValidationItem className='field' invalid feedback=''>
+    </div>
+        
+        <h1>Event Information</h1>
+        
+  <div className='section'>
+  <div className = "radio">
+  <h3>Event Type</h3>
+        <MDBValidationItem  feedback=''>
+    <MDBRadio
+      name='flexRadioDefault'
+      id='flexRadioDefault1'
+      value="option1"
+      defaultChecked={selectedOption === 'option1'}
+      onChange={handleOptionChange}
+      label = "Wedding"
+
+    />
+
+    <MDBRadio
+      name='flexRadioDefault'
+      id='flexRadioDefault2'
+      value="option2"
+      defaultChecked={selectedOption === 'option2'}
+      onChange={handleOptionChange}
+      label = "Graduation"
+    />
+
+    <MDBRadio
+      name='flexRadioDefault'
+      id='flexRadioDefault3'
+      value="other"
+      checked={selectedOption === 'other'}
+      onChange={handleOptionChange}
+      label = "Birthday"
+    />
+
+
+  {showOtherInput && (
+    <div style={{ marginLeft: '20px', marginRight: '0px' }}>
+  <MDBInput
+    label="Other Option Details"
+    onChange={() => {}}
+    required
+    style={{ width: '200px' }}
+    className={isInvalid ? 'is-invalid' : ''}
+  />
+</div>
+  )}
+
+  {isInvalid && <div className="invalid-feedback">Please select an option.</div>}
+</MDBValidationItem>
+  </div>
+        
+<MDBValidationItem className='field' invalid feedback='' >
           <MDBInput
+            value={form.eventDate}
+            name='date'
+            onChange={onChange}
+            id='validationCustom05'
+            required
+            label='Event Date'
+          />
+        </MDBValidationItem>
+  <MDBValidationItem className='field' invalid feedback=''>
+          <MDBTextArea
             value={form.eventDetails}
             name='eventDetails'
             onChange={onChange}
             id='validationCustom01'
             required
             label='Event Details (Optional)'
+            style = {{width: "400px", height: "200px"}}
           />
         </MDBValidationItem>
-        <MDBValidationItem className="field" invalid feedback=''>
-          <MDBRadio name='flexRadioDefault'
-            id='flexRadioDefault2'
-            label="Option 1"
-            value="option1"
-            defaultChecked={selectedOption === 'option1'}
-            onChange={handleOptionChange} />
-
-          <MDBRadio name='flexRadioDefault'
-            id='flexRadioDefault2'
-            label="Option 2"
-            value="option2"
-            defaultChecked={selectedOption === 'option2'}
-            onChange={handleOptionChange} />
-          <MDBRadio name='flexRadioDefault'
-            id='flexRadioDefault2'
-            label="Other"
-            value="other"
-            defaultChecked={selectedOption === 'other'}
-            onChange={handleOptionChange} />
-          {showOtherInput && (
-            <MDBInput
-              label="Other Option Details"
-              onChange={() => { }}
-              required
-              className={isInvalid ? 'is-invalid' : ''}
-            />
-          )}
-          {isInvalid && <div className="invalid-feedback">Please select an option.</div>}
-        </MDBValidationItem>
-
-
-
-
-      </MDBValidation>
+        </div>
     </>
 
   );

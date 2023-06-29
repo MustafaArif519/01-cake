@@ -6,8 +6,10 @@ import {
   MDBCheckbox,
   MDBValidation,
   MDBValidationItem,
+  MDBTextArea,
   MDBRadio
 } from 'mdb-react-ui-kit';
+import './style.css';
 
 export default function DeliveryPage({ updateForm, form }) {
   const [formValue, setFormValue] = useState(form);
@@ -48,66 +50,41 @@ export default function DeliveryPage({ updateForm, form }) {
   };
   return (
     <>
-     <MDBValidation className='row g-3'>
-      <MDBValidationItem className='col-md-4'>
-        <MDBInput
-          value={formValue.fname}
-          name='fname'
-          onChange={onChange}
-          id='validationCustom01'
+      <MDBValidationItem className='mb-3 pb-1' feedback='Please enter a message in the textarea.' invalid>
+        <MDBTextArea
+          label='Textarea'
+          id='validationTextarea'
+          placeholder='Required example textarea'
           required
-          label='First name'
         />
       </MDBValidationItem>
-      <MDBValidationItem className='col-md-4'>
-        <MDBInput
-          value={formValue.lname}
-          name='lname'
-          onChange={onChange}
-          id='validationCustom02'
+      <MDBValidationItem className='mb-2 pb-1' invalid feedback='Example invalid feedback text.'>
+        <MDBCheckbox label='Check this checkbox' id='validationFormCheck1' required />
+      </MDBValidationItem>
+      <MDBRadio label='Toggle this radio' required id='validationFormCheck2' name='radio-stacked' />
+      <MDBValidationItem invalid feedback='More example invalid feedback text.'>
+        <MDBRadio
+          className = "radio"
+          label='Or toggle this other radio'
           required
-          label='Last name'
+          id='validationFormCheck3'
+          name='radio-stacked'
         />
       </MDBValidationItem>
-      <MDBValidationItem feedback='Please choose a username.' invalid className='col-md-4'>
-        <MDBInputGroup textBefore='@'>
-          <input
-            type='text'
-            className='form-control'
-            id='validationCustomUsername'
-            placeholder='Username'
-            required
-          />
-        </MDBInputGroup>
+
+      <MDBValidationItem
+        className='mt-3 mb-5'
+        feedback='Example invalid form file feedback'
+        invalid
+      >
+        <input type='file' multiple className='form-control' aria-label='file example' required />
       </MDBValidationItem>
-      <MDBValidationItem className='col-md-6' feedback='Please provide a valid city.' invalid>
-        <MDBInput
-          value={formValue.city}
-          name='city'
-          onChange={onChange}
-          id='validationCustom03'
-          required
-          label='City'
-        />
-      </MDBValidationItem>
-      <MDBValidationItem className='col-md-6' feedback='Please provide a valid zip.' invalid>
-        <MDBInput
-          value={formValue.zip}
-          name='zip'
-          onChange={onChange}
-          id='validationCustom05'
-          required
-          label='Zip'
-        />
-      </MDBValidationItem>
-      <MDBValidationItem className='col-12' feedback='You must agree before submitting.' invalid>
-        <MDBCheckbox label='Agree to terms and conditions' id='invalidCheck' required />
-      </MDBValidationItem>
-      <div className='col-12'>
-        <MDBBtn type='submit'>Submit form</MDBBtn>
-        <MDBBtn type='reset'>Reset form</MDBBtn>
+      <div>
+        <MDBBtn type='submit' disabled>
+          Submit form
+        </MDBBtn>
       </div>
-    </MDBValidation>
+
     </>
 
   );

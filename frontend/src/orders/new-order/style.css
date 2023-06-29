@@ -1,8 +1,4 @@
-.my-div {
-    margin: 20px auto;
-    text-align: center;
-    /* background-color: #c45151; */
-  }
+
 
   .back {
     display: flex;
@@ -23,15 +19,46 @@
     margin-left: auto;
   }
 
-
-  .fields {
+  h1, h2 {
+    text-align: left;
+    margin-left: 20px;
+    display: block;
+  }
+  
+  .section {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-bottom: 50px;
+    margin-top: 20px;
   }
 
   .field {
-    margin-left: 20px;
+    margin-left: 50px;
     margin-bottom: 20px;
-    width: '200px'
+    width: '200px';
+  }
+
+  .tbox {
+    margin-left: 50px;
+    margin-bottom: 20px;
+    width: '400px';
+  }
+
+  .form {
+    margin-top: 40px;    /* top margin */
+    margin-right: 50px;  /* right margin */
+    margin-bottom: 30px; /* bottom margin */
+    margin-left: 50px;   /* left margin */
+  }
+
+  .radio {
+    margin-left: 50px;
+    margin-right: 100px;
+    margin-bottom: 50px;
+    text-align: left;
+    display: block;
+    flex-direction: none;
+    flex-wrap: none;
+    width: 200px;
   }

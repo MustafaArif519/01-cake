@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import EventPage from "./EventPage.jsx"
 import DeliveryPage from './DeliveryPage.jsx';
+import PaymentPage from "./PaymentPage.jsx"
 import './style.css';
 import {
   MDBInput,
@@ -14,7 +15,8 @@ import {
   MDBBtn,
   MDBPagination,
   MDBPaginationItem,
-  MDBPaginationLink
+  MDBPaginationLink,
+  MDBValidation,
 } from 'mdb-react-ui-kit';
 
 
@@ -70,9 +72,9 @@ const NewOrder = ({ token }) => {
       case 1:
         return <EventPage updateForm={updateForm} form={formValue} />;
       case 2:
-        return <DeliveryPage updateForm={updateForm} form={formValue}/>;
+        return <DeliveryPage updateForm={updateForm} form={formValue} />;
       case 3:
-        return <EventPage updateForm={updateForm} form={formValue} />;
+        return <PaymentPage updateForm={updateForm} form={formValue} />;
       case 4:
         return <EventPage updateForm={updateForm} form={formValue} />;
       case 5:
@@ -83,14 +85,58 @@ const NewOrder = ({ token }) => {
   };
 
   return (
-    <div className='my-div' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '800px' }}>
+    <div className='form'>
 
       <MDBCard alignment='center'>
-        <MDBCardHeader>Fill out order details to place order</MDBCardHeader>
+        <MDBCardHeader>
+        <nav aria-label='...'>
+            <MDBPagination circle className='mb-0 container'>
+              <MDBPaginationItem disabled={currentPage === 1}>
+                <MDBPaginationLink href='#' tabIndex={-1} aria-disabled='true' onClick={handlePrevPage}>
+                  Previous
+                </MDBPaginationLink>
+              </MDBPaginationItem>
+              <MDBPaginationItem active={currentPage === 1}>
+                <MDBPaginationLink href='#' onClick={() => setCurrentPage(1)}>
+                  1
+                </MDBPaginationLink>
+              </MDBPaginationItem>
+              <MDBPaginationItem active={currentPage === 2}>
+                <MDBPaginationLink href='#' onClick={() => setCurrentPage(2)}>
+                  2 <span className='visually-hidden'>(current)</span>
+                </MDBPaginationLink>
+              </MDBPaginationItem>
+              <MDBPaginationItem active={currentPage === 3}>
+                <MDBPaginationLink href='#' onClick={() => setCurrentPage(3)}>
+                  3
+                </MDBPaginationLink>
+              </MDBPaginationItem>
+              <MDBPaginationItem active={currentPage === 4}>
+                <MDBPaginationLink href='#' onClick={() => setCurrentPage(4)}>
+                  4</MDBPaginationLink>
+              </MDBPaginationItem>
+              <MDBPaginationItem active={currentPage === 5}>
+                <MDBPaginationLink href='#' onClick={() => setCurrentPage(5)}>
+                  5
+                </MDBPaginationLink>
+              </MDBPaginationItem>
+              <MDBPaginationItem disabled={currentPage === 5}>
+                <MDBPaginationLink href='#' onClick={handleNextPage}>
+                  Next
+                </MDBPaginationLink>
+              </MDBPaginationItem>
+            </MDBPagination>
+          </nav>
+        </MDBCardHeader>
         <MDBCardBody>
-          {renderPage()}
+          <MDBValidation isValidated>
+            {renderPage()}
+          </MDBValidation>
+
         </MDBCardBody>
+
         <MDBCardFooter className="">
+
           <nav aria-label='...'>
             <MDBPagination circle className='mb-0 container'>
               <MDBPaginationItem disabled={currentPage === 1}>
