@@ -12,6 +12,10 @@
     align-items: flex-start;
   }
 
+  .blue-validation .valid-feedback,
+.blue-validation .invalid-feedback {
+  color: blue !important; // Force the color to remain blue
+}
   .container > :first-child {
     margin-right: auto;
   }
@@ -36,10 +40,13 @@
   .field {
     margin-left: 50px;
     margin-bottom: 20px;
-    width: '200px';
   }
 
-  .tbox {
+  .textInputWrapper .form-control {
+    width: 200px;
+  }
+
+  .textBox .form-control{
     margin-left: 50px;
     margin-bottom: 20px;
     width: '400px';
@@ -47,9 +54,10 @@
 
   .form {
     margin-top: 40px;    /* top margin */
-    margin-right: 50px;  /* right margin */
+    margin-right: 150px;  /* right margin */
     margin-bottom: 30px; /* bottom margin */
-    margin-left: 50px;   /* left margin */
+    margin-left: 150px;   /* left margin */
+
   }
 
   .radio {

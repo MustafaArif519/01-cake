@@ -24,6 +24,7 @@ const NewOrder = ({ token }) => {
   const [formValue, setFormValue] = useState({
     name: '',
     pNumber: '',
+    contactHow: '',
     eventDetails: '',
     eventType: '',
     eventDate: '',
@@ -129,9 +130,9 @@ const NewOrder = ({ token }) => {
           </nav>
         </MDBCardHeader>
         <MDBCardBody>
-          <MDBValidation isValidated>
+          
             {renderPage()}
-          </MDBValidation>
+
 
         </MDBCardBody>
 

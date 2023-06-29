@@ -53,103 +53,153 @@ export default function EventPage({ updateForm, form }) {
   };
   return (
     <>
-    {/* {console.log(formValue.name)} */}
-    <h1>Personal Information</h1>
-    <div className='section'>
-    <MDBValidationItem className='field' invalid feedback='' >
-          <MDBInput
-            value={form.name}
-            name='name'
-            onChange={onChange}
-            id='validationCustom01'
-            required
-            label='Full name'
-          />
-        </MDBValidationItem>
-        <MDBValidationItem className='field' isValidated>
-          <MDBInput
-            value={form.pNumber}
-            name='pNumber'
-            onChange={onChange}
-            id='validationCustom02'
-            required
-            label='Phone Number'
-          />
-        </MDBValidationItem>
-    </div>
+      {/* {console.log(formValue.name)} */}
+      
+        <h1>Personal Information</h1>
+        <MDBValidation isValidated>
+        <div className='section'>
         
+          <MDBValidationItem className='field' invalid feedback='ex: Mustafa Arif'>
+            <div className="textInputWrapper">
+              <MDBInput
+                value={form.name}
+                name='name'
+                onChange={onChange}
+                id='validationCustom02'
+                required
+                label='Full Name'
+              />
+            </div>
+          </MDBValidationItem>
+
+          <MDBValidationItem className='field' invalid feedback='ex: 123-456-7890'>
+            <div className="textInputWrapper">
+              <MDBInput
+                value={form.pNumber}
+                name='pNumber'
+                onChange={onChange}
+                id='validationCustom02'
+                required
+                label='Phone Number'
+              />
+            </div>
+          </MDBValidationItem>
+
+          
+        </div>
+        </MDBValidation>
+
         <h1>Event Information</h1>
+        <div className='section'>
+        <MDBValidation isValidated>
+        <div className='section'>
         
-  <div className='section'>
-  <div className = "radio">
-  <h3>Event Type</h3>
-        <MDBValidationItem  feedback=''>
-    <MDBRadio
-      name='flexRadioDefault'
-      id='flexRadioDefault1'
-      value="option1"
-      defaultChecked={selectedOption === 'option1'}
-      onChange={handleOptionChange}
-      label = "Wedding"
+          <div className="radio">
+            <h3>Event Type</h3>
+            
+ 
+              <MDBRadio
+                name='flexRadioDefault'
+                id='flexRadioDefault1'
+                value="option1"
+                defaultChecked={selectedOption === 'option1'}
+                onChange={handleOptionChange}
+                required 
+                label="Wedding"
 
-    />
+              />
+              <MDBRadio
+                name='flexRadioDefault'
+                id='flexRadioDefault2'
+                value="option1"
+                defaultChecked={selectedOption === 'option2'}
+                onChange={handleOptionChange}
+                required 
+                label="Anniversary"
 
-    <MDBRadio
-      name='flexRadioDefault'
-      id='flexRadioDefault2'
-      value="option2"
-      defaultChecked={selectedOption === 'option2'}
-      onChange={handleOptionChange}
-      label = "Graduation"
-    />
+              />
+              <MDBRadio
+                name='flexRadioDefault'
+                id='flexRadioDefault3'
+                value="option1"
+                defaultChecked={selectedOption === 'option3'}
+                onChange={handleOptionChange}
+                required 
+                label="Graduation"
 
-    <MDBRadio
-      name='flexRadioDefault'
-      id='flexRadioDefault3'
-      value="other"
-      checked={selectedOption === 'other'}
-      onChange={handleOptionChange}
-      label = "Birthday"
-    />
+              />
 
+              <MDBRadio
+                name='flexRadioDefault'
+                id='flexRadioDefault4'
+                value="option2"
+                defaultChecked={selectedOption === 'option4'}
+                onChange={handleOptionChange}
+                required 
+                label="Birthday"
+              />
 
-  {showOtherInput && (
-    <div style={{ marginLeft: '20px', marginRight: '0px' }}>
-  <MDBInput
-    label="Other Option Details"
-    onChange={() => {}}
-    required
-    style={{ width: '200px' }}
-    className={isInvalid ? 'is-invalid' : ''}
-  />
-</div>
-  )}
-
-  {isInvalid && <div className="invalid-feedback">Please select an option.</div>}
+<MDBValidationItem invalid feedback='' >
+              <MDBRadio
+                name='flexRadioDefault'
+                id='flexRadioDefault5'
+                value="other"
+                checked={selectedOption === 'other'}
+                onChange={handleOptionChange}
+                required 
+                label="Other"
+              />
 </MDBValidationItem>
-  </div>
-        
-<MDBValidationItem className='field' invalid feedback='' >
-          <MDBInput
-            value={form.eventDate}
-            name='date'
-            onChange={onChange}
-            id='validationCustom05'
-            required
-            label='Event Date'
-          />
-        </MDBValidationItem>
-  <MDBValidationItem className='field' invalid feedback=''>
-          <MDBTextArea
-            value={form.eventDetails}
-            name='eventDetails'
-            onChange={onChange}
-            id='validationCustom01'
-            required
-            label='Event Details (Optional)'
-            style = {{width: "400px", height: "200px"}}
-          />
-        </MDBValidationItem>
+
+              {showOtherInput && (
+                <MDBValidationItem className='' invalid feedback='ex: Career Promotion' >
+                  <div className="">
+                    <MDBInput
+                      value={form.eventType}
+                      name='eventType'
+                      onChange={onChange}
+                      id='validationCustom04'
+                      required
+                      label='Other'
+                    />
+                  </div>
+                </MDBValidationItem>
+              )}
+
+              
+
+          </div>
+
+          <MDBValidationItem className='field' invalid feedback='ex: 01/04/2020' >
+            <div className="textInputWrapper">
+              <MDBInput
+                value={form.eventDate}
+                name='date'
+                onChange={onChange}
+                id='validationCustom05'
+                required
+                label='Event Date'
+              />
+            </div>
+          </MDBValidationItem>
+          
+          
+        </div>
+        </MDBValidation>
+        <MDBValidationItem className='field' invalid feedback='ex: A graduation party celebrating 
+                                                                my daughters highschool graduation.' >
+          <div className="textInputWrapper">
+            <MDBTextArea className=''
+              value={form.eventDetails}
+              name='eventDetails'
+              onChange={onChange}
+              id='validationCustom06'
+              required
+              label='Event Details (Optional)'
+              style={{ width: "400px", height: "200px" }}
+            />
+            </div>
+          </MDBValidationItem>
         </div>
     </>
 
