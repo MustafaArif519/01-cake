@@ -101,9 +101,15 @@ export default function EventPage({ updateForm, form }) {
               <MDBRadio
                 name='flexRadioDefault'
                 id='flexRadioDefault1'
-                value="option1"
+                value="Wedding"
                 defaultChecked={selectedOption === 'option1'}
-                onChange={handleOptionChange}
+                onChange={() => {
+                  // Call the first function
+                  handleOptionChange();
+                
+                  // Call the second function
+                  onChange();
+                }}
                 required 
                 label="Wedding"
 
@@ -111,9 +117,15 @@ export default function EventPage({ updateForm, form }) {
               <MDBRadio
                 name='flexRadioDefault'
                 id='flexRadioDefault2'
-                value="option1"
+                value="Aniversary"
                 defaultChecked={selectedOption === 'option2'}
-                onChange={handleOptionChange}
+                onChange={() => {
+                  // Call the first function
+                  handleOptionChange();
+                
+                  // Call the second function
+                  onChange();
+                }}
                 required 
                 label="Anniversary"
 
@@ -121,9 +133,15 @@ export default function EventPage({ updateForm, form }) {
               <MDBRadio
                 name='flexRadioDefault'
                 id='flexRadioDefault3'
-                value="option1"
+                value="Graduation"
                 defaultChecked={selectedOption === 'option3'}
-                onChange={handleOptionChange}
+                onChange={() => {
+                  // Call the first function
+                  handleOptionChange();
+                
+                  // Call the second function
+                  onChange();
+                }}
                 required 
                 label="Graduation"
 
@@ -132,9 +150,15 @@ export default function EventPage({ updateForm, form }) {
               <MDBRadio
                 name='flexRadioDefault'
                 id='flexRadioDefault4'
-                value="option2"
+                value="Birthday"
                 defaultChecked={selectedOption === 'option4'}
-                onChange={handleOptionChange}
+                onChange={() => {
+                  // Call the first function
+                  handleOptionChange();
+                
+                  // Call the second function
+                  onChange();
+                }}
                 required 
                 label="Birthday"
               />
@@ -145,7 +169,13 @@ export default function EventPage({ updateForm, form }) {
                 id='flexRadioDefault5'
                 value="other"
                 checked={selectedOption === 'other'}
-                onChange={handleOptionChange}
+                onChange={() => {
+                  // Call the first function
+                  handleOptionChange();
+                
+                  // Call the second function
+                  onChange();
+                }}
                 required 
                 label="Other"
               />
