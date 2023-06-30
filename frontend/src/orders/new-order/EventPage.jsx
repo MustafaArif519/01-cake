@@ -204,7 +204,7 @@ export default function EventPage({ updateForm, form }) {
             <div className="textInputWrapper">
               <MDBInput
                 value={form.eventDate}
-                name='date'
+                name='eventDate'
                 onChange={onChange}
                 id='validationCustom05'
                 required
