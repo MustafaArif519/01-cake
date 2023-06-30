@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import EventPage from "./EventPage.jsx"
 import DeliveryPage from './DeliveryPage.jsx';
 import PaymentPage from "./PaymentPage.jsx"
+import CakePage from './CakePage.jsx'
 import './style.css';
 import {
   MDBInput,
@@ -28,7 +29,7 @@ const NewOrder = ({ token }) => {
     eventDetails: '',
     eventType: '',
     eventDate: '',
-    cakeSize: 0,
+    cakeSize: '',
     cakeSpecs: '',
     cakeFlavor: '',
     cakeFilling: '',
@@ -73,11 +74,11 @@ const NewOrder = ({ token }) => {
       case 1:
         return <EventPage updateForm={updateForm} form={formValue} />;
       case 2:
-        return <DeliveryPage updateForm={updateForm} form={formValue} />;
+        return <CakePage updateForm={updateForm} form={formValue} />;
       case 3:
-        return <PaymentPage updateForm={updateForm} form={formValue} />;
+        return <DeliveryPage updateForm={updateForm} form={formValue} />;
       case 4:
-        return <EventPage updateForm={updateForm} form={formValue} />;
+        return <PaymentPage updateForm={updateForm} form={formValue} />;
       case 5:
         return <EventPage updateForm={updateForm} form={formValue} />;
       default:

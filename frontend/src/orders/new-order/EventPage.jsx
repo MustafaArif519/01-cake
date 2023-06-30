@@ -25,32 +25,22 @@ export default function EventPage({ updateForm, form }) {
   // }, [form])
 
   const onChange = (e) => {
-    // console.log(formValue);
+    console.log(e.target.value);
     updateForm({ ...form, [e.target.name]: e.target.value });
   };
 
 
   const handleOptionChange = (e) => {
+    // console.log(e);
     const { value } = e.target;
     setSelectedOption(value);
 
     // Check if option is selected and update showOtherInput state accordingly
-    setShowOtherInput(value === 'other');
+    setShowOtherInput(value === '');
+    onChange(e);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Check if an option is selected
-    if (!selectedOption) {
-      setIsInvalid(true);
-      return;
-    }
-
-    setIsInvalid(false);
-    console.log('Form submitted!');
-
-  };
+ 
   return (
     <>
       {/* {console.log(formValue.name)} */}
@@ -65,7 +55,7 @@ export default function EventPage({ updateForm, form }) {
                 value={form.name}
                 name='name'
                 onChange={onChange}
-                id='validationCustom02'
+                id='validationCustom01'
                 required
                 label='Full Name'
               />
@@ -99,83 +89,53 @@ export default function EventPage({ updateForm, form }) {
             
  
               <MDBRadio
-                name='flexRadioDefault'
+                name='eventType'
                 id='flexRadioDefault1'
                 value="Wedding"
                 defaultChecked={selectedOption === 'option1'}
-                onChange={() => {
-                  // Call the first function
-                  handleOptionChange();
-                
-                  // Call the second function
-                  onChange();
-                }}
+                onChange={handleOptionChange}
                 required 
                 label="Wedding"
 
               />
               <MDBRadio
-                name='flexRadioDefault'
+                name='eventType'
                 id='flexRadioDefault2'
                 value="Aniversary"
                 defaultChecked={selectedOption === 'option2'}
-                onChange={() => {
-                  // Call the first function
-                  handleOptionChange();
-                
-                  // Call the second function
-                  onChange();
-                }}
+                onChange={handleOptionChange}
                 required 
                 label="Anniversary"
 
               />
               <MDBRadio
-                name='flexRadioDefault'
+                name='eventType'
                 id='flexRadioDefault3'
                 value="Graduation"
                 defaultChecked={selectedOption === 'option3'}
-                onChange={() => {
-                  // Call the first function
-                  handleOptionChange();
-                
-                  // Call the second function
-                  onChange();
-                }}
+                onChange={handleOptionChange}
                 required 
                 label="Graduation"
 
               />
 
               <MDBRadio
-                name='flexRadioDefault'
+                name='eventType'
                 id='flexRadioDefault4'
                 value="Birthday"
                 defaultChecked={selectedOption === 'option4'}
-                onChange={() => {
-                  // Call the first function
-                  handleOptionChange();
-                
-                  // Call the second function
-                  onChange();
-                }}
+                onChange={handleOptionChange}
                 required 
                 label="Birthday"
               />
 
 <MDBValidationItem invalid feedback='' >
               <MDBRadio
-                name='flexRadioDefault'
+                name='eventType'
                 id='flexRadioDefault5'
-                value="other"
-                checked={selectedOption === 'other'}
-                onChange={() => {
-                  // Call the first function
-                  handleOptionChange();
-                
-                  // Call the second function
-                  onChange();
-                }}
+                value=""
+                defaultChecked={selectedOption === 'other'}
+                onChange={handleOptionChange}
                 required 
                 label="Other"
               />
@@ -188,7 +148,7 @@ export default function EventPage({ updateForm, form }) {
                       value={form.eventType}
                       name='eventType'
                       onChange={onChange}
-                      id='validationCustom04'
+                      id='validationCustom99'
                       required
                       label='Other'
                     />
