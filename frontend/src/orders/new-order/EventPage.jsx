@@ -186,7 +186,7 @@ export default function EventPage({ updateForm, form }) {
               id='validationCustom06'
               required
               label='Event Details (Optional)'
-              style={{ width: "400px", height: "200px" }}
+              style={{ width: "300px", height: "200px" }}
             />
             </div>
           </MDBValidationItem>

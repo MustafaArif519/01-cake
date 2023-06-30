@@ -35,15 +35,25 @@
     flex-wrap: wrap;
     margin-bottom: 50px;
     margin-top: 20px;
+ 
+
+
+
   }
 
   .field {
-    margin-left: 20px;
-    margin-bottom: 20px;
+    margin-left: 50px;
+    margin-top: 50px;
+  }
+
+  .chooseFile {
+    margin-left: 50px;
+    margin-top: 50px;
+    width: 650px;
   }
 
   .textInputWrapper .form-control {
-    width: 200px;
+    width: 300px;
   }
 
   .textBox .form-control{
@@ -62,11 +72,10 @@
 
   .radio {
     margin-left: 50px;
-    margin-right: 100px;
-    margin-bottom: 20px;
+    margin-right: 200px;
+    margin-top: 50px;
     text-align: left;
     display: block;
     flex-direction: none;
     flex-wrap: none;
-    width: 200px;
   }
