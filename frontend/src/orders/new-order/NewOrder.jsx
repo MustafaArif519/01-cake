@@ -3,6 +3,7 @@ import EventPage from "./EventPage.jsx"
 import DeliveryPage from './DeliveryPage.jsx';
 import PaymentPage from "./PaymentPage.jsx"
 import CakePage from './CakePage.jsx'
+import PasteryPage from './PasteryPage.jsx';
 import './style.css';
 import {
   MDBInput,
@@ -74,7 +75,7 @@ const NewOrder = ({ token }) => {
       case 1:
         return <EventPage updateForm={updateForm} form={formValue} />;
       case 2:
-        return <CakePage updateForm={updateForm} form={formValue} />;
+        return <PasteryPage updateForm={updateForm} form={formValue} />;
       case 3:
         return <DeliveryPage updateForm={updateForm} form={formValue} />;
       case 4:
