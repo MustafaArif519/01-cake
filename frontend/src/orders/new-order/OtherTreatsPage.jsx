@@ -103,7 +103,7 @@ export default function OtherTreatsPage({ updateForm, form }) {
         <>
             {/* {console.log(formValue.name)} */}
 
-            <h1>Cake Specification</h1>
+            <h1>Treat Specification</h1>
             <div className='section'>
                 <div className="radio">
                     <h3>Select Treat Type</h3>
@@ -205,263 +205,14 @@ export default function OtherTreatsPage({ updateForm, form }) {
                 
 
 
-
-
-                <div className="radio">
-                    <h3>Cake Flavor</h3>
-
-                    <MDBValidation isValidated>
-                        <MDBRadio
-                            name='cakeFlavor'
-                            id='flexRadioDefault1'
-                            value="Yellow Sponge"
-                            defaultChecked={selectedOption2 === 'option1'}
-                            onChange={handleOptionChange2}
-                            required
-                            label="Yellow Sponge"
-
-                        />
-                        <MDBRadio
-                            name='cakeFlavor'
-                            id='flexRadioDefault1\2'
-                            value="Chocolate"
-                            defaultChecked={selectedOption2 === 'option2'}
-                            onChange={handleOptionChange2}
-                            required
-                            label="Chocolate"
-
-                        />
-                        <MDBRadio
-                            name='cakeFlavor'
-                            id='flexRadioDefault3'
-                            value="Red Velvet"
-                            defaultChecked={selectedOption2 === 'option3'}
-                            onChange={handleOptionChange2}
-                            required
-                            label="Red Velvet"
-
-                        />
-
-                        <MDBRadio
-                            name='cakeFlavor'
-                            id='flexRadioDefault4'
-                            value=""
-                            defaultChecked={selectedOption2 === 'other'}
-                            onChange={handleOptionChange2}
-                            required
-                            label="Other"
-                        />
-                        {showOtherInput2 && (
-                            <MDBValidationItem className='' invalid feedback='ex: Vanilla' >
-                                <div className="">
-                                    <MDBInput
-                                        value={form.cakeFlavor}
-                                        name='cakeFlavor'
-                                        onChange={onChange}
-                                        id='validationCustom63432'
-                                        required
-                                        label='Other'
-                                    />
-                                </div>
-                            </MDBValidationItem>
-                        )}
-
-                    </MDBValidation>
-                </div>
-
-
-
-                <div className="radio">
-                    <h3>Cake Filling</h3>
-
-                    <MDBValidation isValidated>
-                        <MDBRadio
-                            name='cakeFilling'
-                            id='flexRadioDefault12'
-                            value="Basic: ( vanilla, Lemon, Butterscotch)"
-                            defaultChecked={selectedOption3 === 'option1'}
-                            onChange={handleOptionChange3}
-                            required
-                            label="Basic: ( vanilla, Lemon, Butterscotch)"
-
-                        />
-                        <MDBRadio
-                            name='cakeFilling'
-                            id='flexRadioDefault22'
-                            value="Special: +$1/ serving (strawberry, chocolate, mango, rose, orange)"
-                            defaultChecked={selectedOption3 === 'option2'}
-                            onChange={handleOptionChange3}
-                            required
-                            label="Special: +$1/ serving (strawberry, chocolate, mango, rose, orange)"
-
-                        />
-                        <MDBRadio
-                            name='cakeFilling'
-                            id='flexRadioDefault32'
-                            value="Premium: +$2/serving ( raspberry, cherry, blueberry, pista, mixed fruit)"
-                            defaultChecked={selectedOption3 === 'option3'}
-                            onChange={handleOptionChange3}
-                            required
-                            label="Premium: +$2/serving ( raspberry, cherry, blueberry, pista, mixed fruit)"
-
-                        />
-
-                        <MDBRadio
-                            name='cakeFilling'
-                            id='flexRadioDefault42'
-                            value="Signature: +$3/ serving ( rasmalai, gulab jamun )"
-                            defaultChecked={selectedOption3 === 'option4'}
-                            onChange={handleOptionChange3}
-                            required
-                            label="Signature: +$3/ serving ( rasmalai, gulab jamun )"
-                        />
-                        <MDBRadio
-                            name='cakeFilling'
-                            id='flexRadioDefault52'
-                            value=""
-                            defaultChecked={selectedOption3 === 'other'}
-                            onChange={handleOptionChange3}
-                            required
-                            label="Other"
-                        />
-                        {showOtherInput3 && (
-                            <MDBValidationItem className='' invalid feedback='ex: Vanilla' >
-                                <div className="">
-                                    <MDBInput
-                                        value={form.cakeFilling}
-                                        name='cakeFilling'
-                                        onChange={onChange}
-                                        id='validationCustom666'
-                                        required
-                                        label='Other'
-                                    />
-                                </div>
-                            </MDBValidationItem>
-                        )}
-
-                    </MDBValidation>
-                </div>
-
-
-                <div className="radio">
-                    <h3>Cake Frosting</h3>
-
-                    <MDBValidation isValidated>
-                        <MDBRadio
-                            name='cakeFrosting'
-                            id='flexRadioDefault123'
-                            value="Swiss Meringue buttercream"
-                            defaultChecked={selectedOption4 === 'option1'}
-                            onChange={handleOptionChange4}
-                            required
-                            label="Swiss Meringue buttercream"
-
-                        />
-                        <MDBRadio
-                            name='cakeFrosting'
-                            id='flexRadioDefault2236'
-                            value="American buttercream ( for eggless cakes only)"
-                            defaultChecked={selectedOption4 === 'option2'}
-                            onChange={handleOptionChange4}
-                            required
-                            label="American buttercream ( for eggless cakes only)"
-
-                        />
-                        <MDBRadio
-                            name='cakeFrosting'
-                            id='flexRadioDefault326'
-                            value=""
-                            defaultChecked={selectedOption4 === 'other'}
-                            onChange={handleOptionChange4}
-                            required
-                            label="Other"
-
-                        />
-
-                        {showOtherInput4 && (
-                            <MDBValidationItem className='' invalid feedback='ex: Vanilla' >
-                                <div className="">
-                                    <MDBInput
-                                        value={form.cakeFrosting}
-                                        name='cakeFrosting'
-                                        onChange={onChange}
-                                        id='validationCustom6666'
-                                        required
-                                        label='Other'
-                                    />
-                                </div>
-                            </MDBValidationItem>
-                        )}
-
-                    </MDBValidation>
-                </div>
-                <MDBValidation isValidated>
-                    <MDBValidationItem className='field' invalid feedback='ex: Tom Hollad Spiderman theme' >
-                        <div className="textInputWrapper">
-                            <MDBInput
-                                value={form.cakeDesign}
-                                name='cakeDesign'
-                                onChange={onChange}
-                                id='validationCustom05fsa'
-                                required
-                                label='Design/Theme'
-                            />
-                        </div>
-                    </MDBValidationItem>
-                </MDBValidation>
-                <MDBValidation isValidated>
-                    <MDBValidationItem className='field' invalid feedback='ex: red and blue' >
-                        <div className="textInputWrapper">
-                            <MDBInput
-                                value={form.cakeColor}
-                                name='cakeColor'
-                                onChange={onChange}
-                                id='validationCustom05asd'
-                                required
-                                label='Color Scheme'
-                            />
-                        </div>
-                    </MDBValidationItem>
-                </MDBValidation>
-
-                <MDBValidation isValidated>
-                    <MDBValidationItem
-                        invalid
-                    >
-                        <div className='chooseFile'>
-                        <input
-        type="file"
-        multiple
-        className="form-control"
-        aria-label="file example"
-        required
-        ref={fileInputRef}
-        onChange={handleFileSelect}
-      />
-                    </div>
-                        </MDBValidationItem>
-                </MDBValidation>
-                <MDBValidation isValidated>
-                    <MDBValidationItem className='field' invalid feedback='ex: Happy Birthday Nikhil!' >
-                        <div className="textInputWrapper">
-                            <MDBInput
-                                value={form.cakeMessage}
-                                name='eventDate'
-                                onChange={onChange}
-                                id='validationCustom05asdfasdf'
-                                required
-                                label='Cake Mesage'
-                            />
-                        </div>
-                    </MDBValidationItem>
-                </MDBValidation>
+                
 
                 <MDBValidation isValidated>
                     <MDBValidationItem className='field' invalid feedback='ex: red and blue pattern like spiderman&quot;s suit' >
                         <div className="textInputWrapper">
                             <MDBTextArea className=''
-                                value={form.cakeAdditions}
-                                name='cakeAdditions'
+                                value={form.cakeTreatDetails}
+                                name='cakeTreatDetails'
                                 onChange={onChange}
                                 id='validationCustom06asdfasdfe'
                                 required
@@ -471,6 +222,8 @@ export default function OtherTreatsPage({ updateForm, form }) {
                         </div>
                     </MDBValidationItem>
                 </MDBValidation>
+
+                
             </div>
 
         </>

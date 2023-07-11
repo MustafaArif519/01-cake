@@ -77,12 +77,12 @@ const handleBasicClick = (value) => {
       <MDBTabs pills className='mb-3'>
         <MDBTabsItem>
           <MDBTabsLink onClick={() => handleBasicClick('tab1')} active={basicActive === 'tab1'}>
-            I want to pick up my order
+          I want my order to be delivered
           </MDBTabsLink>
         </MDBTabsItem>
         <MDBTabsItem>
           <MDBTabsLink onClick={() => handleBasicClick('tab2')} active={basicActive === 'tab2'}>
-            I want my order to be delivered
+          I want to pick up my order
           </MDBTabsLink>
         </MDBTabsItem>
 

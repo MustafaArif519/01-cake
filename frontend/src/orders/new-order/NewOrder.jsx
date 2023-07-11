@@ -4,6 +4,7 @@ import DeliveryPage from './DeliveryPage.jsx';
 import PaymentPage from "./PaymentPage.jsx"
 import CakePage from './CakePage.jsx'
 import PasteryPage from './PasteryPage.jsx';
+import TOSPage from './TOSPage.jsx';
 import './style.css';
 import {
   MDBInput,
@@ -81,7 +82,7 @@ const NewOrder = ({ token }) => {
       case 4:
         return <PaymentPage updateForm={updateForm} form={formValue} />;
       case 5:
-        return <EventPage updateForm={updateForm} form={formValue} />;
+        return <TOSPage updateForm={updateForm} form={formValue} />;
       default:
         return null;
     }
