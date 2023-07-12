@@ -30,6 +30,7 @@ const NewOrder = ({ token }) => {
     contactHow: '',
     eventDetails: '',
     eventType: '',
+    eventTypeOther: '',
     eventDate: '',
     cakeSize: '',
     cakeSpecs: '',

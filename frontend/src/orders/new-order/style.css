@@ -26,6 +26,7 @@
   h1, h2 {
     text-align: left;
     margin-left: 20px;
+    margin-bottom: 0px;
     display: block;
   }
   
@@ -34,11 +35,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     margin-bottom: 50px;
-    margin-top: 20px;
- 
-
-
-
+    margin-top: 0px;
   }
 
   .field {
@@ -71,11 +68,13 @@
   }
 
   .radio {
-    margin-left: 50px;
-    margin-right: 200px;
+    margin-left: 40px;
+    margin-right: 100px;
+    padding-right: 100px;
     margin-top: 50px;
     text-align: left;
     display: block;
     flex-direction: none;
     flex-wrap: none;
+
   }
