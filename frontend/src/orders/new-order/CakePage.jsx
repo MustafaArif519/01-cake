@@ -13,22 +13,32 @@ import './style.css';
 
 export default function CakePage({ updateForm, form }) {
     //const [formValue, setFormValue] = useState(form);
+    const [showOtherInput, setShowOtherInput] = useState(form.cakeSize === "Other");
 
-    const [selectedOption, setSelectedOption] = useState('');
-    const [showOtherInput, setShowOtherInput] = useState(false);
-    const [selectedOption2, setSelectedOption2] = useState('');
-    const [showOtherInput2, setShowOtherInput2] = useState(false);
-    const [selectedOption3, setSelectedOption3] = useState('');
-    const [showOtherInput3, setShowOtherInput3] = useState(false);
-    const [selectedOption4, setSelectedOption4] = useState('');
-    const [showOtherInput4, setShowOtherInput4] = useState(false);
-    const [isInvalid, setIsInvalid] = useState(false);
+    const [showOtherInput2, setShowOtherInput2] = useState(form.cakeFlavor === "Other");
 
-    // useEffect(() => {
-    //   console.log(formValue);
-    //   setFormValue(form);
-    //   console.log(formValue);
-    // }, [form])
+    const [showOtherInput3, setShowOtherInput3] = useState(form.cakeFilling === "Other");
+
+    const [showOtherInput4, setShowOtherInput4] = useState(form.cakeFrosting === "Other");
+
+
+  
+    useEffect(() => {
+      setShowOtherInput(form.cakeSize === "Other");
+    }, [form.cakeSize])
+
+    useEffect(() => {
+        setShowOtherInput2(form.cakeFlavor === "Other");
+      }, [form.cakeFlavor])
+
+      useEffect(() => {
+        setShowOtherInput3(form.cakeFilling === "Other");
+      }, [form.cakeFilling])
+
+      useEffect(() => {
+        setShowOtherInput4(form.cakeFrosting === "Other");
+      }, [form.cakeFrosting])
+
 
     const onChange = (e) => {
         console.log(e.target.value);
@@ -36,45 +46,9 @@ export default function CakePage({ updateForm, form }) {
     };
 
 
-    const handleOptionChange = (e) => {
-        // console.log(e);
-        const { value } = e.target;
-        setSelectedOption(value);
+   
 
-        // Check if option is selected and update showOtherInput state accordingly
-        setShowOtherInput(value === '');
-        onChange(e);
-    };
-
-    const handleOptionChange2 = (e) => {
-        // console.log(e);
-        const { value } = e.target;
-        setSelectedOption2(value);
-
-        // Check if option is selected and update showOtherInput state accordingly
-        setShowOtherInput2(value === '');
-        onChange(e);
-    };
-
-    const handleOptionChange3 = (e) => {
-        // console.log(e);
-        const { value } = e.target;
-        setSelectedOption3(value);
-
-        // Check if option is selected and update showOtherInput state accordingly
-        setShowOtherInput3(value === '');
-        onChange(e);
-    };
-
-    const handleOptionChange4 = (e) => {
-        // console.log(e);
-        const { value } = e.target;
-        setSelectedOption4(value);
-
-        // Check if option is selected and update showOtherInput state accordingly
-        setShowOtherInput4(value === '');
-        onChange(e);
-    };
+    
 
     const fileInputRef = useRef(null);
 
@@ -86,19 +60,7 @@ export default function CakePage({ updateForm, form }) {
     console.log(selectedFiles);
   }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
 
-        // Check if an option is selected
-        if (!selectedOption) {
-            setIsInvalid(true);
-            return;
-        }
-
-        setIsInvalid(false);
-        console.log('Form submitted!');
-
-    };
     return (
         <>
             {/* {console.log(formValue.name)} */}
@@ -113,8 +75,8 @@ export default function CakePage({ updateForm, form }) {
                             name='cakeSize'
                             id='flexRadioDefault1'
                             value="6 inch"
-                            defaultChecked={selectedOption === 'option1'}
-                            onChange={handleOptionChange}
+                            defaultChecked={form.cakeSize === "6 inch"}
+                            onChange={onChange}
                             required
                             label="6&quot;"
 
@@ -123,8 +85,8 @@ export default function CakePage({ updateForm, form }) {
                             name='cakeSize'
                             id='flexRadioDefault2'
                             value="8 inch"
-                            defaultChecked={selectedOption === 'option2'}
-                            onChange={handleOptionChange}
+                            defaultChecked={form.cakeSize === "8 inch"}
+                            onChange={onChange}
                             required
                             label="8&quot;"
 
@@ -133,8 +95,8 @@ export default function CakePage({ updateForm, form }) {
                             name='cakeSize'
                             id='flexRadioDefault3'
                             value="10 inch"
-                            defaultChecked={selectedOption === 'option3'}
-                            onChange={handleOptionChange}
+                            defaultChecked={form.cakeSize === "10 inch"}
+                            onChange={onChange}
                             required
                             label="10&quot;"
 
@@ -144,8 +106,8 @@ export default function CakePage({ updateForm, form }) {
                             name='cakeSize'
                             id='flexRadioDefault4'
                             value="12 inch"
-                            defaultChecked={selectedOption === 'option4'}
-                            onChange={handleOptionChange}
+                            defaultChecked={form.cakeSize === "12 inch"}
+                            onChange={onChange}
                             required
                             label="12&quot;"
                         />
@@ -153,8 +115,8 @@ export default function CakePage({ updateForm, form }) {
                             name='cakeSize'
                             id='flexRadioDefault5'
                             value="14 inch"
-                            defaultChecked={selectedOption === 'option5'}
-                            onChange={handleOptionChange}
+                            defaultChecked={form.cakeSize === "14 inch"}
+                            onChange={onChange}
                             required
                             label="14&quot;"
                         />
@@ -162,8 +124,8 @@ export default function CakePage({ updateForm, form }) {
                             name='cakeSize'
                             id='flexRadioDefault6'
                             value="Multi tiered"
-                            defaultChecked={selectedOption === 'option6'}
-                            onChange={handleOptionChange}
+                            defaultChecked={form.cakeSize === "Multi tiered"}
+                            onChange={onChange}
                             required
                             label="Multi tiered"
                         />
@@ -171,8 +133,8 @@ export default function CakePage({ updateForm, form }) {
                             name='cakeSize'
                             id='flexRadioDefault7'
                             value="Sculpted"
-                            defaultChecked={selectedOption === 'option7'}
-                            onChange={handleOptionChange}
+                            defaultChecked={form.cakeSize === "Sculpted"}
+                            onChange={onChange}
                             required
                             label="Sculpted"
                         />
@@ -202,8 +164,8 @@ export default function CakePage({ updateForm, form }) {
                             name='cakeFlavor'
                             id='flexRadioDefault1'
                             value="Yellow Sponge"
-                            defaultChecked={selectedOption2 === 'option1'}
-                            onChange={handleOptionChange2}
+                            defaultChecked={form.cakeFlavor === "Yellow Sponge"}
+                            onChange={onChange}
                             required
                             label="Yellow Sponge"
 
@@ -212,8 +174,8 @@ export default function CakePage({ updateForm, form }) {
                             name='cakeFlavor'
                             id='flexRadioDefault1\2'
                             value="Chocolate"
-                            defaultChecked={selectedOption2 === 'option2'}
-                            onChange={handleOptionChange2}
+                            defaultChecked={form.cakeFlavor === "Chocolate"}
+                            onChange={onChange}
                             required
                             label="Chocolate"
 
@@ -222,8 +184,8 @@ export default function CakePage({ updateForm, form }) {
                             name='cakeFlavor'
                             id='flexRadioDefault3'
                             value="Red Velvet"
-                            defaultChecked={selectedOption2 === 'option3'}
-                            onChange={handleOptionChange2}
+                            defaultChecked={form.cakeFlavor === "Red Velvet"}
+                            onChange={onChange}
                             required
                             label="Red Velvet"
 
@@ -232,9 +194,9 @@ export default function CakePage({ updateForm, form }) {
                         <MDBRadio
                             name='cakeFlavor'
                             id='flexRadioDefault4'
-                            value=""
-                            defaultChecked={selectedOption2 === 'other'}
-                            onChange={handleOptionChange2}
+                            value="Other"
+                            defaultChecked={form.cakeFlavor === "Other"}
+                            onChange={onChange}
                             required
                             label="Other"
                         />
@@ -242,8 +204,8 @@ export default function CakePage({ updateForm, form }) {
                             <MDBValidationItem className='' invalid feedback='ex: Vanilla' >
                                 <div className="">
                                     <MDBInput
-                                        value={form.cakeFlavor}
-                                        name='cakeFlavor'
+                                        value={form.cakeFlavorOther}
+                                        name='cakeFlavorOther'
                                         onChange={onChange}
                                         id='validationCustom63432'
                                         required
@@ -266,8 +228,8 @@ export default function CakePage({ updateForm, form }) {
                             name='cakeFilling'
                             id='flexRadioDefault12'
                             value="Basic: ( vanilla, Lemon, Butterscotch)"
-                            defaultChecked={selectedOption3 === 'option1'}
-                            onChange={handleOptionChange3}
+                            defaultChecked={form.cakeFilling === "Basic: ( vanilla, Lemon, Butterscotch)"}
+                            onChange={onChange}
                             required
                             label="Basic: ( vanilla, Lemon, Butterscotch)"
 
@@ -276,8 +238,8 @@ export default function CakePage({ updateForm, form }) {
                             name='cakeFilling'
                             id='flexRadioDefault22'
                             value="Special: +$1/ serving (strawberry, chocolate, mango, rose, orange)"
-                            defaultChecked={selectedOption3 === 'option2'}
-                            onChange={handleOptionChange3}
+                            defaultChecked={form.cakeFilling === "Special: +$1/ serving (strawberry, chocolate, mango, rose, orange)"}
+                            onChange={onChange}
                             required
                             label="Special: +$1/ serving (strawberry, chocolate, mango, rose, orange)"
 
@@ -286,8 +248,8 @@ export default function CakePage({ updateForm, form }) {
                             name='cakeFilling'
                             id='flexRadioDefault32'
                             value="Premium: +$2/serving ( raspberry, cherry, blueberry, pista, mixed fruit)"
-                            defaultChecked={selectedOption3 === 'option3'}
-                            onChange={handleOptionChange3}
+                            defaultChecked={form.cakeFilling === "Premium: +$2/serving ( raspberry, cherry, blueberry, pista, mixed fruit)"}
+                            onChange={onChange}
                             required
                             label="Premium: +$2/serving ( raspberry, cherry, blueberry, pista, mixed fruit)"
 
@@ -297,17 +259,17 @@ export default function CakePage({ updateForm, form }) {
                             name='cakeFilling'
                             id='flexRadioDefault42'
                             value="Signature: +$3/ serving ( rasmalai, gulab jamun )"
-                            defaultChecked={selectedOption3 === 'option4'}
-                            onChange={handleOptionChange3}
+                            defaultChecked={form.cakeFilling === "Signature: +$3/ serving ( rasmalai, gulab jamun )"}
+                            onChange={onChange}
                             required
                             label="Signature: +$3/ serving ( rasmalai, gulab jamun )"
                         />
                         <MDBRadio
                             name='cakeFilling'
                             id='flexRadioDefault52'
-                            value=""
-                            defaultChecked={selectedOption3 === 'other'}
-                            onChange={handleOptionChange3}
+                            value="Other"
+                            defaultChecked={form.cakeFilling === "Other"}
+                            onChange={onChange}
                             required
                             label="Other"
                         />
@@ -315,8 +277,8 @@ export default function CakePage({ updateForm, form }) {
                             <MDBValidationItem className='' invalid feedback='ex: Vanilla' >
                                 <div className="">
                                     <MDBInput
-                                        value={form.cakeFilling}
-                                        name='cakeFilling'
+                                        value={form.cakeFillingOther}
+                                        name='cakeFillingOther'
                                         onChange={onChange}
                                         id='validationCustom666'
                                         required
@@ -338,8 +300,8 @@ export default function CakePage({ updateForm, form }) {
                             name='cakeFrosting'
                             id='flexRadioDefault123'
                             value="Swiss Meringue buttercream"
-                            defaultChecked={selectedOption4 === 'option1'}
-                            onChange={handleOptionChange4}
+                            defaultChecked={form.cakeFrosting === "Swiss Meringue buttercream"}
+                            onChange={onChange}
                             required
                             label="Swiss Meringue buttercream"
 
@@ -348,8 +310,8 @@ export default function CakePage({ updateForm, form }) {
                             name='cakeFrosting'
                             id='flexRadioDefault2236'
                             value="American buttercream ( for eggless cakes only)"
-                            defaultChecked={selectedOption4 === 'option2'}
-                            onChange={handleOptionChange4}
+                            defaultChecked={form.cakeFrosting === "American buttercream ( for eggless cakes only)"}
+                            onChange={onChange}
                             required
                             label="American buttercream ( for eggless cakes only)"
 
@@ -357,9 +319,9 @@ export default function CakePage({ updateForm, form }) {
                         <MDBRadio
                             name='cakeFrosting'
                             id='flexRadioDefault326'
-                            value=""
-                            defaultChecked={selectedOption4 === 'other'}
-                            onChange={handleOptionChange4}
+                            value="Other"
+                            defaultChecked={form.cakeFrosting === "Other"}
+                            onChange={onChange}
                             required
                             label="Other"
 
@@ -369,8 +331,8 @@ export default function CakePage({ updateForm, form }) {
                             <MDBValidationItem className='' invalid feedback='ex: Vanilla' >
                                 <div className="">
                                     <MDBInput
-                                        value={form.cakeFrosting}
-                                        name='cakeFrosting'
+                                        value={form.cakeFrostingOther}
+                                        name='cakeFrostingOther'
                                         onChange={onChange}
                                         id='validationCustom6666'
                                         required
@@ -411,14 +373,13 @@ export default function CakePage({ updateForm, form }) {
                     </MDBValidationItem>
                 </MDBValidation>
 
-                <MDBValidation isValidated>
+
                     <MDBValidationItem
                         invalid
                     >
                         <div className='chooseFile'>
                         <input
         type="file"
-        multiple
         className="form-control"
         aria-label="file example"
         required
@@ -427,13 +388,13 @@ export default function CakePage({ updateForm, form }) {
       />
                     </div>
                         </MDBValidationItem>
-                </MDBValidation>
+
                 <MDBValidation isValidated>
                     <MDBValidationItem className='field' invalid feedback='ex: Happy Birthday Nikhil!' >
                         <div className="textInputWrapper">
                             <MDBInput
                                 value={form.cakeMessage}
-                                name='eventDate'
+                                name='cakeMessage'
                                 onChange={onChange}
                                 id='validationCustom05asdfasdf'
                                 required
@@ -443,7 +404,7 @@ export default function CakePage({ updateForm, form }) {
                     </MDBValidationItem>
                 </MDBValidation>
 
-                <MDBValidation isValidated>
+
                     <MDBValidationItem className='field' invalid feedback='ex: red and blue pattern like spiderman&quot;s suit' >
                         <div className="textInputWrapper">
                             <MDBTextArea className=''
@@ -457,7 +418,7 @@ export default function CakePage({ updateForm, form }) {
                             />
                         </div>
                     </MDBValidationItem>
-                </MDBValidation>
+
             </div>
 
         </>

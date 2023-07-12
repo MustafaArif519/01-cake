@@ -19,29 +19,24 @@ import './style.css';
 export default function DeliveryPage({ updateForm, form }) {
   const [formValue, setFormValue] = useState(form);
 
-  const [selectedOption, setSelectedOption] = useState('');
-  const [showOtherInput, setShowOtherInput] = useState(false);
-  const [isInvalid, setIsInvalid] = useState(false);
+
+  const [showOtherInput, setShowOtherInput] = useState(form.pickupTime === "Other");
+
   const [basicActive, setBasicActive] = useState('tab1');
-  const [selectedOption4, setSelectedOption4] = useState('');
-  const [showOtherInput4, setShowOtherInput4] = useState(false);
+
 
   useEffect(() => {
     setFormValue(form);
   }, [form])
 
   const onChange = (e) => {
-    setFormValue({ ...formValue, [e.target.name]: e.target.value });
-  };
-  const handleOptionChange4 = (e) => {
-    // console.log(e);
-    const { value } = e.target;
-    setSelectedOption4(value);
-
-    // Check if option is selected and update showOtherInput state accordingly
-    setShowOtherInput4(value === '');
-    onChange(e);
+    console.log(e.target.value);
+    updateForm({ ...form, [e.target.name]: e.target.value });
 };
+
+  useEffect(() => {
+    setShowOtherInput(form.pickupTime === "Other");
+  }, [form.pickupTime])
 
 const handleBasicClick = (value) => {
       if (value === basicActive) {
@@ -51,27 +46,7 @@ const handleBasicClick = (value) => {
       setBasicActive(value);
     };
 
-  const handleOptionChange = (e) => {
-    const { value } = e.target;
-    setSelectedOption(value);
-
-    // Check if option is selected and update showOtherInput state accordingly
-    setShowOtherInput(value === 'other');
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Check if an option is selected
-    if (!selectedOption) {
-      setIsInvalid(true);
-      return;
-    }
-
-    setIsInvalid(false);
-    console.log('Form submitted!');
-
-  };
+ 
   return (
     <>
       <MDBTabs pills className='mb-3'>
@@ -96,11 +71,25 @@ const handleBasicClick = (value) => {
                 <div className="textInputWrapper">
                   <MDBInput
                     value={form.deliveryTime}
-                    name='eventDate'
+                    name='deliveryTime'
                     onChange={onChange}
                     id='validationCustom05asdfasdf'
                     required
                     label='Delivery Time'
+                  />
+                </div>
+              </MDBValidationItem>
+            </MDBValidation>
+            <MDBValidation isValidated>
+              <MDBValidationItem className='field' invalid feedback='ex: 123 Flamingo Avenue, Novi Michigan' >
+                <div className="textInputWrapper">
+                  <MDBInput
+                    value={form.deliveryAddress}
+                    name='deliveryAddress'
+                    onChange={onChange}
+                    id='validationCustom05asdfasdf'
+                    required
+                    label='Delivery Address'
                   />
                 </div>
               </MDBValidationItem>
@@ -117,8 +106,8 @@ const handleBasicClick = (value) => {
                             name='pickupTime'
                             id='flexRadioDefault123'
                             value="10 AM"
-                            defaultChecked={selectedOption4 === 'option1'}
-                            onChange={handleOptionChange4}
+                            defaultChecked={form.pickupTime === "10 AM"}
+                            onChange={onChange}
                             required
                             label="10 AM"
 
@@ -127,8 +116,8 @@ const handleBasicClick = (value) => {
                             name='pickupTime'
                             id='flexRadioDefault2236'
                             value="5 PM"
-                            defaultChecked={selectedOption4 === 'option2'}
-                            onChange={handleOptionChange4}
+                            defaultChecked={form.pickupTime === "5 PM"}
+                            onChange={onChange}
                             required
                             label="5 PM"
 
@@ -136,20 +125,20 @@ const handleBasicClick = (value) => {
                         <MDBRadio
                             name='pickupTime'
                             id='flexRadioDefault326'
-                            value=""
-                            defaultChecked={selectedOption4 === 'other'}
-                            onChange={handleOptionChange4}
+                            value="Other"
+                            defaultChecked={form.pickupTime === "Other"}
+                            onChange={onChange}
                             required
                             label="Other"
 
                         />
 
-                        {showOtherInput4 && (
+                        {showOtherInput && (
                             <MDBValidationItem className='' invalid feedback='ex: Vanilla' >
                                 <div className="">
                                     <MDBInput
-                                        value={form.pickupTime}
-                                        name='PickupTime'
+                                        value={form.pickupTimeOther}
+                                        name='pickupTimeOther'
                                         onChange={onChange}
                                         id='validationCustom6666'
                                         required

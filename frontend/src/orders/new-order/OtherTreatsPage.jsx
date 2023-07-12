@@ -14,14 +14,9 @@ import './style.css';
 export default function OtherTreatsPage({ updateForm, form }) {
     //const [formValue, setFormValue] = useState(form);
 
-    const [selectedOption1, setSelectedOption1] = useState('');
+
     const [showOtherInput1, setShowOtherInput1] = useState(false);
-    const [selectedOption2, setSelectedOption2] = useState('');
-    const [showOtherInput2, setShowOtherInput2] = useState(false);
-    const [selectedOption3, setSelectedOption3] = useState('');
-    const [showOtherInput3, setShowOtherInput3] = useState(false);
-    const [selectedOption4, setSelectedOption4] = useState('');
-    const [showOtherInput4, setShowOtherInput4] = useState(false);
+
     const [isInvalid, setIsInvalid] = useState(false);
 
     // useEffect(() => {
@@ -35,47 +30,11 @@ export default function OtherTreatsPage({ updateForm, form }) {
         updateForm({ ...form, [e.target.name]: e.target.value });
     };
 
+    useEffect(() => {
+        setShowOtherInput1(form.cakeTreats === "Other");
+      }, [form.cakeTreats])
 
-    const handleOptionChange1 = (e) => {
-        // console.log(e);
-        const { value } = e.target;
-        setSelectedOption1(value);
-
-        // Check if option is selected and update showOtherInput state accordingly
-        setShowOtherInput1(value === '');
-        onChange(e);
-    };
-
-    const handleOptionChange2 = (e) => {
-        // console.log(e);
-        const { value } = e.target;
-        setSelectedOption2(value);
-
-        // Check if option is selected and update showOtherInput state accordingly
-        setShowOtherInput2(value === '');
-        onChange(e);
-    };
-
-    const handleOptionChange3 = (e) => {
-        // console.log(e);
-        const { value } = e.target;
-        setSelectedOption3(value);
-
-        // Check if option is selected and update showOtherInput state accordingly
-        setShowOtherInput3(value === '');
-        onChange(e);
-    };
-
-    const handleOptionChange4 = (e) => {
-        // console.log(e);
-        const { value } = e.target;
-        setSelectedOption4(value);
-
-        // Check if option is selected and update showOtherInput state accordingly
-        setShowOtherInput4(value === '');
-        onChange(e);
-    };
-
+ 
     const fileInputRef = useRef(null);
 
   // Function to handle file selection
@@ -113,8 +72,8 @@ export default function OtherTreatsPage({ updateForm, form }) {
                             name='cakeTreats'
                             id='flexRadioDefault1'
                             value="Cupcakes"
-                            defaultChecked={selectedOption1 === 'option1'}
-                            onChange={handleOptionChange1}
+                            defaultChecked={form.cakeTreats === "Cupcakes"}
+                            onChange={onChange}
                             required
                             label="Cupcakes"
 
@@ -123,8 +82,8 @@ export default function OtherTreatsPage({ updateForm, form }) {
                             name='cakeTreats'
                             id='flexRadioDefault2'
                             value="CakePops"
-                            defaultChecked={selectedOption1 === 'option2'}
-                            onChange={handleOptionChange1}
+                            defaultChecked={form.cakeTreats === "CakePops"}
+                            onChange={onChange}
                             required
                             label="Cake Pops"
 
@@ -133,8 +92,8 @@ export default function OtherTreatsPage({ updateForm, form }) {
                             name='cakeTreats'
                             id='flexRadioDefault3'
                             value="Cakesicles"
-                            defaultChecked={selectedOption1 === 'option3'}
-                            onChange={handleOptionChange1}
+                            defaultChecked={form.cakeTreats === "Cakesicles"}
+                            onChange={onChange}
                             required
                             label="Cakesicles"
 
@@ -144,8 +103,8 @@ export default function OtherTreatsPage({ updateForm, form }) {
                             name='cakeTreats'
                             id='flexRadioDefault4'
                             value="Chocolate Dipped Strawberries"
-                            defaultChecked={selectedOption1 === 'option4'}
-                            onChange={handleOptionChange1}
+                            defaultChecked={form.cakeTreats === "Chocolate Dipped Strawberries"}
+                            onChange={onChange}
                             required
                             label="Chocolate Dipped Strawberries"
                         />
@@ -153,8 +112,8 @@ export default function OtherTreatsPage({ updateForm, form }) {
                             name='cakeTreats'
                             id='flexRadioDefault5'
                             value="Paan Bombs"
-                            defaultChecked={selectedOption1 === 'option5'}
-                            onChange={handleOptionChange1}
+                            defaultChecked={form.cakeTreats === "Paan Bombs"}
+                            onChange={onChange}
                             required
                             label="Paan Bombs"
                         />
@@ -162,8 +121,8 @@ export default function OtherTreatsPage({ updateForm, form }) {
                             name='cakeTreats'
                             id='flexRadioDefault6'
                             value="Chocolate dipped pretzels"
-                            defaultChecked={selectedOption1 === 'option6'}
-                            onChange={handleOptionChange1}
+                            defaultChecked={form.cakeTreats === "Chocolate dipped pretzels"}
+                            onChange={onChange}
                             required
                             label="Chocolate dipped pretzels"
                         />
@@ -171,17 +130,17 @@ export default function OtherTreatsPage({ updateForm, form }) {
                             name='cakeTreats'
                             id='flexRadioDefault7'
                             value="Rice Krispy Treats"
-                            defaultChecked={selectedOption1 === 'option7'}
-                            onChange={handleOptionChange1}
+                            defaultChecked={form.cakeTreats === "Rice Krispy Treats"}
+                            onChange={onChange}
                             required
                             label="Rice Krispy Treats"
                         />
                         <MDBRadio
                             name='cakeTreats'
                             id='flexRadioDefault23464'
-                            value=""
-                            defaultChecked={selectedOption1 === 'other'}
-                            onChange={handleOptionChange1}
+                            value="Other"
+                            defaultChecked={form.cakeTreats === "Other"}
+                            onChange={onChange}
                             required
                             label="Other"
                         />
@@ -189,8 +148,8 @@ export default function OtherTreatsPage({ updateForm, form }) {
                             <MDBValidationItem className='' invalid feedback='ex: Vanilla' >
                                 <div className="">
                                     <MDBInput
-                                        value={form.cakeTreats}
-                                        name='cakeFlavor'
+                                        value={form.cakeTreatsOther}
+                                        name='cakeTreatsOther'
                                         onChange={onChange}
                                         id='validationCustom63432'
                                         required
@@ -204,10 +163,6 @@ export default function OtherTreatsPage({ updateForm, form }) {
                 </div>
                 
 
-
-                
-
-                <MDBValidation isValidated>
                     <MDBValidationItem className='field' invalid feedback='ex: red and blue pattern like spiderman&quot;s suit' >
                         <div className="textInputWrapper">
                             <MDBTextArea className=''
@@ -221,7 +176,6 @@ export default function OtherTreatsPage({ updateForm, form }) {
                             />
                         </div>
                     </MDBValidationItem>
-                </MDBValidation>
 
                 
             </div>

@@ -14,7 +14,6 @@ import './style.css';
 export default function EventPage({ updateForm, form }) {
   //const [formValue, setFormValue] = useState(form);
 
-  const [selectedOption, setSelectedOption] = useState('');
   const [showOtherInput, setShowOtherInput] = useState(form.eventType === "Other");
 
   useEffect(() => {
