@@ -12,21 +12,13 @@ import {
 import './style.css';
 
 export default function OtherTreatsPage({ updateForm, form }) {
-    //const [formValue, setFormValue] = useState(form);
 
-
+//console.log(form);
     const [showOtherInput1, setShowOtherInput1] = useState(false);
 
-    const [isInvalid, setIsInvalid] = useState(false);
-
-    // useEffect(() => {
-    //   console.log(formValue);
-    //   setFormValue(form);
-    //   console.log(formValue);
-    // }, [form])
 
     const onChange = (e) => {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         updateForm({ ...form, [e.target.name]: e.target.value });
     };
 
@@ -34,33 +26,11 @@ export default function OtherTreatsPage({ updateForm, form }) {
         setShowOtherInput1(form.cakeTreats === "Other");
       }, [form.cakeTreats])
 
- 
-    const fileInputRef = useRef(null);
 
-  // Function to handle file selection
-  function handleFileSelect() {
-    const selectedFiles = Array.from(fileInputRef.current.files); // Get the selected files
 
-    // Do something with the selected files
-    console.log(selectedFiles);
-  }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        // Check if an option is selected
-        if (!selectedOption) {
-            setIsInvalid(true);
-            return;
-        }
-
-        setIsInvalid(false);
-        console.log('Form submitted!');
-
-    };
     return (
         <>
-            {/* {console.log(formValue.name)} */}
+            {/* {console.log("reloading the treats page!")} */}
 
             <h1>Treat Specification</h1>
             <div className='section'>
@@ -70,7 +40,7 @@ export default function OtherTreatsPage({ updateForm, form }) {
                     <MDBValidation isValidated>
                         <MDBRadio
                             name='cakeTreats'
-                            id='flexRadioDefault1'
+                            id='flexRadasdfasdfioDefault1'
                             value="Cupcakes"
                             defaultChecked={form.cakeTreats === "Cupcakes"}
                             onChange={onChange}
@@ -80,7 +50,7 @@ export default function OtherTreatsPage({ updateForm, form }) {
                         />
                         <MDBRadio
                             name='cakeTreats'
-                            id='flexRadioDefault2'
+                            id='flexRadioaewrefDefault2'
                             value="CakePops"
                             defaultChecked={form.cakeTreats === "CakePops"}
                             onChange={onChange}
@@ -90,7 +60,7 @@ export default function OtherTreatsPage({ updateForm, form }) {
                         />
                         <MDBRadio
                             name='cakeTreats'
-                            id='flexRadioDefault3'
+                            id='flexRadiofghdtj6Default3'
                             value="Cakesicles"
                             defaultChecked={form.cakeTreats === "Cakesicles"}
                             onChange={onChange}
@@ -101,7 +71,7 @@ export default function OtherTreatsPage({ updateForm, form }) {
 
                         <MDBRadio
                             name='cakeTreats'
-                            id='flexRadioDefault4'
+                            id='flexRadioD5y5ry3456efault4'
                             value="Chocolate Dipped Strawberries"
                             defaultChecked={form.cakeTreats === "Chocolate Dipped Strawberries"}
                             onChange={onChange}
@@ -110,7 +80,7 @@ export default function OtherTreatsPage({ updateForm, form }) {
                         />
                         <MDBRadio
                             name='cakeTreats'
-                            id='flexRadioDefault5'
+                            id='flexRadio6534563456Default5'
                             value="Paan Bombs"
                             defaultChecked={form.cakeTreats === "Paan Bombs"}
                             onChange={onChange}
@@ -119,7 +89,7 @@ export default function OtherTreatsPage({ updateForm, form }) {
                         />
                         <MDBRadio
                             name='cakeTreats'
-                            id='flexRadioDefault6'
+                            id='flexRadioD34563456efault6'
                             value="Chocolate dipped pretzels"
                             defaultChecked={form.cakeTreats === "Chocolate dipped pretzels"}
                             onChange={onChange}
@@ -128,7 +98,7 @@ export default function OtherTreatsPage({ updateForm, form }) {
                         />
                         <MDBRadio
                             name='cakeTreats'
-                            id='flexRadioDefault7'
+                            id='flexRadi34563456oDefault7'
                             value="Rice Krispy Treats"
                             defaultChecked={form.cakeTreats === "Rice Krispy Treats"}
                             onChange={onChange}
@@ -137,7 +107,7 @@ export default function OtherTreatsPage({ updateForm, form }) {
                         />
                         <MDBRadio
                             name='cakeTreats'
-                            id='flexRadioDefault23464'
+                            id='flexRadi3456215345oDefault23464'
                             value="Other"
                             defaultChecked={form.cakeTreats === "Other"}
                             onChange={onChange}
@@ -151,7 +121,7 @@ export default function OtherTreatsPage({ updateForm, form }) {
                                         value={form.cakeTreatsOther}
                                         name='cakeTreatsOther'
                                         onChange={onChange}
-                                        id='validationCustom63432'
+                                        id='valid23452345ationCustom63432'
                                         required
                                         label='Other'
                                     />

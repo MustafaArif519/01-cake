@@ -11,26 +11,36 @@ import OtherTreatsPage from './OtherTreatsPage';
 import './style.css';
 
 export default function PasteryPage({ updateForm, form }) {
-    const [basicActive, setBasicActive] = useState('tab1');
+    const [basicActive, setBasicActive] = useState(form.pastery);
 
-    const handleBasicClick = (value) => {
-      if (value === basicActive) {
-        return;
-      }
+
+    const onChange = (tab) => {
+      
+      // console.log(form)
+      
+
+      setBasicActive(tab);
+      form.pastery = tab;
+  };
   
-      setBasicActive(value);
-    };
+
 
     return (
         <>
       <MDBTabs pills className='mb-3'>
         <MDBTabsItem>
-          <MDBTabsLink onClick={() => handleBasicClick('tab1')} active={basicActive === 'tab1'}>
+          <MDBTabsLink
+
+          onClick={() => onChange("cake")} 
+          active={basicActive === 'cake'}>
           Cake Order
           </MDBTabsLink>
         </MDBTabsItem>
         <MDBTabsItem>
-          <MDBTabsLink onClick={() => handleBasicClick('tab2')} active={basicActive === 'tab2'}>
+          <MDBTabsLink 
+
+          onClick={() => onChange("treats")} 
+          active={basicActive === 'treats'}>
             Other Treats Order
           </MDBTabsLink>
         </MDBTabsItem>
@@ -38,10 +48,10 @@ export default function PasteryPage({ updateForm, form }) {
       </MDBTabs>
 
       <MDBTabsContent>
-        <MDBTabsPane show={basicActive === 'tab1'}>
+        <MDBTabsPane show={basicActive === 'cake'}>
             <CakePage updateForm={updateForm} form={form} />
             </MDBTabsPane>
-        <MDBTabsPane show={basicActive === 'tab2'}>
+        <MDBTabsPane show={basicActive === 'treats'}>
             <OtherTreatsPage updateForm={updateForm} form={form}/>
             </MDBTabsPane>
       </MDBTabsContent>

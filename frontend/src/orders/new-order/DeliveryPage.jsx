@@ -22,7 +22,7 @@ export default function DeliveryPage({ updateForm, form }) {
 
   const [showOtherInput, setShowOtherInput] = useState(form.pickupTime === "Other");
 
-  const [basicActive, setBasicActive] = useState('tab1');
+  const [basicActive, setBasicActive] = useState(form.transport);
 
 
   useEffect(() => {
@@ -39,10 +39,8 @@ export default function DeliveryPage({ updateForm, form }) {
   }, [form.pickupTime])
 
 const handleBasicClick = (value) => {
-      if (value === basicActive) {
-        return;
-      }
-  
+
+      form.transport = value;
       setBasicActive(value);
     };
 
@@ -51,12 +49,16 @@ const handleBasicClick = (value) => {
     <>
       <MDBTabs pills className='mb-3'>
         <MDBTabsItem>
-          <MDBTabsLink onClick={() => handleBasicClick('tab1')} active={basicActive === 'tab1'}>
+          <MDBTabsLink 
+          onClick={() => handleBasicClick('delivery')} 
+          active={basicActive === 'delivery'}>
           I want my order to be delivered
           </MDBTabsLink>
         </MDBTabsItem>
         <MDBTabsItem>
-          <MDBTabsLink onClick={() => handleBasicClick('tab2')} active={basicActive === 'tab2'}>
+          <MDBTabsLink 
+          onClick={() => handleBasicClick('pickup')} 
+          active={basicActive === 'pickup'}>
           I want to pick up my order
           </MDBTabsLink>
         </MDBTabsItem>
@@ -64,7 +66,7 @@ const handleBasicClick = (value) => {
       </MDBTabs>
 
       <MDBTabsContent>
-        <MDBTabsPane show={basicActive === 'tab1'}>
+        <MDBTabsPane show={basicActive === 'delivery'}>
           <div className='section'>
             <MDBValidation isValidated>
               <MDBValidationItem className='field' invalid feedback='ex: 3/15 3:15 PM' >
@@ -96,7 +98,7 @@ const handleBasicClick = (value) => {
             </MDBValidation>
           </div>
         </MDBTabsPane>
-        <MDBTabsPane show={basicActive === 'tab2'}>
+        <MDBTabsPane show={basicActive === 'pickup'}>
           <div className='section'>
           <div className="radio">
                     <h3>Pickup Times</h3>

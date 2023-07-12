@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
     MDBInput,
-    MDBInputGroup,
-    MDBBtn,
-    MDBCheckbox,
     MDBValidation,
     MDBValidationItem,
     MDBRadio,
@@ -58,6 +55,7 @@ export default function CakePage({ updateForm, form }) {
 
     // Do something with the selected files
     console.log(selectedFiles);
+    form.inspirationFile = selectedFiles;
   }
 
 
