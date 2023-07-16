@@ -1,107 +1,85 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  MDBInput,
-  MDBInputGroup,
+
   MDBBtn,
   MDBCheckbox,
   MDBValidation,
   MDBValidationItem,
-  MDBTextArea,
-  MDBRadio
+  MDBModal,
+  MDBModalDialog,
+  MDBModalContent,
+  MDBModalHeader,
+  MDBModalTitle,
+  MDBModalBody,
+  MDBModalFooter,
 } from 'mdb-react-ui-kit';
 
 
-export default function TOSPage({ updateForm, form }) {
-  //const [formValue, setFormValue] = useState(form);
+export default function TOSPage({ form }) {
+  const [basicModal, setBasicModal] = useState(false);
+  const [disabled, setDisabled] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const [selectedOption, setSelectedOption] = useState('');
-  const [showOtherInput, setShowOtherInput] = useState(false);
-  const [selectedOption2, setSelectedOption2] = useState('');
-  const [showOtherInput2, setShowOtherInput2] = useState(false);
-  const [selectedOption3, setSelectedOption3] = useState('');
-  const [showOtherInput3, setShowOtherInput3] = useState(false);
-  const [selectedOption4, setSelectedOption4] = useState('');
-  const [showOtherInput4, setShowOtherInput4] = useState(false);
-  const [isInvalid, setIsInvalid] = useState(false);
-
-  // useEffect(() => {
-  //   console.log(formValue);
-  //   setFormValue(form);
-  //   console.log(formValue);
-  // }, [form])
-
-  const onChange = (e) => {
-    console.log(e.target.value);
-    updateForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const toggleShow = () => setBasicModal(!basicModal);
 
 
-  const handleOptionChange = (e) => {
-    // console.log(e);
-    const { value } = e.target;
-    setSelectedOption(value);
+  const submit = (e) => {
 
-    // Check if option is selected and update showOtherInput state accordingly
-    setShowOtherInput(value === '');
-    onChange(e);
-  };
-
-  const handleOptionChange2 = (e) => {
-    // console.log(e);
-    const { value } = e.target;
-    setSelectedOption2(value);
-
-    // Check if option is selected and update showOtherInput state accordingly
-    setShowOtherInput2(value === '');
-    onChange(e);
-  };
-
-  const handleOptionChange3 = (e) => {
-    // console.log(e);
-    const { value } = e.target;
-    setSelectedOption3(value);
-
-    // Check if option is selected and update showOtherInput state accordingly
-    setShowOtherInput3(value === '');
-    onChange(e);
-  };
-
-  const handleOptionChange4 = (e) => {
-    // console.log(e);
-    const { value } = e.target;
-    setSelectedOption4(value);
-
-    // Check if option is selected and update showOtherInput state accordingly
-    setShowOtherInput4(value === '');
-    onChange(e);
-  };
-
-  const fileInputRef = useRef(null);
-
-  // Function to handle file selection
-  function handleFileSelect() {
-    const selectedFiles = Array.from(fileInputRef.current.files); // Get the selected files
-
-    // Do something with the selected files
-    console.log(selectedFiles);
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Check if an option is selected
-    if (!selectedOption) {
-      setIsInvalid(true);
-      return;
+    if (form.name === "") {
+      setMessage("Fullname not specified, please fill in the field to submit form");
     }
+    else if (form.pNumber === "") {
+      setMessage("Phone Number not specified, please fill in the field to submit form");
+    }
+    else if (form.eventDate === "") {
+      setMessage("Event Date not specified, please fill in the field to submit form");
+    }
+    else if(form.eventType === ""){
+      setMessage("Event Type not specified, please fill in the field to submit form");
+    }
+    else if(form.eventType === "Other" && form.eventTypeOther === ""){
+      setMessage("Other option for Event Type not specified, please fill in the field to submit form");
+    }
+    else if (form.pastery === "cake") {
+      if (form.cakeSize === "") {
+        setMessage("Cake Size not specified, please fill in the field to submit form");
+      }
+      else if (form.cakeFlavor === "") {
+        setMessage("Cake Flavor not specified, please fill in the field to submit form");
+      }
+    }
+  };
 
-    setIsInvalid(false);
-    console.log('Form submitted!');
+
+  const setMessage = (message) => {
+
+    setErrorMessage(message);
+    toggleShow();
 
   };
+
+
   return (
     <>
-      <div className="terms-of-service" style={{marginLeft: '20px' }}>
+      <MDBModal show={basicModal} setShow={setBasicModal} tabIndex='-1'>
+        <MDBModalDialog>
+          <MDBModalContent>
+            <MDBModalHeader>
+              <MDBModalTitle>Oops, looks like you forgot to fill out a section!</MDBModalTitle>
+              <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
+            </MDBModalHeader>
+            <MDBModalBody>{errorMessage}</MDBModalBody>
+
+            <MDBModalFooter>
+              <MDBBtn color='secondary' onClick={e => setMessage("")}>
+                Close
+              </MDBBtn>
+            </MDBModalFooter>
+          </MDBModalContent>
+        </MDBModalDialog>
+      </MDBModal>
+
+      <div className="terms-of-service" style={{ marginLeft: '20px' }}>
         <h1 style={{ fontSize: '34px', marginBottom: '20px', textAlign: 'center' }}>Terms of Service</h1>
 
         <div className="overflow-y-scroll" style={{ textAlign: 'left', height: '400px' }}>
@@ -147,9 +125,9 @@ export default function TOSPage({ updateForm, form }) {
       </div>
       <MDBValidation isValidated>
         <MDBValidationItem className="mb-2 pb-1" invalid feedback="Agree to Terms of Service to Submit Order" style={{ textAlign: 'center', width: '100px', marginTop: '20px', marginLeft: '20px' }}>
-          <MDBCheckbox label="I Agree" id="validationFormCheck1" required onClick={(e) => { document.getElementById("submitBtn").disabled = !e.target.checked }} style={{ display: 'inline-block', textAlign: 'left' }} />
+          <MDBCheckbox label="I Agree" id="validationFormCheck1" required onClick={(e) => { setDisabled(!disabled) }} style={{ display: 'inline-block', textAlign: 'left' }} />
         </MDBValidationItem>
-        <MDBBtn type="submit" id="submitBtn" disabled>
+        <MDBBtn type="submit" onClick={submit} id="submitBtn" disabled={disabled}>
           Submit form
         </MDBBtn>
       </MDBValidation>

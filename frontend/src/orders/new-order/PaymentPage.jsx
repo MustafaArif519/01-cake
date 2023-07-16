@@ -12,7 +12,6 @@ import {
 import './style.css';
 
 export default function PaymentPage({ updateForm, form }) {
-  const [formValue, setFormValue] = useState(form);
 
 
   const [showOtherInput, setShowOtherInput] = useState(form.paymentMethod === "Other");
