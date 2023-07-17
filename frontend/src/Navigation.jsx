@@ -2,20 +2,19 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
+
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/Navbar'
 import { MDBBadge, MDBBtn } from 'mdb-react-ui-kit';
-//import NavDropdown from 'react-bootstrap/NavDropdown';
+
 import Modal from "./administration/Modal"
 import { Outlet, Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import {
   MDBNavbar,
   MDBContainer,
-  MDBIcon,
   MDBNavbarNav,
   MDBNavbarItem,
-  MDBNavbarLink,
   MDBNavbarToggler,
   MDBNavbarBrand,
   MDBCollapse,
@@ -32,12 +31,13 @@ import {
   MDBModalFooter,
 
 } from 'mdb-react-ui-kit';
+import { MDBIcon } from 'mdb-react-ui-kit';
 
 
 // eslint-disable-next-line react/prop-types
 function Navigation ({token, resetToken, recievedToken})  {
   const [basicModal, setBasicModal] = useState(false);
-
+  const [showNavNoToggler, setShowNavNoToggler] = useState(false);
   const toggleShow = () => setBasicModal(!basicModal);
 
   const [username, setUsername] = useState('');
@@ -130,6 +130,7 @@ function Navigation ({token, resetToken, recievedToken})  {
       </MDBModal>
     <MDBNavbar sticky  expand='lg' light style={{ backgroundColor: '#e3f2fd' }}>
         <MDBContainer fluid>
+        
         <MDBNavbarBrand>
 
           <img
@@ -141,8 +142,17 @@ function Navigation ({token, resetToken, recievedToken})  {
           />
 
         </MDBNavbarBrand>
-
-          <MDBCollapse navbar>
+        <MDBNavbarToggler
+            type='button'
+            data-target='#navbarTogglerDemo02'
+            aria-controls='navbarTogglerDemo02'
+            aria-expanded='false'
+            aria-label='Toggle navigation'
+            onClick={() => setShowNavNoToggler(!showNavNoToggler)}
+          >
+            <MDBIcon icon='bars' fas />
+          </MDBNavbarToggler>
+          <MDBCollapse navbar show={showNavNoToggler}>
             <MDBNavbarNav className='me-auto mb-2 mb-lg-0'>
               <MDBNavbarItem className='active'>
 
@@ -178,18 +188,30 @@ function Navigation ({token, resetToken, recievedToken})  {
               </MDBNavbarItem>
               
             </MDBNavbarNav>
-            {/* <MDBBtn>
-            Orders Recieved
-            <MDBBadge className='ms-2' color='danger'>
-              8
-            </MDBBadge>
-          </MDBBtn> */}
-          {!token &&
+
           
-          <Button onClick={toggleShow} variant="outline-success">Login</Button>
+          {token && 
+          <div className="text-center">
+          <MDBBtn onClick = {resetToken}  className='mx-2' color='info'>
+              Profile
+
+          </MDBBtn>
+        </div>}
+          {!token &&
+          <div className="text-center">
+            <MDBBtn onClick={toggleShow} outline color="success">Login</MDBBtn>
+          </div>
+          
              }
           {token &&
-            <Button onClick = {resetToken} variant="outline-success">Logout</Button> }
+          <div className="text-center">
+            <MDBBtn onClick = {resetToken}  className='mx-2' color='danger'>
+                Logout
+
+            </MDBBtn>
+          </div>
+             }
+            
           </MDBCollapse>
         </MDBContainer>
 

@@ -6,6 +6,7 @@ import {
   MDBCardText,
   MDBCardImage,
   MDBRipple,
+  MDBIcon
 } from 'mdb-react-ui-kit';
 import Like from "./Like"
 import "./style.css"

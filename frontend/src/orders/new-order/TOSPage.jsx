@@ -48,8 +48,40 @@ export default function TOSPage({ form }) {
         setMessage("Cake Flavor not specified, please fill in the field to submit form");
       }
     }
+    else{
+      submitForm();
+    }
   };
 
+ const submitForm = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/v1/cake-likes/', {
+        method: 'POST',
+        headers: {
+          'Authorization': "Token " + token,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          'cake': cake.id,
+        }), // Replace with your data object
+      });
+      // console.log(token);
+      const responseBody = await response.json();
+
+      // console.log(JSON.stringify(responseBody, null, 4));
+
+      if (!response.ok) {
+        throw new Error('Request failed');
+      }
+
+      // Do something with the response, if needed
+      //let temp = console.log(JSON.stringify(responseBody, null, 4));
+      setYourLike(responseBody);
+      setLikeCount(likeCount + 1);
+    } catch (error) {
+      // console.error(error);
+    }
+  };
 
   const setMessage = (message) => {
 
