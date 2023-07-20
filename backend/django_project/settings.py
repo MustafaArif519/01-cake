@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     # 3rd party
     "rest_framework",
     "corsheaders",
@@ -110,6 +111,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
