@@ -26,4 +26,3 @@ dist-ssr
 *.sln
 *.sw?
 backend/db.sqlite3
-backend/db.sqlite3
