@@ -171,7 +171,7 @@ export default function EventPage({ updateForm, form }) {
 
 
 </MDBValidation>
-        <MDBValidation isValidated style={{ textAlign: "left"}}>
+        <div isValidated style={{ textAlign: "left"}}>
         <MDBValidationItem className='field' invalid feedback='ex: A graduation party celebrating 
                                                                 my daughters highschool graduation.' >
           <div className="textInputWrapper">
@@ -186,7 +186,7 @@ export default function EventPage({ updateForm, form }) {
             />
             </div>
           </MDBValidationItem>
-          </MDBValidation>
+          </div>
 
         </div>
     </>

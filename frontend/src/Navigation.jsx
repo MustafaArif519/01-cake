@@ -29,13 +29,16 @@ import {
   MDBModalTitle,
   MDBModalBody,
   MDBModalFooter,
+  MDBValidation,
+  MDBValidationItem,
+  MDBInput,
+  MDBIcon,
 
 } from 'mdb-react-ui-kit';
-import { MDBIcon } from 'mdb-react-ui-kit';
 
 
 // eslint-disable-next-line react/prop-types
-function Navigation ({token, resetToken, recievedToken})  {
+function Navigation({ token, resetToken, recievedToken }) {
   const [basicModal, setBasicModal] = useState(false);
   const [showNavNoToggler, setShowNavNoToggler] = useState(false);
   const toggleShow = () => setBasicModal(!basicModal);
@@ -43,7 +46,7 @@ function Navigation ({token, resetToken, recievedToken})  {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  useEffect(() =>{
+  useEffect(() => {
     setUsername("");
     setPassword("");
   }, [basicModal])
@@ -61,17 +64,17 @@ function Navigation ({token, resetToken, recievedToken})  {
         },
         body: JSON.stringify({ username, password }),
       });
-      
+
       if (response.ok) {
         const data = await response.json();
-        
+
         // Save the token to local storage
-        
+
         // TODO: Use the token for authenticated requests
         console.log('Login successful. Token:', data.key);
         recievedToken(data.key);
         setBasicModal(false);
-        
+
       } else {
         // Login failed, handle the error
         console.log('Login failed');
@@ -82,10 +85,10 @@ function Navigation ({token, resetToken, recievedToken})  {
   };
 
   return (
-  <>
+    <>
       <MDBModal show={basicModal} setShow={setBasicModal} tabIndex="-1">
         <MDBModalDialog>
-          <MDBModalContent>
+          <MDBModalContent style={{width: "600px", height: "400px"}}>
             <MDBModalHeader>
               <MDBModalTitle>Login</MDBModalTitle>
               <MDBBtn
@@ -95,54 +98,68 @@ function Navigation ({token, resetToken, recievedToken})  {
               ></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody>
-            {console.log(token)}
-      { !token && <form onSubmit={handleSubmit}> 
-        <div>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit">Submit Login</button>
-      </form> }
+              <MDBValidation isValidated style={{ textAlign: "left", width: '250px'}}>
+
+                <MDBValidationItem className='field' invalid feedback='ex: JohnDoe' >
+                  <div className="textInputWrapper">
+                    <MDBInput
+                      name='Username'
+                      onChange={(e) => setUsername(e.target.value)}
+                      id='validationCustom05'
+                      required
+                      label='Username'
+                    />
+                  </div>
+                </MDBValidationItem>
+
+
+              </MDBValidation>
+              <MDBValidation isValidated style={{ textAlign: "left", width: '250px'}}>
+
+                <MDBValidationItem className='field' invalid feedback='' >
+                  <div className="textInputWrapper">
+                    <MDBInput
+                    type='password' 
+                      name='Password'
+                      onChange={(e) => setPassword(e.target.value)}
+                      id='validationCustom35'
+                      required
+                      label='Password'
+                    />
+                  </div>
+                </MDBValidationItem>
+
+
+              </MDBValidation>
+
             </MDBModalBody>
 
             <MDBModalFooter>
-              <MDBBtn color="secondary" onClick={toggleShow}>
+              <MDBBtn color="danger" onClick={toggleShow}>
                 Close
               </MDBBtn>
-              <MDBBtn>Save changes</MDBBtn>
+              <MDBBtn onClick={handleSubmit}>Login</MDBBtn>
             </MDBModalFooter>
           </MDBModalContent>
         </MDBModalDialog>
       </MDBModal>
-    <MDBNavbar sticky  expand='lg' light style={{ backgroundColor: '#e3f2fd' }}>
+
+
+      <MDBNavbar sticky expand='lg' light style={{ backgroundColor: '#e3f2fd' }}>
         <MDBContainer fluid>
-        
-        <MDBNavbarBrand>
 
-          <img
-            alt=""
-            src="./src/images/icon.jpg"
-            width="30"
-            height="30"
-            className="d-inline-block align-top"
-          />
+          <MDBNavbarBrand>
 
-        </MDBNavbarBrand>
-        <MDBNavbarToggler
+            <img
+              alt=""
+              src="./src/images/icon.jpg"
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+            />
+
+          </MDBNavbarBrand>
+          <MDBNavbarToggler
             type='button'
             data-target='#navbarTogglerDemo02'
             aria-controls='navbarTogglerDemo02'
@@ -150,7 +167,11 @@ function Navigation ({token, resetToken, recievedToken})  {
             aria-label='Toggle navigation'
             onClick={() => setShowNavNoToggler(!showNavNoToggler)}
           >
-            <MDBIcon icon='bars' fas />
+            <img 
+            src = "./src/images/bars.png"
+            width = "30px"
+            height = "30px"
+            />
           </MDBNavbarToggler>
           <MDBCollapse navbar show={showNavNoToggler}>
             <MDBNavbarNav className='me-auto mb-2 mb-lg-0'>
@@ -160,10 +181,10 @@ function Navigation ({token, resetToken, recievedToken})  {
 
               </MDBNavbarItem>
               <MDBNavbarItem>
-                  <Nav.Link as={Link} to={`/gallery`}>Gallery</Nav.Link>
+                <Nav.Link as={Link} to={`/gallery`}>Gallery</Nav.Link>
               </MDBNavbarItem>
               <MDBNavbarItem>
-              <MDBDropdown>
+                <MDBDropdown>
                   <MDBDropdownToggle tag='a' className='nav-link' role='button'>
                     Orders
                   </MDBDropdownToggle>
@@ -178,46 +199,46 @@ function Navigation ({token, resetToken, recievedToken})  {
                       <Nav.Link as={Link} to={`/orders`}>Past Orders</Nav.Link>
                     </MDBDropdownItem>
                   </MDBDropdownMenu>
-              </MDBDropdown>
-            </MDBNavbarItem>
-              <MDBNavbarItem>
-                  <Nav.Link as={Link} to={`/contact`}>Contact</Nav.Link>
+                </MDBDropdown>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                  <Nav.Link as={Link} to={`/about`}>About</Nav.Link>
+                <Nav.Link as={Link} to={`/contact`}>Contact</Nav.Link>
               </MDBNavbarItem>
-              
+              <MDBNavbarItem>
+                <Nav.Link as={Link} to={`/about`}>About</Nav.Link>
+              </MDBNavbarItem>
+
             </MDBNavbarNav>
 
-          
-          {token && 
-          <div className="text-center">
-          <MDBBtn onClick = {resetToken}  className='mx-2' color='info'>
-              Profile
 
-          </MDBBtn>
-        </div>}
-          {!token &&
-          <div className="text-center">
-            <MDBBtn onClick={toggleShow} outline color="success">Login</MDBBtn>
-          </div>
-          
-             }
-          {token &&
-          <div className="text-center">
-            <MDBBtn onClick = {resetToken}  className='mx-2' color='danger'>
-                Logout
+            {token &&
+              <div className="text-center">
+                <MDBBtn onClick={resetToken} className='mx-2' color='info'>
+                  Profile
 
-            </MDBBtn>
-          </div>
-             }
-            
+                </MDBBtn>
+              </div>}
+            {!token &&
+              <div className="text-center">
+                <MDBBtn onClick={toggleShow} outline color="success">Login</MDBBtn>
+              </div>
+
+            }
+            {token &&
+              <div className="text-center">
+                <MDBBtn onClick={resetToken} className='mx-2' color='danger'>
+                  Logout
+
+                </MDBBtn>
+              </div>
+            }
+
           </MDBCollapse>
         </MDBContainer>
 
       </MDBNavbar>
-    <Outlet />
-</>
+      <Outlet />
+    </>
   );
 }
 
