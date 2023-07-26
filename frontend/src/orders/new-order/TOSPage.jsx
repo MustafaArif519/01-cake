@@ -103,7 +103,7 @@ export default function TOSPage({ form }) {
             <MDBModalBody>{errorMessage}</MDBModalBody>
 
             <MDBModalFooter>
-              <MDBBtn color='secondary' onClick={e => setMessage("")}>
+              <MDBBtn color='danger' onClick={e => setMessage("")}>
                 Close
               </MDBBtn>
             </MDBModalFooter>
