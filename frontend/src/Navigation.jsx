@@ -73,7 +73,8 @@ function Navigation({ token, resetToken, recievedToken }) {
   
   return (
     <>
-      <LoginModal showModal ={showModal} handleSubmit={handleSubmit} display={basicModal}/>
+      <LoginModal showModal ={showModal} handleSubmit={handleSubmit} display={basicModal} 
+      setDisplay={setBasicModal}/>
 
 
       <MDBNavbar sticky expand='lg' light style={{ backgroundColor: '#e3f2fd' }}>

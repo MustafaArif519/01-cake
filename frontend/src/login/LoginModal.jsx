@@ -14,13 +14,14 @@ import {
 
 } from 'mdb-react-ui-kit';
 
-const LoginModal = ({showModal, handleSubmit, display}) => {
+const LoginModal = ({showModal, handleSubmit, display, setDisplay}) => {
 
-console.log('login Modal reloaded');
+console.log('login Modal reloaded', display);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  console.log('login Modal reloaded', display);
 
   useEffect(() => {
     if (!display) {
@@ -34,11 +35,13 @@ console.log('login Modal reloaded');
 
   return (
     <>
-    <MDBModal show={display}  tabIndex="-1">
+    <MDBModal show={display} setShow={setDisplay} tabIndex="-1">
         <MDBModalDialog>
-          <MDBModalContent style={{width: "600px", height: "400px"}}>
-            <MDBModalHeader>
-              <MDBModalTitle>Login</MDBModalTitle>
+          <MDBModalContent style={{width: "400px", height: "450px"}}>
+            <MDBModalHeader >
+            <div className="text-center" style={{ width: "100%" }}>
+          <MDBModalTitle>Login</MDBModalTitle>
+        </div>
               <MDBBtn
                 className="btn-close"
                 color="none"
@@ -81,7 +84,8 @@ console.log('login Modal reloaded');
 
 
               </MDBValidation>
-              forgot password?
+              <p>forgot password?</p>
+              <p>create account</p>
             </MDBModalBody>
 
             <MDBModalFooter>
