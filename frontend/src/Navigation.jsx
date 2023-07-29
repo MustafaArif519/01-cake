@@ -1,15 +1,6 @@
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
-
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/Navbar'
-import { MDBBadge, MDBBtn } from 'mdb-react-ui-kit';
-
-import Modal from "./administration/Modal"
 import { Outlet, Link } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
+import  { useState, useCallback } from 'react';
 import {
   MDBNavbar,
   MDBContainer,
@@ -22,127 +13,67 @@ import {
   MDBDropdownToggle,
   MDBDropdownMenu,
   MDBDropdownItem,
-  MDBModal,
-  MDBModalDialog,
-  MDBModalContent,
-  MDBModalHeader,
-  MDBModalTitle,
-  MDBModalBody,
-  MDBModalFooter,
-  MDBValidation,
-  MDBValidationItem,
-  MDBInput,
-  MDBIcon,
+  MDBBtn
+
 
 } from 'mdb-react-ui-kit';
+import LoginModal from './login/LoginModal';
 
 
 // eslint-disable-next-line react/prop-types
 function Navigation({ token, resetToken, recievedToken }) {
   const [basicModal, setBasicModal] = useState(false);
-  const [showNavNoToggler, setShowNavNoToggler] = useState(false);
   const toggleShow = () => setBasicModal(!basicModal);
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  useEffect(() => {
-    setUsername("");
-    setPassword("");
-  }, [basicModal])
-
-  console.log('login prop loaded');
+  const [showNavNoToggler, setShowNavNoToggler] = useState(false);
 
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('http://127.0.0.1:8000/api/v1/dj-rest-auth/login/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
 
-      if (response.ok) {
-        const data = await response.json();
 
-        // Save the token to local storage
+  console.log('navvigation prop loaded');
 
-        // TODO: Use the token for authenticated requests
-        console.log('Login successful. Token:', data.key);
-        recievedToken(data.key);
-        setBasicModal(false);
+  const showModal = useCallback(() => {
+    console.log("displaying login modal");
+    setBasicModal(false);
+  }, []);
 
-      } else {
-        // Login failed, handle the error
-        console.log('Login failed');
+
+  const handleSubmit = useCallback((username, password) => {
+    const tryLogin = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/api/v1/dj-rest-auth/login/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ username, password }),
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+  
+          // Save the token to local storage
+  
+          // TODO: Use the token for authenticated requests
+          console.log('Login successful. Token:', data.key);
+          recievedToken(data.key);
+          setBasicModal(false);
+  
+        } else {
+          // Login failed, handle the error
+          console.log('Login failed');
+        }
+      } catch (error) {
+        console.error('Error:', error);
       }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+    };
+    tryLogin();
+  }, []);
 
+  
   return (
     <>
-      <MDBModal show={basicModal} setShow={setBasicModal} tabIndex="-1">
-        <MDBModalDialog>
-          <MDBModalContent style={{width: "600px", height: "400px"}}>
-            <MDBModalHeader>
-              <MDBModalTitle>Login</MDBModalTitle>
-              <MDBBtn
-                className="btn-close"
-                color="none"
-                onClick={toggleShow}
-              ></MDBBtn>
-            </MDBModalHeader>
-            <MDBModalBody>
-              <MDBValidation isValidated style={{ textAlign: "left", width: '250px'}}>
-
-                <MDBValidationItem className='field' invalid feedback='ex: JohnDoe' >
-                  <div className="textInputWrapper">
-                    <MDBInput
-                      name='Username'
-                      onChange={(e) => setUsername(e.target.value)}
-                      id='validationCustom05'
-                      required
-                      label='Username'
-                    />
-                  </div>
-                </MDBValidationItem>
-
-
-              </MDBValidation>
-              <MDBValidation isValidated style={{ textAlign: "left", width: '250px'}}>
-
-                <MDBValidationItem className='field' invalid feedback='' >
-                  <div className="textInputWrapper">
-                    <MDBInput
-                    type='password' 
-                      name='Password'
-                      onChange={(e) => setPassword(e.target.value)}
-                      id='validationCustom35'
-                      required
-                      label='Password'
-                    />
-                  </div>
-                </MDBValidationItem>
-
-
-              </MDBValidation>
-
-            </MDBModalBody>
-
-            <MDBModalFooter>
-              <MDBBtn color="danger" onClick={toggleShow}>
-                Close
-              </MDBBtn>
-              <MDBBtn onClick={handleSubmit}>Login</MDBBtn>
-            </MDBModalFooter>
-          </MDBModalContent>
-        </MDBModalDialog>
-      </MDBModal>
+      <LoginModal showModal ={showModal} handleSubmit={handleSubmit} display={basicModal}/>
 
 
       <MDBNavbar sticky expand='lg' light style={{ backgroundColor: '#e3f2fd' }}>

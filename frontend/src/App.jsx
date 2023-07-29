@@ -5,7 +5,6 @@ import Navigation from './Navigation';
 import Gallery from './gallery/Gallery';
 import Home from './home/Home';
 import Orders from './orders/Orders';
-import Login from './administration/Login';
 import ErrorPage from './error-page';
 import NewOrder from './orders/new-order/NewOrder';
 
