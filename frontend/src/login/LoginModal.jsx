@@ -1,103 +1,82 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   MDBBtn,
   MDBModalDialog,
   MDBModalContent,
   MDBModalHeader,
   MDBModalTitle,
-  MDBModalBody,
-  MDBModalFooter,
   MDBModal,
-  MDBValidation,
-  MDBValidationItem,
-  MDBInput,
+  MDBTabs,
+  MDBTabsItem,
+  MDBTabsLink,
+  MDBTabsContent,
+  MDBTabsPane,
 
 } from 'mdb-react-ui-kit';
+import Login from './Login';
+import Register from './Register';
+import "./style.css"
 
-const LoginModal = ({showModal, handleSubmit, display, setDisplay}) => {
+const LoginModal = ({ showModal, handleSubmit, display, setDisplay }) => {
 
-console.log('login Modal reloaded', display);
+  // console.log('login Modal reloaded', display);
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
 
-  console.log('login Modal reloaded', display);
+  //   console.log('login Modal reloaded', display);
+
+
+  // console.log("current username val: ", username);
+  const [justifyActive, setJustifyActive] = useState('tab1');
+  //console.log(justifyActive);
+  const handleJustifyClick = (value) => {
+    if (value === justifyActive) {
+      return;
+    }
+
+    setJustifyActive(value);
+  };
+
 
   useEffect(() => {
     if (!display) {
-      // Reset the username and password when the modal is hidden
-      setUsername('');
-      setPassword('');
+      setJustifyActive("tab1")
     }
   }, [display]);
 
-  // console.log("current username val: ", username);
-
   return (
     <>
-    <MDBModal show={display} setShow={setDisplay} tabIndex="-1">
+      <MDBModal show={display} setShow={setDisplay} tabIndex="-1">
         <MDBModalDialog>
-          <MDBModalContent style={{width: "400px", height: "450px"}}>
+          <MDBModalContent >
             <MDBModalHeader >
-            <div className="text-center" style={{ width: "100%" }}>
-          <MDBModalTitle>Login</MDBModalTitle>
-        </div>
-              <MDBBtn
-                className="btn-close"
-                color="none"
-                onClick={showModal}
-              ></MDBBtn>
+            <div className="MDBTabsContainer">
+              <MDBTabs  justify>
+                <MDBTabsItem  >
+                  <MDBTabsLink onClick={() => handleJustifyClick('tab1')} active={justifyActive === 'tab1'}>
+                    Sign In
+                  </MDBTabsLink>
+                </MDBTabsItem>
+                <MDBTabsItem  >
+                  <MDBTabsLink onClick={() => handleJustifyClick('tab2')} active={justifyActive === 'tab2'}>
+                    Create Account
+                  </MDBTabsLink>
+                </MDBTabsItem>
+              </MDBTabs>
+              </div>
             </MDBModalHeader>
-            <MDBModalBody>
-              <MDBValidation isValidated style={{ textAlign: "left", width: '250px'}}>
+            <MDBTabsContent>
+              <MDBTabsPane show={justifyActive == 'tab1'}>
+                <Login showModal={showModal} handleSubmit={handleSubmit} display={display} />
+              </MDBTabsPane>
+              <MDBTabsPane show={justifyActive == 'tab2'}>
+                <Register showModal={showModal} handleSubmit={handleSubmit} display={display} />
+              </MDBTabsPane>
+            </MDBTabsContent>
 
-                <MDBValidationItem className='field' invalid feedback='ex: JohnDoe' >
-                  <div className="textInputWrapper">
-                    <MDBInput
-                      name='username'
-                      onChange={(e) => setUsername(e.target.value)}
-                      id='validationCustom05'
-                      required
-                      label='Username'
-                      value = {username}
-                    />
-                  </div>
-                </MDBValidationItem>
-
-
-              </MDBValidation>
-              <MDBValidation isValidated style={{ textAlign: "left", width: '250px'}}>
-
-                <MDBValidationItem className='field' invalid feedback='' >
-                  <div className="textInputWrapper">
-                    <MDBInput
-                    type='password' 
-                      name='password'
-                      onChange={(e) => setPassword(e.target.value)}
-                      id='validationCustom35'
-                      required
-                      label='Password'
-                      value = {password}
-                    />
-                  </div>
-                </MDBValidationItem>
-
-
-              </MDBValidation>
-              <p>forgot password?</p>
-              <p>create account</p>
-            </MDBModalBody>
-
-            <MDBModalFooter>
-              <MDBBtn color="danger" onClick={showModal}>
-                Close
-              </MDBBtn>
-              <MDBBtn color = "success" onClick={() => handleSubmit(username, password)}>Login</MDBBtn>
-            </MDBModalFooter>
           </MDBModalContent>
         </MDBModalDialog>
       </MDBModal>
-         
+
     </>
   );
 };

@@ -1,69 +1,82 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import {
+  MDBBtn,
+  MDBModalContent,
+  MDBModalHeader,
+  MDBModalTitle,
+  MDBModalBody,
+  MDBModalFooter,
+  MDBValidation,
+  MDBValidationItem,
+  MDBInput,
 
-function Login ({token, recievedToken}) {
+} from 'mdb-react-ui-kit';
+// Functional Component
+const Login = ({showModal, handleSubmit, display }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  console.log('login prop loaded');
-
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('http://127.0.0.1:8000/api/v1/dj-rest-auth/login/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-      
-      if (response.ok) {
-        const data = await response.json();
-        
-        // Save the token to local storage
-        
-        // TODO: Use the token for authenticated requests
-        console.log('Login successful. Token:', data.key);
-        recievedToken(data.key);
-        
-      } else {
-        // Login failed, handle the error
-        console.log('Login failed');
-      }
-    } catch (error) {
-      console.error('Error:', error);
+  // console.log('login content reloaded');
+  useEffect(() => {
+    if (!display) {
+      // Reset the username and password when the modal is hidden
+      setUsername('');
+      setPassword('');
     }
-  };
-
+  }, [display]);
 
 
   return (
     <>
-    {console.log(token)}
-      { !token && <form onSubmit={handleSubmit}> 
-        <div>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit">Submit Login</button>
-      </form> }
+
+        <MDBModalBody>
+          <MDBValidation isValidated style={{ textAlign: "left", width: '250px' }}>
+
+            <MDBValidationItem className='field' invalid feedback='ex: JohnDoe' >
+              <div className="textInputWrapper">
+                <MDBInput
+                  name='username'
+                  onChange={(e) => setUsername(e.target.value)}
+                  id='validationCustom05'
+                  required
+                  label='Username'
+                  value={username}
+                />
+              </div>
+            </MDBValidationItem>
+
+
+          </MDBValidation>
+          <MDBValidation isValidated style={{ textAlign: "left", width: '250px' }}>
+
+            <MDBValidationItem className='field' invalid feedback='' >
+              <div className="textInputWrapper">
+                <MDBInput
+                  type='password'
+                  name='password'
+                  onChange={(e) => setPassword(e.target.value)}
+                  id='validationCustom35'
+                  required
+                  label='Password'
+                  value={password}
+                />
+              </div>
+            </MDBValidationItem>
+
+
+          </MDBValidation>
+          <p>forgot password?</p>
+          <p>create account</p>
+        </MDBModalBody>
+
+        <MDBModalFooter>
+          <MDBBtn color="danger" onClick={showModal}>
+            Close
+          </MDBBtn>
+          <MDBBtn color="success" onClick={() => handleSubmit(username, password)}>Login</MDBBtn>
+        </MDBModalFooter>
     </>
   );
-}
+};
 
 export default Login;

@@ -1,0 +1,15 @@
+/* styles.css */
+.MDBTabsContainer {
+  width: 100%;
+}
+
+.MDBTabs {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.MDBTabsItem {
+  flex-grow: 1;
+  text-align: center;
+}
