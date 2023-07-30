@@ -1,8 +1,14 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 
-from .models import Cake, Order, CakeLike, CakeView
+from .models import Cake, CakeLike, CakeView
 
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = get_user_model()
+        fields = ("id, username", "first_name", "last_name",)
 
 class CakeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,15 +21,15 @@ class CakeSerializer(serializers.ModelSerializer):
         model = Cake
 
 # Comment Serializer
-class OrderSerializer(serializers.ModelSerializer):
-    class Meta:
-        fields = (
-            "id",
-            "customer",
-            "description",
-            "created_at",
-        )
-        model = Order
+# class OrderSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         fields = (
+#             "id",
+#             "customer",
+#             "description",
+#             "created_at",
+#         )
+#         model = Order
 
 # Comment Reply Serial
 class CakeLikeSerializer(serializers.ModelSerializer):

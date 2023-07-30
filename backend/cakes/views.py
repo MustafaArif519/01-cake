@@ -5,9 +5,14 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 
 
-from .models import Cake, CakeLike, CakeView, Order
-from .serializers import CakeSerializer, CakeViewSerializer, CakeLikeSerializer, OrderSerializer
+from .models import Cake, CakeLike, CakeView
+from .serializers import CakeSerializer, CakeViewSerializer, CakeLikeSerializer, UserSerializer
 from .permissions import IsAuthorOrReadOnly, GuestPermission
+
+
+class UserList(viewsets.ModelViewSet):
+    queryset = get_user_model().objects.all()
+    serializer_class = UserSerializer
 
 
 class CustomPagination(pagination.PageNumberPagination):
@@ -63,7 +68,7 @@ class CakeViewViewSet(viewsets.ModelViewSet):
     queryset = CakeView.objects.all()
     serializer_class = CakeViewSerializer
 
-class OrderViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsAuthorOrReadOnly,)
-    queryset = Order.objects.all()
-    serializer_class = OrderSerializer
+# class OrderViewSet(viewsets.ModelViewSet):
+#     permission_classes = (IsAuthorOrReadOnly,)
+#     queryset = Order.objects.all()
+#     serializer_class = OrderSerializer
