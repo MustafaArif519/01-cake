@@ -1,13 +1,28 @@
-from django.contrib.auth.models import AbstractUser
+# models.py in the users Django app
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+from rest_framework.authtoken.models import Token
 
-# Create your models here.
+
+heard_selection = [
+    ('I', 'Instagram'),
+    ('F', 'Facebook'),
+    ('OS', 'Online Search'),
+    ('FF', 'Friends / Family'),
+    ('O', 'Other'),
+]
+
+
 class CustomUser(AbstractUser):
-    pNumber = models.CharField(null=True, blank=True, max_length=20)
-    heard_method = models.CharField(null=True, blank=True, max_length=150)
+    # We don't need to define the email attribute because is inherited from AbstractUser
+    phone_number = models.CharField(max_length=30)
+    heard_from = models.CharField(max_length=30, choices=heard_selection)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
 
-    def __str__(self):
-        return self.username
+class CustomToken(Token):
+    # You don't need to add the 'user' field here.
 
-CustomUser._meta.get_field('groups').remote_field.related_name = 'custom_user_groups'
-CustomUser._meta.get_field('user_permissions').remote_field.related_name = 'custom_user_permissions'
+    class Meta:
+        verbose_name = 'Custom Token'
+        verbose_name_plural = 'Custom Tokens'

@@ -172,4 +172,15 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = "accounts.CustomUser"
+AUTH_USER_MODEL = 'accounts.CustomUser'
+# ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ACCOUNT_USERNAME_REQUIRED = False
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_UNIQUE_EMAIL = True
+# ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+
+# REST_AUTH_REGISTER_SERIALIZERS = {
+#     'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
+# }
+

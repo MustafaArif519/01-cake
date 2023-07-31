@@ -1,26 +1,14 @@
-# from django.contrib import admin
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from accounts.models import CustomUser
 
-# from django.contrib.auth.admin import UserAdmin
+class AccountAdmin(UserAdmin):
+    list_display = ('email', 'username','pk', 'date_joined', 'last_login', 'is_staff')
+    search_fields = ('email', 'username')
+    readonly_fields = ('date_joined', 'last_login')
 
-# from .forms import CustomUserCreationForm, CustomUserChangeForm
-# from .models import CustomUser
+    filter_horizontal = ()
+    list_filter = ()
+    fieldsets = ()
 
-
-# # Register your models here.
-# class CustomUserAdmin(UserAdmin):
-#     add_form = CustomUserCreationForm
-#     form = CustomUserChangeForm
-#     model = CustomUser
-#     list_display = [
-#         "email",
-#         "username",
-#         "first_name",
-#         "last_name",
-#         "pNumber",
-#         "heard_method",
-#         "is_staff",
-#     ]
-#     fieldsets = UserAdmin.fieldsets + ((None, {"fields": ("pNumber", "first_name", "last_name","heard_method",)}),)
-#     add_fieldsets = UserAdmin.add_fieldsets + ((None, {"fields":("pNumber", "first_name", "last_name","heard_method",)}),)
-
-# admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(CustomUser, AccountAdmin)

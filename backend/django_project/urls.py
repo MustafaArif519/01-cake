@@ -19,6 +19,8 @@ from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 from django.conf.urls.static import static
 from django.conf import settings
+from dj_rest_auth.registration.views import VerifyEmailView, RegisterView
+from accounts.serializers import CustomRegisterSerializer
 
 
 urlpatterns = [
@@ -27,12 +29,17 @@ urlpatterns = [
     path("api-auth/", include("rest_framework.urls")),
     path("api/v1/dj-rest-auth/", include("dj_rest_auth.urls")),
     path("api/v1/dj-rest-auth/registration/",\
-        include("dj_rest_auth.registration.urls")),
+        RegisterView.as_view(serializer_class=CustomRegisterSerializer), name='user-registration'),
+    # path("api/v1/dj-rest-auth/registration/", include("dj_rest_auth.registration.urls")),
     path("api/v1/", include("accounts.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("api/v1/", include("accounts.urls")),
     path("api/schema/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
     path("api/schema/swagger/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger"),
+    path(r'^account-confirm-email/', VerifyEmailView.as_view(),
+     name='account_email_verification_sent'),
+path(r'^account-confirm-email/(?P<key>[-:\w]+)/$', VerifyEmailView.as_view(),
+     name='account_confirm_email'),
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )

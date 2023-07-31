@@ -3,7 +3,6 @@ from django.http import HttpResponse
 from rest_framework.authtoken.models import Token
 from rest_framework import generics
 from dj_rest_auth.registration.views import RegisterView
-from .serializers import CustomUserSerializer
 
 
 class UserIdView(View):
@@ -18,5 +17,5 @@ class UserIdView(View):
 
         return HttpResponse(user_id)
     
-class CustomRegisterView(RegisterView):
-    serializer_class = CustomUserSerializer
+# class CustomRegisterView(RegisterView):
+#     serializer_class = CustomUserSerializer
