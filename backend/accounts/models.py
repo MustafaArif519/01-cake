@@ -2,6 +2,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from rest_framework.authtoken.models import Token
+from django.conf import settings
 
 
 heard_selection = [
@@ -21,7 +22,6 @@ class CustomUser(AbstractUser):
     last_name = models.CharField(max_length=100)
 
 class CustomToken(Token):
-    # You don't need to add the 'user' field here.
 
     class Meta:
         verbose_name = 'Custom Token'

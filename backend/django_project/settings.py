@@ -113,7 +113,7 @@ TEMPLATES = [
 ]
 
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
 
 SITE_ID = 1
 
@@ -173,14 +173,13 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
-# ACCOUNT_AUTHENTICATION_METHOD = 'email'
-# ACCOUNT_USERNAME_REQUIRED = False
-# ACCOUNT_EMAIL_REQUIRED = True
-# ACCOUNT_UNIQUE_EMAIL = True
-# ACCOUNT_EMAIL_VERIFICATION = 'none'
+# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # or 'optional'
 
 
-# REST_AUTH_REGISTER_SERIALIZERS = {
-#     'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
-# }
+AWS_ACCESS_KEY_ID = 'AKIAWIRDHOFW3TXQTP6F'
+AWS_SECRET_ACCESS_KEY = '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'
 
+# Email configuration
+EMAIL_BACKEND = "django_ses.SESBackend"
+AWS_SES_REGION_NAME = 'us-east-2'
+AWS_SES_REGION_ENDPOINT = 'email.us-east-2.amazonaws.com'
