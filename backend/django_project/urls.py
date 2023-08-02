@@ -19,8 +19,9 @@ from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 from django.conf.urls.static import static
 from django.conf import settings
-from dj_rest_auth.registration.views import VerifyEmailView, RegisterView
-from allauth.account.views import ConfirmEmailView,  EmailVerificationSentView
+from dj_rest_auth.registration.views import VerifyEmailView, ConfirmEmailView
+from allauth.account.views import ConfirmEmailView
+from dj_rest_auth.views import PasswordResetConfirmView
 from accounts.serializers import CustomRegisterSerializer
 
 
@@ -47,6 +48,10 @@ urlpatterns = [
     path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
     path('dj-rest-auth/account-confirm-email/', VerifyEmailView.as_view(), 
          name='account_email_verification_sent'),
+    path(
+        'rest-auth/password/reset/confirm/<slug:uidb64>/<slug:token>/',
+        PasswordResetConfirmView.as_view(), name='password_reset_confirm'
+    ),
     
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
