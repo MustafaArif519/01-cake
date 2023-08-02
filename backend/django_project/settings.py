@@ -78,7 +78,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     # cors related middleware
-    "corsheaders.middleware.CorsMiddleware",
+    # "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -86,12 +86,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_WHITELIST = (
-    "http://localhost:5173",
-    "http://localhost:8000",
-)
+# CORS_ORIGIN_WHITELIST = (
+#     "http://localhost:5173",
+#     "http://localhost:8000",
+# )
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost:5173"]
+# CSRF_TRUSTED_ORIGINS = ["http://localhost:5173"]
 
 ROOT_URLCONF = 'django_project.urls'
 
@@ -176,10 +176,43 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 # ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # or 'optional'
 
 
-AWS_ACCESS_KEY_ID = 'AKIAWIRDHOFW3TXQTP6F'
-AWS_SECRET_ACCESS_KEY = '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'
+# Rootstrap email backend tutorial
+AUTHENTICATION_BACKENDS = [
+    # allauth specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+    # Needed to login by username in Django admin, regardless of allauth
+    'django.contrib.auth.backends.ModelBackend',
+]
 
-# Email configuration
-EMAIL_BACKEND = "django_ses.SESBackend"
-AWS_SES_REGION_NAME = 'us-east-2'
-AWS_SES_REGION_ENDPOINT = 'email.us-east-2.amazonaws.com'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+
+REST_AUTH  = {
+    'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
+     'USER_DETAILS_SERIALIZER': 'accounts.serializers.CustomUserDetailsSerializer',
+}
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'users.serializers.CustomRegisterSerializer',
+}
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = 'my-app-auth' # The cookie key name can be the one you want
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+LOGIN_URL = 'http://localhost:8000/api/v1/dj-rest-auth/login'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# Following settings are that for AWS SES sandbox mode configuration!
+# AWS_ACCESS_KEY_ID = 'AKIAWIRDHOFW3TXQTP6F'
+# AWS_SECRET_ACCESS_KEY = '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'
+
+# # Email configuration
+# EMAIL_BACKEND = "django_ses.SESBackend"
+# AWS_SES_REGION_NAME = 'us-east-2'
+# AWS_SES_REGION_ENDPOINT = 'email.us-east-2.amazonaws.com'
+
+# You're accessing the development server over HTTPS, but it only supports HTTP. ERROR FIX ATTEMPT
+# reason for error was ing LOGIN_URL redirect url included HTTPS by accident!

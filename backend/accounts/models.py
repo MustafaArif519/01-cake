@@ -20,9 +20,11 @@ class CustomUser(AbstractUser):
     heard_from = models.CharField(max_length=30, choices=heard_selection)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+    email = models.EmailField(blank=False, null=False)
 
-class CustomToken(Token):
 
-    class Meta:
-        verbose_name = 'Custom Token'
-        verbose_name_plural = 'Custom Tokens'
+# class CustomToken(Token):
+
+#     class Meta:
+#         verbose_name = 'Custom Token'
+#         verbose_name_plural = 'Custom Tokens'

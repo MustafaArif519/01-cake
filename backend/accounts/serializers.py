@@ -2,6 +2,7 @@
 from django.db import transaction
 from rest_framework import serializers
 from dj_rest_auth.registration.serializers import RegisterSerializer
+from .models import CustomUser
 
 from accounts.models import heard_selection
 
@@ -22,3 +23,15 @@ class CustomRegisterSerializer(RegisterSerializer):
         user.lastname = self.data.get('lastname')
         user.save()
         return user
+
+class CustomUserDetailsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CustomUser
+        fields = (
+            'pk',
+            'email',
+            'phone_number',
+            'heard_from',
+        )
+        read_only_fields = ('pk', 'email', 'phone_number',)

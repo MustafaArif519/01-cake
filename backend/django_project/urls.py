@@ -29,19 +29,25 @@ urlpatterns = [
     path("api/v1/", include("cakes.urls")),
     path("api-auth/", include("rest_framework.urls")),
     path("api/v1/dj-rest-auth/", include("dj_rest_auth.urls")),
-    path("api/v1/dj-rest-auth/registration/",\
-        RegisterView.as_view(serializer_class=CustomRegisterSerializer), name='user-registration'),
-    # path("api/v1/dj-rest-auth/registration/", include("dj_rest_auth.registration.urls")),
+
+    path("api/v1/dj-rest-auth/registration/", include("dj_rest_auth.registration.urls")),
     path("api/v1/", include("accounts.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("api/v1/", include("accounts.urls")),
     path("api/schema/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
     path("api/schema/swagger/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger"),
-   path('accounts/', include('allauth.urls')),
-    path('rest-auth/registration/account-confirm-email/<str:key>/', ConfirmEmailView.as_view(),
-         name='account_confirm_email'),
-    path('rest-auth/registration/account-email-verification-sent/', EmailVerificationSentView.as_view(),
+    path('accounts/', include('allauth.urls')),
+    path('dj-rest-auth/account-confirm-email/', VerifyEmailView.as_view(),
+        name='account_email_verification_sent'
+    ),
+    path(
+        'dj-rest-auth/registration/account-confirm-email/<str:key>/',
+        ConfirmEmailView.as_view(),
+    ), # Needs to be defined before the registration path
+    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('dj-rest-auth/account-confirm-email/', VerifyEmailView.as_view(), 
          name='account_email_verification_sent'),
+    
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )
