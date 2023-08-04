@@ -39,6 +39,19 @@ function Navigation({ token, resetToken, recievedToken }) {
 
 
   const handleSubmit = useCallback((username, password) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const login = {};
+  
+    if (emailRegex.test(username)) {
+      login.email = username;
+    } else {
+      login.username = username;
+    }
+  
+    login.password = password;
+  
+    console.log(login);
+  
     const tryLogin = async () => {
       try {
         const response = await fetch('http://127.0.0.1:8000/api/v1/dj-rest-auth/login/', {
@@ -46,7 +59,7 @@ function Navigation({ token, resetToken, recievedToken }) {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ username, password }),
+          body: JSON.stringify(login), // Convert login object to JSON
         });
   
         if (response.ok) {
@@ -58,7 +71,6 @@ function Navigation({ token, resetToken, recievedToken }) {
           console.log('Login successful. Token:', data.key);
           recievedToken(data.key);
           setBasicModal(false);
-  
         } else {
           // Login failed, handle the error
           console.log('Login failed');
@@ -69,6 +81,7 @@ function Navigation({ token, resetToken, recievedToken }) {
     };
     tryLogin();
   }, []);
+  
 
 
     const createAccount = useCallback((registerForm) => {

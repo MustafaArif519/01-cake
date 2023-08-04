@@ -39,7 +39,7 @@ const Login = ({showModal, handleSubmit, display }) => {
                   onChange={(e) => setUsername(e.target.value)}
                   id='validationCustom05'
                   required
-                  label='Username'
+                  label='Username/Email'
                   value={username}
                 />
               </div>
