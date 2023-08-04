@@ -17,7 +17,7 @@ heard_selection = [
 class CustomUser(AbstractUser):
     # We don't need to define the email attribute because is inherited from AbstractUser
     phone_number = models.CharField(max_length=30)
-    heard_from = models.CharField(max_length=30, choices=heard_selection)
+    heard_from = models.CharField(max_length=30)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(blank=False, null=False)

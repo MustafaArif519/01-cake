@@ -70,11 +70,56 @@ function Navigation({ token, resetToken, recievedToken }) {
     tryLogin();
   }, []);
 
+
+    const createAccount = useCallback((registerForm) => {
+      const tryCreate = async () => {
+        try {
+          const response = await fetch('http://127.0.0.1:8000/api/v1/dj-rest-auth/registration/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(registerForm), // Corrected: Pass the entire object as the body
+          });
+  
+          if (response.ok) {
+            const data = await response.json();
+  
+            // Save the token to local storage
+            // TODO: Use the token for authenticated requests
+            console.log('Registration successful. Token:');
+            setBasicModal(false);
+          } else {
+            // Registration failed, handle the error
+            console.log('Registration failed');
+            const errorResponse = await response.json();
+            console.log(errorResponse);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      };
+      tryCreate();
+    }, []);
+  
+    const handleRegistrationSubmit = (registerForm) => {
+      const register = {
+        username: registerForm.username,
+        email: registerForm.email,
+        password1: registerForm.password1,
+        password2: registerForm.password2,
+        heard_from: registerForm.heard_from,
+        phone_number: registerForm.pNumber, // Corrected: Use pNumber instead of phone_number
+        firstname: registerForm.first_name, // Corrected: Use first_name instead of firstname
+        lastname: registerForm.last_name, // Corrected: Use last_name instead of lastname
+      };
+      createAccount(register);
+    };
   
   return (
     <>
       <LoginModal showModal ={showModal} handleSubmit={handleSubmit} display={basicModal} 
-      setDisplay={setBasicModal}/>
+      setDisplay={setBasicModal} createAccount={handleRegistrationSubmit} />
 
 
       <MDBNavbar sticky expand='lg' light style={{ backgroundColor: '#e3f2fd' }}>

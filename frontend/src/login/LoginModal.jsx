@@ -17,7 +17,7 @@ import Login from './Login';
 import Register from './Register';
 import "./style.css"
 
-const LoginModal = ({ showModal, handleSubmit, display, setDisplay }) => {
+const LoginModal = ({ showModal, handleSubmit, display, setDisplay, createAccount }) => {
 
   // console.log('login Modal reloaded', display);
 
@@ -69,7 +69,7 @@ const LoginModal = ({ showModal, handleSubmit, display, setDisplay }) => {
                 <Login showModal={showModal} handleSubmit={handleSubmit} display={display} />
               </MDBTabsPane>
               <MDBTabsPane show={justifyActive == 'tab2'}>
-                <Register showModal={showModal} handleSubmit={handleSubmit} display={display} />
+                <Register showModal={showModal} createAccount={createAccount} display={display} />
               </MDBTabsPane>
             </MDBTabsContent>
 

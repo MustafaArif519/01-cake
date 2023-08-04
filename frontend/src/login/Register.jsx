@@ -13,27 +13,27 @@ import {
 
 } from 'mdb-react-ui-kit';
 // Functional Component
-const Register = ({ showModal, handleSubmit, display }) => {
+const Register = ({ showModal, createAccount, display }) => {
     const [registerForm, setRegisterForm] = useState({
         email: "",
-        name: "",
+        first_name: "",
+        last_name: "",
         username: "",
         pNumber: "",
-        password: "",
-        confirmPassword: "",
-        heardFrom: "",
-        heardFromOther: "",
+        password1: "",
+        password2: "",
+        heard_from: "",
     });
 
     const initialFormState = {
         email: "",
-        name: "",
+        first_name: "",
+        last_name: "",
         username: "",
         pNumber: "",
-        password: "",
-        confirmPassword: "",
-        heardFrom: "",
-        heardFromOther: "",
+        password1: "",
+        password2: "",
+        heard_from: "",
     };
 
     // console.log('register content reloaded');
@@ -43,11 +43,16 @@ const Register = ({ showModal, handleSubmit, display }) => {
           setRegisterForm(initialFormState);
         }
       }, [display]);
-    // Calculate showOtherInput based on the current value of registerForm.heardFrom
-    const showOtherInput = registerForm.heardFrom === "Other";
+    // Calculate showOtherInput based on the current value of registerForm.heard_from
+    const showOtherInput = registerForm.heard_from === "Other";
 
     const onChange = (e) => {
-        setRegisterForm({ ...registerForm, [e.target.name]: e.target.value });
+        if(e.target.name === "heardFromOther"){
+            setRegisterForm({ ...registerForm, ["heard_from"]: e.target.value });
+        }
+        else{
+            setRegisterForm({ ...registerForm, [e.target.name]: e.target.value });
+        }
     };
 console.log(registerForm);
     return (
@@ -58,15 +63,31 @@ console.log(registerForm);
                     <MDBValidation isValidated>
 
 
-                        <MDBValidationItem className='field' invalid feedback='ex: Mustafa Arif'>
+                        <MDBValidationItem className='field' invalid feedback='ex: Andrew'>
                             <div className="textInputWrapper">
                                 <MDBInput
-                                    value={registerForm.name}
-                                    name='name'
+                                    value={registerForm.first_name}
+                                    name='first_name'
                                     onChange={onChange}
                                     id='validationCustom01'
                                     required
-                                    label='Full Name'
+                                    label='First Name'
+                                />
+                            </div>
+                        </MDBValidationItem>
+                    </MDBValidation>
+                    <MDBValidation isValidated>
+
+
+                        <MDBValidationItem className='field' invalid feedback='ex: Jiang'>
+                            <div className="textInputWrapper">
+                                <MDBInput
+                                    value={registerForm.last_name}
+                                    name='last_name'
+                                    onChange={onChange}
+                                    id='validationCustom01'
+                                    required
+                                    label='Last Name'
                                 />
                             </div>
                         </MDBValidationItem>
@@ -126,8 +147,8 @@ console.log(registerForm);
                         <MDBValidationItem className='field' invalid feedback=''>
                             <div className="textInputWrapper">
                                 <MDBInput
-                                    value={registerForm.password}
-                                    name='password'
+                                    value={registerForm.password1}
+                                    name='password1'
                                     onChange={onChange}
                                     id='validationCustom022'
                                     required
@@ -146,8 +167,8 @@ console.log(registerForm);
                             feedback='passwords must match'>
                             <div className="textInputWrapper">
                                 <MDBInput
-                                    value={registerForm.passwordConfirm}
-                                    name='passwordConfirm'
+                                    value={registerForm.password2}
+                                    name='password2'
                                     onChange={onChange}
                                     id='validationCustom0442'
                                     required
@@ -163,7 +184,7 @@ console.log(registerForm);
                     <div className="radio" key = {display}>
                         <h3>How did you hear about us?</h3>
                         <MDBRadio
-                            name='heardFrom'
+                            name='heard_from'
                             id='flexRadioDefault1'
                             value="Instagram"
                             onChange={onChange}
@@ -171,7 +192,7 @@ console.log(registerForm);
                             label="Instagram"
                         />
                         <MDBRadio
-                            name='heardFrom'
+                            name='heard_from'
                             id='flexRadioDefasdfasdfrault2'
                             value="Facebook"
                             onChange={onChange}
@@ -179,7 +200,7 @@ console.log(registerForm);
                             label="Facebook"
                         />
                         <MDBRadio
-                            name='heardFrom'
+                            name='heard_from'
                             id='flexRadioDeasdffault2'
                             value="Online Search"
                             onChange={onChange}
@@ -187,7 +208,7 @@ console.log(registerForm);
                             label="Online Search"
                         />
                         <MDBRadio
-                            name='heardFrom'
+                            name='heard_from'
                             id='flexRadioDefault2'
                             value="Friends / Family"
                             onChange={onChange}
@@ -196,7 +217,7 @@ console.log(registerForm);
                         />
                         <MDBValidationItem invalid feedback=''>
                             <MDBRadio
-                                name='heardFrom'
+                                name='heard_from'
                                 id='flexRadioDefaulte5'
                                 value="Other"
                                 onChange={onChange}
@@ -227,7 +248,7 @@ console.log(registerForm);
                 <MDBBtn color="danger" onClick={showModal}>
                     Close
                 </MDBBtn>
-                <MDBBtn color="success" onClick={() => handleSubmit(registerForm)}>Create Account</MDBBtn>
+                <MDBBtn color="success" onClick={() => createAccount(registerForm)}>Create Account</MDBBtn>
             </MDBModalFooter>
         </>
     );

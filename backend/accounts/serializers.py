@@ -8,7 +8,7 @@ from accounts.models import heard_selection
 
 
 class CustomRegisterSerializer(RegisterSerializer):
-    heard_from = serializers.ChoiceField(choices=heard_selection)
+    heard_from = serializers.CharField(max_length=30)
     phone_number = serializers.CharField(max_length=30)
     firstname = serializers.CharField(max_length=100)
     lastname = serializers.CharField(max_length=100)

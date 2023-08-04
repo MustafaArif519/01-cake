@@ -66,7 +66,6 @@ const Login = ({showModal, handleSubmit, display }) => {
 
           </MDBValidation>
           <p>forgot password?</p>
-          <p>create account</p>
         </MDBModalBody>
 
         <MDBModalFooter>
