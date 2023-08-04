@@ -31,45 +31,7 @@ export default function EventPage({ updateForm, form }) {
 
   return (
     <>
-      {/* {console.log(formValue.name)} */}
-      <h1>Personal Information</h1>
-      <div className='section'>
 
-        <MDBValidation isValidated>
-
-
-          <MDBValidationItem className='field' invalid feedback='ex: Mustafa Arif'>
-            <div className="textInputWrapper">
-              <MDBInput
-                value={form.name}
-                name='name'
-                onChange={onChange}
-                id='validationCustom01'
-                required
-                label='Full Name'
-              />
-            </div>
-          </MDBValidationItem>
-        </MDBValidation>
-        <MDBValidation isValidated>
-
-          <MDBValidationItem className='field' invalid feedback='ex: 123-456-7890'>
-            <div className="textInputWrapper">
-              <MDBInput
-                value={form.pNumber}
-                name='pNumber'
-                onChange={onChange}
-                id='validationCustom02'
-                required
-                label='Phone Number'
-              />
-            </div>
-          </MDBValidationItem>
-
-
-
-        </MDBValidation>
-      </div>
       <h1>Event Information</h1>
       <div className='section'>
 
@@ -153,6 +115,23 @@ export default function EventPage({ updateForm, form }) {
           </div>
         </MDBValidation>
 
+        <div isValidated style={{ textAlign: "left" }}>
+          <MDBValidationItem className='field' invalid feedback='ex: A graduation party celebrating 
+                                                                my daughters highschool graduation.' >
+            <div className="textInputWrapper">
+              <MDBTextArea className=''
+                value={form.eventDetails}
+                name='eventDetails'
+                onChange={onChange}
+                id='validationCustom06'
+                required
+                label='Event Details (Optional)'
+                style={{ width: "300px", height: "200px", textAlign: "left" }}
+              />
+            </div>
+          </MDBValidationItem>
+        </div>
+
         <MDBValidation isValidated style={{ textAlign: "left" }}>
 
           <MDBValidationItem className='field' invalid feedback='ex: 01/04/2020' >
@@ -171,22 +150,7 @@ export default function EventPage({ updateForm, form }) {
 
 
         </MDBValidation>
-        <div isValidated style={{ textAlign: "left" }}>
-          <MDBValidationItem className='field' invalid feedback='ex: A graduation party celebrating 
-                                                                my daughters highschool graduation.' >
-            <div className="textInputWrapper">
-              <MDBTextArea className=''
-                value={form.eventDetails}
-                name='eventDetails'
-                onChange={onChange}
-                id='validationCustom06'
-                required
-                label='Event Details (Optional)'
-                style={{ width: "300px", height: "200px", textAlign: "left" }}
-              />
-            </div>
-          </MDBValidationItem>
-        </div>
+
 
       </div>
     </>
