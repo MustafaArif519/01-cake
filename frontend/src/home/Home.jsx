@@ -11,7 +11,7 @@ export default function Home(token, recievedToken) {
 
   return (
     <>
-    <MDBCarousel showControls dealy={3000}>
+        <MDBCarousel showControls fade touch = {true}>
       <MDBCarouselItem
         className='w-100 d-block'
         itemId={1}

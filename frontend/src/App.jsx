@@ -1,7 +1,6 @@
 import { useEffect, useCallback, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import 'mdb-react-ui-kit/dist/css/mdb.min.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
+
 import Navigation from './Navigation';
 import Gallery from './gallery/Gallery';
 import Home from './home/Home';
@@ -10,6 +9,7 @@ import ErrorPage from './error-page';
 import NewOrder from './orders/new-order/NewOrder';
 import Profile from './profile/Profile'
 import Contact from './Contact.jsx'
+import "./background.css"
 
 
 function App() {
