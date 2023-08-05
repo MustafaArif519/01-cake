@@ -139,7 +139,7 @@ function Navigation({ token, resetToken, recievedToken }) {
       setDisplay={setBasicModal} createAccount={handleRegistrationSubmit} />
 
 
-      <MDBNavbar sticky expand='lg' light style={{ backgroundColor: '#e3f2fd' }}>
+      <MDBNavbar sticky expand='lg' light className="navigator">
         <MDBContainer fluid>
 
           <MDBNavbarBrand>
@@ -213,7 +213,7 @@ function Navigation({ token, resetToken, recievedToken }) {
               </div>}
             {!token &&
               <div className="text-center">
-                <MDBBtn onClick={toggleShow} outline color="success">Login</MDBBtn>
+                <MDBBtn onClick={toggleShow}  className="bg-success">Login</MDBBtn>
               </div>
 
             }

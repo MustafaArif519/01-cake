@@ -1,3 +1,18 @@
 body {
-    background-color: #eb9fb5; /* Replace this with your desired background color */
-  }
+
+
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,231,238,1) 0%, rgba(255,225,249,1) 57%);
+
+}
+
+.navigator {
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,200,217,1) 0%, rgba(255,197,244,1) 57%);
+
+}
+
+.errorBody{
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(242,28,65,0.4992121848739496) 0%);
+}
