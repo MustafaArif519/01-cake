@@ -19,8 +19,8 @@ class CustomRegisterSerializer(RegisterSerializer):
         user = super().save(request)
         user.heard_from = self.data.get('heard_from')
         user.phone_number = self.data.get('phone_number')
-        user.firstname = self.data.get('firstname')
-        user.lastname = self.data.get('lastname')
+        user.first_name = self.data.get('firstname')
+        user.last_name = self.data.get('lastname')
         user.save()
         return user
 

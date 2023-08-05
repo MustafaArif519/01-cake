@@ -126,6 +126,9 @@ function Navigation({ token, resetToken, recievedToken }) {
         firstname: registerForm.first_name, // Corrected: Use first_name instead of firstname
         lastname: registerForm.last_name, // Corrected: Use last_name instead of lastname
       };
+      if(registerForm.heard_from === "Other"){
+        register.heard_from = registerForm.heardFromOther;
+      }
       createAccount(register);
     };
   

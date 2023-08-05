@@ -47,12 +47,7 @@ const Register = ({ showModal, createAccount, display }) => {
     const showOtherInput = registerForm.heard_from === "Other";
 
     const onChange = (e) => {
-        if(e.target.name === "heardFromOther"){
-            setRegisterForm({ ...registerForm, ["heard_from"]: e.target.value });
-        }
-        else{
-            setRegisterForm({ ...registerForm, [e.target.name]: e.target.value });
-        }
+        setRegisterForm({ ...registerForm, [e.target.name]: e.target.value });
     };
 console.log(registerForm);
     return (
