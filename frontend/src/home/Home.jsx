@@ -1,14 +1,36 @@
 import React, { useState } from "react";
 import Modal from "../administration/Modal"
 import {
-  MDBBtn,
-  MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon
+
+  MDBCarousel,
+  MDBCarouselItem,
 } from "mdb-react-ui-kit";
+
 
 export default function Home(token, recievedToken) {
 
   return (
     <>
+    <MDBCarousel showControls dealy={3000}>
+      <MDBCarouselItem
+        className='w-100 d-block'
+        itemId={1}
+        src='https://mdbootstrap.com/img/new/slides/041.jpg'
+        alt='...'
+      />
+      <MDBCarouselItem
+        className='w-100 d-block'
+        itemId={2}
+        src='https://mdbootstrap.com/img/new/slides/042.jpg'
+        alt='...'
+      />
+      <MDBCarouselItem
+        className='w-100 d-block'
+        itemId={3}
+        src='https://mdbootstrap.com/img/new/slides/043.jpg'
+        alt='...'
+      />
+    </MDBCarousel>
       <div
         className='p-5 text-center bg-image'
         style={{ backgroundImage: 

@@ -1,6 +1,7 @@
 import { useEffect, useCallback, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import Navigation from './Navigation';
 import Gallery from './gallery/Gallery';
 import Home from './home/Home';
@@ -8,6 +9,8 @@ import Orders from './orders/Orders';
 import ErrorPage from './error-page';
 import NewOrder from './orders/new-order/NewOrder';
 import Profile from './profile/Profile'
+import Contact from './Contact.jsx'
+
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token') || '');
@@ -68,6 +71,7 @@ function App() {
             <Route path="/orders" element={<Orders />} />
             <Route path="/order" element={<NewOrder token = {token} />} />
             <Route path="/profile" element={<Profile token = {token} />} />
+            <Route path="/contact" element={<Contact token = {token} />} />
             {/* <Route path="/login" element={<Login token = {token} recievedToken = {recievedToken}/>} /> */}
             <Route path="*" element={<ErrorPage />} />
           </Routes>

@@ -13,7 +13,8 @@ import {
   MDBDropdownToggle,
   MDBDropdownMenu,
   MDBDropdownItem,
-  MDBBtn
+  MDBBtn,
+  MDBIcon
 
 
 } from 'mdb-react-ui-kit';
@@ -160,11 +161,7 @@ function Navigation({ token, resetToken, recievedToken }) {
             aria-label='Toggle navigation'
             onClick={() => setShowNavNoToggler(!showNavNoToggler)}
           >
-            <img 
-            src = "./src/images/bars.png"
-            width = "30px"
-            height = "30px"
-            />
+            <MDBIcon icon='bars' fas />
           </MDBNavbarToggler>
           <MDBCollapse navbar show={showNavNoToggler}>
             <MDBNavbarNav className='me-auto mb-2 mb-lg-0'>
