@@ -7,6 +7,7 @@ import Home from './home/Home';
 import Orders from './orders/Orders';
 import ErrorPage from './error-page';
 import NewOrder from './orders/new-order/NewOrder';
+import Profile from './profile/Profile'
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token') || '');
@@ -66,6 +67,7 @@ function App() {
             <Route path="/gallery" element={<Gallery userId = {userId} token = {token}/>} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/order" element={<NewOrder token = {token} />} />
+            <Route path="/profile" element={<Profile token = {token} />} />
             {/* <Route path="/login" element={<Login token = {token} recievedToken = {recievedToken}/>} /> */}
             <Route path="*" element={<ErrorPage />} />
           </Routes>

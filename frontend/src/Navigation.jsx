@@ -206,10 +206,13 @@ function Navigation({ token, resetToken, recievedToken }) {
 
             {token &&
               <div className="text-center">
-                <MDBBtn onClick={resetToken} className='mx-2' color='info'>
+                <Link to="/profile">
+                <MDBBtn  className='mx-2' color='info'>
                   Profile
 
                 </MDBBtn>
+                </Link>
+                
               </div>}
             {!token &&
               <div className="text-center">
