@@ -48,11 +48,33 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "allauth.socialaccount.providers.github",
     "drf_spectacular",
+    # For adding google sign in authentication
+    "allauth.socialaccount.providers.google",
     # local apps
     "accounts.apps.AccountsConfig",
     "cakes.apps.CakesConfig",
 ]
+
+# For google sign in authentication
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "APP": {
+            "client_id": "233170599832-23lshv65vtodqdu5e0tjgfagmbbm4hkm.apps.googleusercontent.com",  # replace me
+            "secret": "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",        # replace me
+            "key": "",                               # leave empty
+        },
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
+        "VERIFIED_EMAIL": True,
+    },
+}
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/' # 'http://myhost:port/media/'
@@ -84,6 +106,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # 'social_django.middleware.SocialAuthExceptionMiddleware',  # <--
 ]
 
 CORS_ORIGIN_WHITELIST = (
@@ -107,6 +131,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 "django.template.context_processors.request",
+
+#                 'social.apps.django_app.context_processors.backends',
+# 'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
@@ -115,7 +142,7 @@ TEMPLATES = [
 
 
 
-SITE_ID = 1
+SITE_ID = 2
 # To set site_name and site_domain you must either do this manually
 
 
@@ -184,6 +211,9 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
     # Needed to login by username in Django admin, regardless of allauth
     'django.contrib.auth.backends.ModelBackend',
+    # Let's see if this works
+    # 'social_core.backends.github.GithubOAuth2',
+
 ]
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'

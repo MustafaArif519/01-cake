@@ -22,7 +22,8 @@ from django.conf import settings
 from dj_rest_auth.registration.views import VerifyEmailView, ConfirmEmailView
 from allauth.account.views import ConfirmEmailView
 from dj_rest_auth.views import PasswordResetConfirmView
-from accounts.serializers import CustomRegisterSerializer
+from allauth.socialaccount.views import signup
+from accounts.views import GoogleLogin
 
 
 urlpatterns = [
@@ -52,6 +53,9 @@ urlpatterns = [
         'rest-auth/password/reset/confirm/<slug:uidb64>/<slug:token>/',
         PasswordResetConfirmView.as_view(), name='password_reset_confirm'
     ),
+    path("signup/", signup, name="socialaccount_signup"),
+    path("google/", GoogleLogin.as_view(), name="google_login"),
+
     
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
