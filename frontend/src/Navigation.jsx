@@ -213,7 +213,7 @@ function Navigation({ token, resetToken, recievedToken }) {
               </div>}
             {!token &&
               <div className="text-center">
-                <MDBBtn onClick={toggleShow}  className="bg-success">Login</MDBBtn>
+                <MDBBtn onClick={toggleShow}   color='success'>Login</MDBBtn>
               </div>
 
             }
