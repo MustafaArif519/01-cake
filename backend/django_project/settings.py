@@ -205,6 +205,26 @@ ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 LOGIN_URL = 'http://localhost:8000/api/v1/dj-rest-auth/login'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],  # new
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ],
+        },
+    },
+]
+
+
+
+
 # Following settings are that for AWS SES sandbox mode configuration!
 # AWS_ACCESS_KEY_ID = 'AKIAWIRDHOFW3TXQTP6F'
 # AWS_SECRET_ACCESS_KEY = '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'
