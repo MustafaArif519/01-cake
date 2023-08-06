@@ -1,4 +1,4 @@
 {% load i18n %}
 {% autoescape off %}
-{% blocktrans %}Confirm Your Sign Up Or Else{% endblocktrans %}
+{% blocktrans %}Sign Up Confirmation - Farida's Cake Boutique!{% endblocktrans %}
 {% endautoescape %}

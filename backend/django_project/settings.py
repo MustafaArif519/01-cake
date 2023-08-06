@@ -116,6 +116,8 @@ TEMPLATES = [
 
 
 SITE_ID = 1
+# To set site_name and site_domain you must either do this manually
+
 
 WSGI_APPLICATION = 'django_project.wsgi.application'
 
@@ -221,7 +223,7 @@ TEMPLATES = [
         },
     },
 ]
-
+# CUSTOM_PASSWORD_RESET_CONFIRM = 'desired URL'
 
 
 
