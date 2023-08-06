@@ -23,5 +23,5 @@ class UserIdView(View):
     
 class GoogleLogin(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
-    callback_url = "http://localhost:5173/"
+    callback_url = "http://localhost:8000"
     client_class = OAuth2Client

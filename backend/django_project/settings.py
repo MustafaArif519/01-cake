@@ -61,8 +61,8 @@ INSTALLED_APPS = [
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
         "APP": {
-            "client_id": "233170599832-23lshv65vtodqdu5e0tjgfagmbbm4hkm.apps.googleusercontent.com",  # replace me
-            "secret": "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",        # replace me
+            "client_id": "233170599832-ucmqjtfc137qoddrnjdn22793j9cj56r.apps.googleusercontent.com",  # replace me
+            "secret": "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",        # replace me
             "key": "",                               # leave empty
         },
         "SCOPE": [

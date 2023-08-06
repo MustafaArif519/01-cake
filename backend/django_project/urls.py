@@ -54,7 +54,7 @@ urlpatterns = [
         PasswordResetConfirmView.as_view(), name='password_reset_confirm'
     ),
     path("signup/", signup, name="socialaccount_signup"),
-    path("google/", GoogleLogin.as_view(), name="google_login"),
+    path('dj-rest-auth/google/', GoogleLogin.as_view(), name='google_login')
 
     
 ] + static(
