@@ -14,7 +14,14 @@ import {
   MDBDropdownMenu,
   MDBDropdownItem,
   MDBBtn,
-  MDBIcon
+  MDBIcon,
+  MDBModalDialog,
+  MDBModalContent,
+  MDBModalHeader,
+  MDBModalTitle,
+  MDBModal,
+  MDBModalBody,
+  MDBModalFooter,
 
 
 } from 'mdb-react-ui-kit';
@@ -27,7 +34,13 @@ function Navigation({ token, resetToken, recievedToken }) {
   const toggleShow = () => setBasicModal(!basicModal);
 
   const [showNavNoToggler, setShowNavNoToggler] = useState(false);
+  const [centredModal, setCentredModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
+  const toggleErrorShow = () => {
+    setCentredModal(!centredModal);
+
+  }
 
 
 
@@ -135,6 +148,29 @@ function Navigation({ token, resetToken, recievedToken }) {
   
   return (
     <>
+
+<MDBModal tabIndex='-1'  show={centredModal} setShow={setCentredModal}>
+        <MDBModalDialog centered>
+          <MDBModalContent>
+            <MDBModalHeader>
+              <MDBModalTitle>Error Prcoessing Request</MDBModalTitle>
+              <MDBBtn className='btn-close' color='none' onClick={toggleErrorShow}></MDBBtn>
+            </MDBModalHeader>
+            <MDBModalBody>
+              <p>
+              {errorMessage}
+              </p>
+            </MDBModalBody>
+            <MDBModalFooter>
+              <MDBBtn color='danger' onClick={toggleErrorShow}>
+                Okay
+              </MDBBtn>
+
+            </MDBModalFooter>
+          </MDBModalContent>
+        </MDBModalDialog>
+      </MDBModal>
+
       <LoginModal showModal ={showModal} handleSubmit={handleSubmit} display={basicModal} 
       setDisplay={setBasicModal} createAccount={handleRegistrationSubmit} />
 

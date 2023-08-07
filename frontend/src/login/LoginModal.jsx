@@ -43,6 +43,9 @@ const LoginModal = ({ showModal, handleSubmit, display, setDisplay, createAccoun
     }
   }, [display]);
 
+
+
+
   return (
     <>
       <MDBModal show={display} setShow={setDisplay} tabIndex="-1">
