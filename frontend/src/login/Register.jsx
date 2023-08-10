@@ -49,7 +49,7 @@ const Register = ({ showModal, createAccount, display }) => {
     const onChange = (e) => {
         setRegisterForm({ ...registerForm, [e.target.name]: e.target.value });
     };
-console.log(registerForm);
+// console.log(registerForm);
     return (
         <>
             <MDBModalBody>

@@ -16,10 +16,15 @@ import "./background.css"
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token') || '');
   const [userId, setUserId] = useState(localStorage.getItem('userId') || -1);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || '');
 
   useEffect(() =>{
     localStorage.setItem('token', token);
   }, [token])
+
+  useEffect(() =>{
+    localStorage.setItem('user', JSON.stringify(user));
+  }, [user])
 
   useEffect(() =>{
     localStorage.setItem('userId', userId);
@@ -29,6 +34,7 @@ function App() {
   const recievedToken = useCallback((key) => {
     console.log("updating token and user-id", key);
     setToken(key);
+    retrieveUser(key);
     retrieveUserId(key);
   }, []);
 
@@ -49,7 +55,7 @@ function App() {
       if (response.ok) {
         const data = await response.json();
         setUserId(data);
-        // console.log(data);
+        console.log("data for user recieved!");
         // console.log(userId);
         
       } else {
@@ -61,6 +67,35 @@ function App() {
     }
   };
 
+
+  const retrieveUser = async (key) => {
+    const windowName = window.location.hostname;
+    console.log('http://localhost:8000/api/v1/dj-rest-auth/user/');
+    try {
+      const response = await fetch('http://localhost:8000/api/v1/dj-rest-auth/user/', {
+        method: 'GET',
+        headers: {
+          'Authorization': "Token " + key,
+          'Content-Type': 'application/json',
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setUser(data);
+        console.log(data);
+        // console.log(data);
+        // console.log(userId);
+        
+      } else {
+        // Login failed, handle the error
+        console.log('User data retrieval failed');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  
   return (
     <>
         {console.log("App componenet rendered", token)}
@@ -71,7 +106,7 @@ function App() {
             <Route path="/gallery" element={<Gallery userId = {userId} token = {token}/>} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/order" element={<NewOrder token = {token} />} />
-            <Route path="/profile" element={<Profile token = {token} />} />
+            <Route path="/profile" element={<Profile token = {token} user ={user} />} />
             <Route path="/contact" element={<Contact token = {token} />} />
             {/* <Route path="/login" element={<Login token = {token} recievedToken = {recievedToken}/>} /> */}
             <Route path="*" element={<ErrorPage />} />
