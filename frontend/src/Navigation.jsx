@@ -1,6 +1,6 @@
 import Nav from 'react-bootstrap/Nav';
 import { Outlet, Link } from "react-router-dom";
-import  { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import {
   MDBNavbar,
   MDBContainer,
@@ -55,17 +55,17 @@ function Navigation({ token, resetToken, recievedToken }) {
   const handleSubmit = useCallback((username, password) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const login = {};
-  
+
     if (emailRegex.test(username)) {
       login.email = username;
     } else {
       login.username = username;
     }
-  
+
     login.password = password;
-  
+
     console.log(login);
-  
+
     const tryLogin = async () => {
       try {
         const response = await fetch('http://127.0.0.1:8000/api/v1/dj-rest-auth/login/', {
@@ -75,12 +75,12 @@ function Navigation({ token, resetToken, recievedToken }) {
           },
           body: JSON.stringify(login), // Convert login object to JSON
         });
-  
+
         if (response.ok) {
           const data = await response.json();
-  
+
           // Save the token to local storage
-  
+
           // TODO: Use the token for authenticated requests
           console.log('Login successful. Token:', data.key);
           recievedToken(data.key);
@@ -95,61 +95,61 @@ function Navigation({ token, resetToken, recievedToken }) {
     };
     tryLogin();
   }, []);
-  
 
 
-    const createAccount = useCallback((registerForm) => {
-      const tryCreate = async () => {
-        try {
-          const response = await fetch('http://127.0.0.1:8000/api/v1/dj-rest-auth/registration/', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(registerForm), // Corrected: Pass the entire object as the body
-          });
-  
-          if (response.ok) {
-            const data = await response.json();
-  
-            // Save the token to local storage
-            // TODO: Use the token for authenticated requests
-            console.log('Registration successful. Token:');
-            setBasicModal(false);
-          } else {
-            // Registration failed, handle the error
-            console.log('Registration failed');
-            const errorResponse = await response.json();
-            console.log(errorResponse);
-          }
-        } catch (error) {
-          console.error('Error:', error);
+
+  const createAccount = useCallback((registerForm) => {
+    const tryCreate = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/api/v1/dj-rest-auth/registration/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(registerForm), // Corrected: Pass the entire object as the body
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+
+          // Save the token to local storage
+          // TODO: Use the token for authenticated requests
+          console.log('Registration successful. Token:');
+          setBasicModal(false);
+        } else {
+          // Registration failed, handle the error
+          console.log('Registration failed');
+          const errorResponse = await response.json();
+          console.log(errorResponse);
         }
-      };
-      tryCreate();
-    }, []);
-  
-    const handleRegistrationSubmit = (registerForm) => {
-      const register = {
-        username: registerForm.username,
-        email: registerForm.email,
-        password1: registerForm.password1,
-        password2: registerForm.password2,
-        heard_from: registerForm.heard_from,
-        phone_number: registerForm.pNumber, // Corrected: Use pNumber instead of phone_number
-        firstname: registerForm.first_name, // Corrected: Use first_name instead of firstname
-        lastname: registerForm.last_name, // Corrected: Use last_name instead of lastname
-      };
-      if(registerForm.heard_from === "Other"){
-        register.heard_from = registerForm.heardFromOther;
+      } catch (error) {
+        console.error('Error:', error);
       }
-      createAccount(register);
     };
-  
+    tryCreate();
+  }, []);
+
+  const handleRegistrationSubmit = (registerForm) => {
+    const register = {
+      username: registerForm.username,
+      email: registerForm.email,
+      password1: registerForm.password1,
+      password2: registerForm.password2,
+      heard_from: registerForm.heard_from,
+      phone_number: registerForm.pNumber, // Corrected: Use pNumber instead of phone_number
+      firstname: registerForm.first_name, // Corrected: Use first_name instead of firstname
+      lastname: registerForm.last_name, // Corrected: Use last_name instead of lastname
+    };
+    if (registerForm.heard_from === "Other") {
+      register.heard_from = registerForm.heardFromOther;
+    }
+    createAccount(register);
+  };
+
   return (
     <>
 
-<MDBModal tabIndex='-1'  show={centredModal} setShow={setCentredModal}>
+      <MDBModal tabIndex='-1' show={centredModal} setShow={setCentredModal}>
         <MDBModalDialog centered>
           <MDBModalContent>
             <MDBModalHeader>
@@ -158,7 +158,7 @@ function Navigation({ token, resetToken, recievedToken }) {
             </MDBModalHeader>
             <MDBModalBody>
               <p>
-              {errorMessage}
+                {errorMessage}
               </p>
             </MDBModalBody>
             <MDBModalFooter>
@@ -171,8 +171,8 @@ function Navigation({ token, resetToken, recievedToken }) {
         </MDBModalDialog>
       </MDBModal>
 
-      <LoginModal showModal ={showModal} handleSubmit={handleSubmit} display={basicModal} 
-      setDisplay={setBasicModal} createAccount={handleRegistrationSubmit} />
+      <LoginModal showModal={showModal} handleSubmit={handleSubmit} display={basicModal}
+        setDisplay={setBasicModal} createAccount={handleRegistrationSubmit} />
 
 
       <MDBNavbar sticky expand='lg' light className="navigator">
@@ -238,29 +238,24 @@ function Navigation({ token, resetToken, recievedToken }) {
 
 
             {token &&
-              <div className="text-center">
-                <Link to="/profile">
-                <MDBBtn  className='mx-2' color='info'>
-                  Profile
-
-                </MDBBtn>
+              <div className="d-flex justify-content-center">
+                <Link to="/profile" className="mx-2">
+                  <MDBBtn color="info">Profile</MDBBtn>
                 </Link>
-                
-              </div>}
+
+                <MDBBtn onClick={resetToken} className="mx-2" color="danger">
+                  Logout
+                </MDBBtn>
+              </div>
+            }
             {!token &&
               <div className="text-center">
-                <MDBBtn onClick={toggleShow}   color='success'>Login</MDBBtn>
+                <MDBBtn onClick={toggleShow} color='success'>Login</MDBBtn>
               </div>
 
-            }
-            {token &&
-              <div className="text-center">
-                <MDBBtn onClick={resetToken} className='mx-2' color='danger'>
-                  Logout
 
-                </MDBBtn>
-              </div>
             }
+
 
           </MDBCollapse>
         </MDBContainer>
