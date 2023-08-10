@@ -15,15 +15,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from dj_rest_auth.registration.views import VerifyEmailView, ConfirmEmailView
+from dj_rest_auth.views import PasswordResetConfirmView, LoginView, LogoutView, UserDetailsView
 from allauth.account.views import ConfirmEmailView
-from dj_rest_auth.views import PasswordResetConfirmView
 from allauth.socialaccount.views import signup
 from accounts.views import GoogleLogin
+
 
 
 urlpatterns = [
@@ -32,6 +33,7 @@ urlpatterns = [
     path("api-auth/", include("rest_framework.urls")),
     path("api/v1/dj-rest-auth/", include("dj_rest_auth.urls")),
     path("api/v1/dj-rest-auth/registration/", include("dj_rest_auth.registration.urls")),
+    path("api/v1/dj-rest-auth/user/", UserDetailsView.as_view(), name="rest_user_details"),
 
     path("api/v1/", include("accounts.urls")),
 
