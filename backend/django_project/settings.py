@@ -234,7 +234,7 @@ REST_USE_JWT = True
 JWT_AUTH_COOKIE = 'my-app-auth' # The cookie key name can be the one you want
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
-LOGIN_URL = 'http://localhost:8000/api/v1/dj-rest-auth/login'
+LOGIN_URL = 'http://localhost:5173'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

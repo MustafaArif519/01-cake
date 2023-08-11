@@ -1,5 +1,5 @@
 import { useEffect, useCallback, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
 
 import Navigation from './Navigation';
@@ -41,7 +41,12 @@ function App() {
   const resetToken = useCallback(() => {
     setToken('');
     setUserId(-1);
+    // const navigate = useNavigate();
+//   console.log("checking token....");
+// navigate('/gallery');
   }, []);
+
+
 
   const retrieveUserId = async (key) => {
     try {
@@ -106,7 +111,8 @@ function App() {
             <Route path="/gallery" element={<Gallery userId = {userId} token = {token}/>} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/order" element={<NewOrder token = {token} />} />
-            <Route path="/profile" element={<Profile token = {token} user ={user} />} />
+            <Route path="/profile" element={<Profile token = {token} user ={user} 
+            retrieveUser = {retrieveUser} resetToken={resetToken}/>} />
             <Route path="/contact" element={<Contact token = {token} />} />
             {/* <Route path="/login" element={<Login token = {token} recievedToken = {recievedToken}/>} /> */}
             <Route path="*" element={<ErrorPage />} />
@@ -120,20 +126,17 @@ function App() {
 
         <div>
           <a href='' className='me-4 text-reset'>
-            <MDBIcon color='secondary' fab icon='facebook-f' />
+          <MDBIcon fab icon="facebook fa-lg" style={{ color: '#3b5998' }} />
           </a>
           <a href='' className='me-4 text-reset'>
-            <MDBIcon color='secondary' fab icon='twitter' />
-          </a>
-          <a href='' className='me-4 text-reset'>
-            <MDBIcon color='secondary' fab icon='google' />
+          <MDBIcon fab icon="twitter fa-lg" style={{ color: '#55acee' }} />
           </a>
           <a href="https://www.instagram.com/faridascakeboutique/" 
           className='me-4 text-reset' target="_blank" rel="noopener noreferrer">
-            <MDBIcon color='secondary' fab icon='instagram' />
+            <MDBIcon fab icon="instagram fa-lg" style={{ color: '#ac2bac' }} />
           </a>
           <a href='' className='me-4 text-reset'>
-            <MDBIcon color='secondary' fab icon='linkedin' />
+            <MDBIcon fab icon="linkedin fa-lg" style={{ color: '#0077b5' }} />
           </a>
 
         </div>

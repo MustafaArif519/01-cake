@@ -22,6 +22,8 @@ import {
   MDBModal,
   MDBModalBody,
   MDBModalFooter,
+  MDBBadge,
+  MDBNavbarLink,
 
 
 } from 'mdb-react-ui-kit';
@@ -178,17 +180,18 @@ function Navigation({ token, resetToken, recievedToken }) {
       <MDBNavbar sticky expand='lg' light className="navigator">
         <MDBContainer fluid>
 
-          <MDBNavbarBrand>
-
-            <img
-              alt=""
-              src="./src/images/icon.jpg"
-              width="30"
-              height="30"
-              className="d-inline-block align-top"
-            />
-
-          </MDBNavbarBrand>
+        <MDBNavbarBrand>
+  <Nav.Link as={Link} to={`/`}>
+    <img
+      alt=""
+      src="./src/images/icon.jpg"
+      width="30"
+      height="30"
+      className="d-inline-block align-top"
+    />
+  </Nav.Link>
+</MDBNavbarBrand>
+          
           <MDBNavbarToggler
             type='button'
             data-target='#navbarTogglerDemo02'
@@ -239,13 +242,20 @@ function Navigation({ token, resetToken, recievedToken }) {
 
             {token &&
               <div className="d-flex justify-content-center">
+                                
+                <div className='position-relative d-inline-block'>
+                <MDBBtn  className="mx-2" rounded>
+                               
+                               Messages
+                               
+                             </MDBBtn>
+
+      </div>
                 <Link to="/profile" className="mx-2">
                   <MDBBtn color="info">Profile</MDBBtn>
                 </Link>
 
-                <MDBBtn onClick={resetToken} className="mx-2" color="danger">
-                  Logout
-                </MDBBtn>
+
               </div>
             }
             {!token &&
