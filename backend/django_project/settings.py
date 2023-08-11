@@ -226,6 +226,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 REST_AUTH  = {
     'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
      'USER_DETAILS_SERIALIZER': 'accounts.serializers.CustomUserDetailsSerializer',
+     'PASSWORD_RESET_USE_SITES_DOMAIN': True,
 }
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'users.serializers.CustomRegisterSerializer',
@@ -253,8 +254,8 @@ TEMPLATES = [
         },
     },
 ]
-# CUSTOM_PASSWORD_RESET_CONFIRM = 'desired URL'
-
+CUSTOM_PASSWORD_RESET_CONFIRM = 'http://localhost:5173/rest-auth/password/reset/confirm/'
+LOGOUT_ON_PASSWORD_CHANGE = False
 
 
 # Following settings are that for AWS SES sandbox mode configuration!
@@ -268,3 +269,8 @@ TEMPLATES = [
 
 # You're accessing the development server over HTTPS, but it only supports HTTP. ERROR FIX ATTEMPT
 # reason for error was ing LOGIN_URL redirect url included HTTPS by accident!
+
+
+FRONTEND_URL = 'http://localhost:5173/'
+ACCOUNT_EMAIL_CONFIRMATION_URL = FRONTEND_URL
+ACCOUNT_PASSWORD_RESET_CONFIRM = FRONTEND_URL + 'password-reset/'
