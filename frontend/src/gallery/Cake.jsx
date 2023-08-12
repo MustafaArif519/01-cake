@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useState } from "react"
 import {
   MDBCard,
   MDBCardBody,
@@ -9,9 +10,11 @@ import {
   MDBIcon,
   MDBRow,
   MDBCol,
-  MDBCardFooter
+  MDBCardFooter,
+  MDBSpinner
 } from 'mdb-react-ui-kit';
 import Like from "./Like"
+import CakeImage from './CakeImage';
 import "./style.css"
 
 export default function Cake({ cake, likeData, userId, token }) {
@@ -19,6 +22,11 @@ export default function Cake({ cake, likeData, userId, token }) {
   // console.log(likeData);
   // let userId = localStorage.getItem('userId');
 
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
 
 
   function findLike() {
@@ -61,11 +69,7 @@ export default function Cake({ cake, likeData, userId, token }) {
     height: '60px' // Add a little space between title and description
   };
 
-  const imageContainerStyles = {
-    paddingTop: '100%', // 1:1 aspect ratio for the image
-    position: 'relative', // Needed for absolute positioning of the image
-    height: "300px",
-  };
+
 
   const imageStyles = {
     position: '',
@@ -83,9 +87,9 @@ export default function Cake({ cake, likeData, userId, token }) {
 
 <MDBRipple rippleColor='dark' rippleTag='div' className='bg-image hover-zoom'>
 
-      <MDBCardImage
+<CakeImage
         src={cake.image}
-        alt='...'
+        alt='Cake Image'
         style={imageStyles}
       />
       <a>

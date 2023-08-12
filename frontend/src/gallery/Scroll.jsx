@@ -20,6 +20,7 @@ export default function Scroll({ url, userId, token }) {
   const [resultsSize, setResultsSize] = useState(0);
   const [likeData, setLikeData] = useState([]);
 
+  
 
   useEffect(() => {
     // Declare a boolean flag that we can use to cancel the API request.

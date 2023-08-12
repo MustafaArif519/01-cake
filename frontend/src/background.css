@@ -1,7 +1,6 @@
 body {
 
-  background: rgb(254,224,229);
-  background: linear-gradient(90deg, rgba(254,224,229,1) 0%, rgba(255,200,209,1) 100%);
+  background-image: radial-gradient(circle, #f7c3d4, #f9bed4, #fbb9d4, #fdb4d4, #feafd5, #fcb5dd, #fabbe5, #f8c1ec, #f4d2f6, #f3e2fd, #f7f1ff, #ffffff);
 }
 
 .navigator {
