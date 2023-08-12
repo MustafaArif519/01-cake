@@ -147,7 +147,7 @@ export default function Profile({ token, user, retrieveUser, resetToken }) {
 
             <div className="d-flex flex-column align-items-center">
 
-              <MDBCard className="mb-4" >
+              <MDBCard className="mb-4">
                 <MDBCardBody className="text-center">
                   <MDBCardImage
                     src="./src/images/profile.png"

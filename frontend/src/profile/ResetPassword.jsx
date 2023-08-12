@@ -96,7 +96,7 @@ export default function ResetPassword() {
 
                         <div className="d-flex flex-column align-items-center">
 
-                            <MDBCard className="mb-5" >
+                            <MDBCard className="mb-5">
                                 <MDBCardBody className="text-center">
                                     <MDBRow>
                                         
