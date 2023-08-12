@@ -6,11 +6,14 @@ import Cake from "./Cake"
 import {
   MDBRow,
   MDBCol,
+  MDBCardGroup,
+  MDBContainer,
+  MDBRipple,
 } from 'mdb-react-ui-kit';
 
 // The parameter of this function is an object with a string called url inside it.
 // url is a prop for the Cake component.
-export default function Scroll({ url, userId, token}) {
+export default function Scroll({ url, userId, token }) {
   const [results, setResults] = useState([]);
   const [next, setNext] = useState("null");
   const [hasMore, setHasMore] = useState(false);
@@ -41,10 +44,10 @@ export default function Scroll({ url, userId, token}) {
           setResults([...results, ...data.results]);
 
           setNext(data.next);
-          if(data.next == 'null') {
+          if (data.next == 'null') {
             setHasMore(false);
           }
-          else{
+          else {
             setHasMore(true);
           }
           setResultsSize(data.results.length);
@@ -61,40 +64,40 @@ export default function Scroll({ url, userId, token}) {
   }, [url]);
 
 
-    // Declare a boolean flag that we can use to cancel the API request.
-    useEffect(() => {
-      let ignoreStaleRequest = false;
-  
-      fetch('http://127.0.0.1:8000/api/v1/cake-likes/', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(response.statusText);
-          }
-          return response.json();
-        })
-        .then((data) => {
-          if (!ignoreStaleRequest) {
-            setLikeData(data);
-            console.log(data);
-            // Perform any other logic with the data as needed
-          }
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
-  
-      return () => {
-        ignoreStaleRequest = true;
-      };
-    }, [token]);
+  // Declare a boolean flag that we can use to cancel the API request.
+  useEffect(() => {
+    let ignoreStaleRequest = false;
 
-  
-      
+    fetch('http://127.0.0.1:8000/api/v1/cake-likes/', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (!ignoreStaleRequest) {
+          setLikeData(data);
+          console.log(data);
+          // Perform any other logic with the data as needed
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+
+    return () => {
+      ignoreStaleRequest = true;
+    };
+  }, [token]);
+
+
+
   const getcakes = () => {
     // console.log("loading more cakes");
 
@@ -104,10 +107,10 @@ export default function Scroll({ url, userId, token}) {
       //   'Authorization': "Token " + token, // Include the token in the Authorization header
 
       // },
-      })
+    })
       .then((response) => {
         if (!response.ok) throw Error(response.statusText);
-        
+
         return response.json();
       })
       .then((data) => {
@@ -130,41 +133,46 @@ export default function Scroll({ url, userId, token}) {
       .catch((error) => console.log(error));
   };
   // Return HTML for one clue
-//   const renderedcakes = results.map((result) => (
-//     <cake key={result.id} />
-//   ));
+  //   const renderedcakes = results.map((result) => (
+  //     <cake key={result.id} />
+  //   ));
 
   // Render cake image and cake owner
   return (
     <>
-    <div className="cakes" 
-    id="scrollableDiv"
-    style={{
-      overflow: 'auto',
-      display: 'flex',
-    }}>
-      <InfiniteScroll
-        dataLength={resultsSize} // This is important field to render the next data
-        next={getcakes}
-        hasMore={hasMore}
-        loader={<h4>Baking cakes...</h4>}
-      >
-        {/* {renderedcakes} */}
-        <div  style={{
-          margin: "20px"
+      <div className="cakes"
+        id="scrollableDiv"
+        style={{
+          overflow: 'auto',
+          display: 'flex',
         }}>
-        
-        <MDBRow row-cols="1" className="row-cols-md-2 row-cols-lg-3 g-4">
-              {results.map(item => (
-                <MDBCol key={item.id}>
-                  <Cake cake = {item} likeData = {likeData} userId = {userId} token = {token}/>
-                </MDBCol>
-              ))}
-        </MDBRow>
-        {!hasMore && <h4 >All cakes baked!</h4>}
-        </div>
-      </InfiniteScroll>
-    </div>
+        <InfiniteScroll
+          dataLength={resultsSize} // This is important field to render the next data
+          next={getcakes}
+          hasMore={hasMore}
+          loader={<h4>Baking cakes...</h4>}
+        >
+          {/* {renderedcakes} */}
+          <div style={{
+            margin: "20px"
+          }}>
+
+
+<MDBContainer>
+  <MDBRow>
+    {results.map(item => (
+      <MDBCol size='12' sm='6' md='4' lg='3' key={item.id} className='d-flex align-items-stretch'>
+        <Cake cake={item} likeData={likeData} userId={userId} token={token} />
+      </MDBCol>
+    ))}
+  </MDBRow>
+</MDBContainer>
+
+
+            {!hasMore && <h4 >All cakes baked!</h4>}
+          </div>
+        </InfiniteScroll>
+      </div>
     </>
   );
 }
