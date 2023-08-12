@@ -80,11 +80,18 @@ export default function Cake({ cake, likeData, userId, token }) {
   return (
     <>
 <MDBCard style={cardStyles}>
+
+<MDBRipple rippleColor='dark' rippleTag='div' className='bg-image hover-zoom'>
+
       <MDBCardImage
         src={cake.image}
         alt='...'
         style={imageStyles}
       />
+      <a>
+          <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
+        </a>
+      </MDBRipple>
       <MDBCardBody>
         <div style={titleStyles}>
           <MDBCardTitle>{cake.title}</MDBCardTitle>
