@@ -53,12 +53,12 @@ const Login = ({ showModal, showCenteredModal, handleSubmit, display }) => {
         const data = await response.json();
         console.log(data);
         showModal();
-        
+
       } else {
         // Login failed, handle the error
         console.log('Password reset endpoint fail');
         const error = await response.json()
-        
+
         setErrorMessage(error['email']); // Get the error message from the response body
         console.error('Error:', error['email']);
         showCenteredModal(errorMessage);
@@ -102,35 +102,35 @@ const Login = ({ showModal, showCenteredModal, handleSubmit, display }) => {
                   label='Password'
                   value={password}
                 />
-                 <MDBCol size="auto">
-          <span id='textExample2' className='form-text' style={{ cursor: 'pointer' }} onClick={() => setShowRecovery(!showRecovery)} >
-            Forgot Password?
-          </span>
-        </MDBCol>
+                <MDBCol size="auto">
+                  <span id='textExample2' className='form-text' style={{ cursor: 'pointer' }} onClick={() => setShowRecovery(!showRecovery)} >
+                    Forgot Password?
+                  </span>
+                </MDBCol>
               </MDBValidationItem>
             </MDBValidation>
 
-            {showRecovery && 
-            <div> 
-            <MDBValidation isValidated style={{ marginBottom: "40px", marginTop: "20px" }}>
-              <MDBValidationItem className='' invalid feedback='ex: jDoe@yahoo.com'>
+            {showRecovery &&
+              <div>
+                <MDBValidation isValidated style={{ marginBottom: "40px", marginTop: "20px" }}>
+                  <MDBValidationItem className='' invalid feedback='ex: jDoe@yahoo.com'>
 
-                <MDBInput
-                  className=""
-                  name='email'
-                  onChange={(e) => setEmail(e.target.value)}
-                  id='email'
-                  required
-                  label='Account Email'
-                  value={email}
-                />
-              </MDBValidationItem>
-            </MDBValidation>
-            
-             <MDBBtn disabled={email == ""} onClick={requestRecovery} color = "warning">Recover Password</MDBBtn> </div>}
+                    <MDBInput
+                      className=""
+                      name='email'
+                      onChange={(e) => setEmail(e.target.value)}
+                      id='email'
+                      required
+                      label='Account Email'
+                      value={email}
+                    />
+                  </MDBValidationItem>
+                </MDBValidation>
+
+                <MDBBtn disabled={email == ""} onClick={requestRecovery} color="warning">Recover Password</MDBBtn> </div>}
           </div>
 
-          <div style={{ marginLeft: "50px", marginTop: "20px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+          {/* <div style={{ marginLeft: "50px", marginTop: "20px", display: "flex", flexDirection: "column", alignItems: "center" }}>
       <p style={{}}>Or Sign in Using:</p>
       <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
         <MDBBtn style={{ marginRight: "20px" }} color="info" outline onClick={showModal}> 
@@ -141,7 +141,7 @@ const Login = ({ showModal, showCenteredModal, handleSubmit, display }) => {
           <img style={{width: "30px", height: "30px"}} src ="./src/images/facebookIcon.png" />
           </MDBBtn>
       </div>
-    </div>
+    </div> */}
 
         </div>
 

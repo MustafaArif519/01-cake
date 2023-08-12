@@ -1,4 +1,4 @@
-import { useNavigate , Navigate, Route, Routes } from 'react-router-dom';
+import { useNavigate, Navigate, Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import {
   MDBCol,
@@ -23,12 +23,13 @@ export default function Profile({ token, user, retrieveUser, resetToken }) {
   const [editUser, setEditUser] = useState(user);
   const [editing, setEditing] = useState(false);
 
-  // console.log(token);
-// if(token === ""){
-//   const navigate = useNavigate();
-//   console.log("checking token....");
-//   navigate('/gallery');
-// }
+  const [editPass, setEditPass] = useState(false);
+  const [newPassword1, setNewPassword1] = useState('');
+  const [newPassword2, setNewPassword2] = useState('');
+
+  const [showPassword1, setShowPassword1] = useState('password');
+  const [showPassword2, setShowPassword2] = useState('password');
+
 
 
   const onChange = (e) => {
@@ -43,10 +44,34 @@ export default function Profile({ token, user, retrieveUser, resetToken }) {
     setEditing(!editing);
   }
 
+  const discardPass = () => {
+    setNewPassword1('');
+    setNewPassword2('');
+    setShowPassword1('password');
+    setShowPassword2('password');
+    setEditPass(!editPass);
+  }
 
 
 
-
+  const makeVisible = (changer) => {
+    if (changer === "new_password1") {
+      if (showPassword1 === "password") {
+        setShowPassword1('text');
+      }
+      else {
+        setShowPassword1('password');
+      }
+    }
+    else {
+      if (showPassword2 === "password") {
+        setShowPassword2('text');
+      }
+      else {
+        setShowPassword2('password');
+      }
+    }
+  }
 
 
   const patchUser = async () => {
@@ -76,37 +101,41 @@ export default function Profile({ token, user, retrieveUser, resetToken }) {
     }
   };
 
-  const resetPassword = async () => {
-    const token = "your_token_here"; // Replace with your actual token
-    const user = {
-      email: "user@example.com", // Replace with the user's email
-    };
-  
+  const changePassword = async () => {
+    const windowName = window.location.hostname;
+    console.log('http://localhost:8000/api/v1/dj-rest-auth/password/change/');
     try {
-      const response = await fetch('http://localhost:8000/api/v1/dj-rest-auth/password/reset/', {
+      const response = await fetch('http://localhost:8000/api/v1/dj-rest-auth/password/change/', {
         method: 'POST',
         headers: {
+          'Authorization': "Token " + token,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: user.email,
+          new_password1: newPassword1,
+          new_password2: newPassword2,
         }),
       });
-  
-      const data = await response.json();
-  
       if (response.ok) {
-        // Handle success
-        console.log('Password reset success:', data);
+        const data = await response.json();
+        setEditPass(!editPass);
+        setNewPassword1('');
+        setNewPassword2('');
+        setShowPassword1('password');
+        setShowPassword2('password');
+
       } else {
-        // Handle error
-        console.log('User password reset failed', data);
+        // Login failed, handle the error
+        const data = await response.json();
+        console.log('User data password change failed', JSON.stringify(data));
       }
     } catch (error) {
       console.error('Error:', error);
     }
   };
-  
+
+
+
 
 
   return (
@@ -116,15 +145,15 @@ export default function Profile({ token, user, retrieveUser, resetToken }) {
         <MDBRow>
           <MDBCol lg="4">
 
-          <div className="d-flex flex-column align-items-center">
+            <div className="d-flex flex-column align-items-center">
 
               <MDBCard className="mb-4" >
                 <MDBCardBody className="text-center">
                   <MDBCardImage
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                    src="./src/images/profile.png"
                     alt="avatar"
                     className="rounded-circle"
-                    style={{ width: '150px' }}
+                    style={{ width: '150px', height: '150px' }}
                     fluid />
 
                   <div className=" justify-content-center">
@@ -140,20 +169,95 @@ export default function Profile({ token, user, retrieveUser, resetToken }) {
                     {user.username}
                   </div>
                   <br />
+                  {editPass &&
+                    <div>
+                      <MDBRow>
 
+                        <MDBCol sm="10">
+                          <MDBCardText className="text-muted">
+
+                            <MDBInput
+                              name="new_password1"
+                              onChange={(e) => setNewPassword1(e.target.value)}
+                              id="username"
+                              required
+                              label="New Password"
+                              value={newPassword1}
+                              type={showPassword1}
+                            />
+
+                          </MDBCardText>
+                        </MDBCol>
+                        <MDBCol sm="2">
+                          {(showPassword1 === "text") &&
+                            <MDBIcon fas icon="eye" onClick={() => makeVisible("new_password1")} />
+                          }
+                          {(showPassword1 === "password") &&
+                            <MDBIcon fas icon="eye-slash" onClick={() => makeVisible("new_password1")} />
+                          }
+                        </MDBCol>
+                      </MDBRow>
+
+                      <hr />
+                      <MDBRow>
+
+                        <MDBCol sm="10">
+                          <MDBCardText className="text-muted">
+
+                            <MDBInput
+                              name="new_password2"
+                              onChange={(e) => setNewPassword2(e.target.value)}
+                              id="username"
+                              required
+                              label="Confirm New Password"
+                              value={newPassword2}
+                              type={showPassword2}
+                            />
+
+                          </MDBCardText>
+                        </MDBCol>
+                        <MDBCol sm="2">
+                          {(showPassword2 === "text") &&
+                            <MDBIcon fas icon="eye" onClick={() => makeVisible("new_password2")} />
+                          }
+                          {(showPassword2 === "password") &&
+                            <MDBIcon fas icon="eye-slash" onClick={() => makeVisible("new_password2")} />
+                          }
+                        </MDBCol>
+                      </MDBRow>
+                      <hr />
+                    </div>
+                  }
 
 
                   <div>
-  <MDBBtn color="warning" className="d-flex justify-content-center" onClick={resetPassword}>
-    <span style={{ whiteSpace: 'nowrap' }}>Reset Password</span>
-  </MDBBtn>
-  <div>
-    <br />
-  </div>
-  <MDBBtn color="danger" className="" onClick={resetToken} style={{  height: '50px', padding: '0.375rem 2rem' }}>
-    Logout
-  </MDBBtn>
-</div>
+
+
+                    {!editPass &&
+                      <MDBBtn color="warning" className="d-flex justify-content-center"
+                        onClick={() => setEditPass(!editPass)}>
+                        <span style={{ whiteSpace: 'nowrap' }}
+                        >Reset Password</span>
+                      </MDBBtn>
+                    }
+                    {editPass &&
+
+                      <div className="d-flex justify-content-end">
+                        <MDBBtn color="danger" className="me-1" onClick={() => discardPass()}>Discard</MDBBtn>
+                        <MDBBtn color="success" className="me-1" style={{ width: '100px' }} onClick={changePassword}>
+                          Save
+                        </MDBBtn>
+                      </div>
+
+                    }
+
+                    <div>
+                      <br />
+                    </div>
+                    <MDBBtn color="danger" className="" onClick={resetToken} style={{ height: '50px', padding: '0.375rem 2rem' }}>
+                      Logout
+                    </MDBBtn>
+                  </div>
 
 
 
@@ -162,14 +266,14 @@ export default function Profile({ token, user, retrieveUser, resetToken }) {
               </MDBCard>
 
 
-              
+
             </div>
 
 
           </MDBCol>
           <MDBCol lg="8">
             <MDBCard className="mb-4"
-              style={{ width: '400px' }}>
+              style={{ width: '500px' }}>
               <MDBCardBody>
                 <MDBRow>
                   <MDBCol sm="3">
