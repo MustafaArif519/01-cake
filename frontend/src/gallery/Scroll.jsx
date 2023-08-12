@@ -13,7 +13,7 @@ import {
 
 // The parameter of this function is an object with a string called url inside it.
 // url is a prop for the Cake component.
-export default function Scroll({ url, userId, token }) {
+export default function Scroll({ url, userId, token, searching }) {
   const [results, setResults] = useState([]);
   const [next, setNext] = useState("null");
   const [hasMore, setHasMore] = useState(false);
@@ -21,6 +21,21 @@ export default function Scroll({ url, userId, token }) {
   const [likeData, setLikeData] = useState([]);
 
   
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredItems, setFilteredItems] = useState([]);
+
+
+  const handleSearchChange = (event) => {
+    const newSearchTerm = event.target.value;
+    setSearchTerm(newSearchTerm);
+
+    // Filter the items based on the search term
+    const filteredResults = allItems.filter(item =>
+      item.toLowerCase().includes(newSearchTerm.toLowerCase())
+    );
+
+    setFilteredItems(filteredResults);
+  };
 
   useEffect(() => {
     // Declare a boolean flag that we can use to cancel the API request.
@@ -141,6 +156,25 @@ export default function Scroll({ url, userId, token }) {
   // Render cake image and cake owner
   return (
     <>
+
+<div style={{
+        width: '100%', display: 'flex', justifyContent: 'center',
+        alignItems: 'center', paddingBottom: '20px', paddingTop: '40px',
+         top: '60px', zIndex: 2, 
+
+      }}>
+        <input
+          className="form-control mr-sm-2 border-0"
+          type="text"
+          placeholder="Search"
+          aria-label="Search"
+          onChange={(e) => setSearching(e.target.value)}
+          value={searching}
+          style={{ width: '200px' }}
+        />
+
+      </div>
+      
       <div className="cakes"
         id="scrollableDiv"
         style={{
