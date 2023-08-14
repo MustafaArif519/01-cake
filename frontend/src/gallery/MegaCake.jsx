@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import {
     MDBCard,
     MDBCardBody,
@@ -12,18 +12,28 @@ import {
     MDBCol,
     MDBCardFooter,
     MDBSpinner,
-    MDBCardOverlay
+    MDBCardOverlay,
+    MDBCardHeader,
+    MDBBtn,
 } from 'mdb-react-ui-kit';
 import Like from "./Like"
 import CakeImage from './CakeImage';
 import "./style.css"
 
-export default function MegaCake({ cake, user, likeData, token }) {
+export default function MegaCake({ cake, like, unlike, yourLike, likeCount, showText }) {
     //console.log(description);
     // console.log(likeData);
     // let userId = localStorage.getItem('userId');
 
     const [imageLoaded, setImageLoaded] = useState(false);
+
+    const [visible, setVisible] = useState(showText);
+
+    useEffect(() => {
+        setVisible(showText);
+      }, [showText]);
+
+
 
     const handleImageLoad = () => {
         setImageLoaded(true);
@@ -38,19 +48,20 @@ export default function MegaCake({ cake, user, likeData, token }) {
                     alt='...'
                     onLoad={handleImageLoad} // This should be removed
                 />
-                <MDBCardOverlay>
-                    <MDBCardTitle>
-
+                {visible && <MDBCardOverlay>
+                    <MDBCardHeader>
                     <MDBRow>
                             <MDBCol md='8'>
                                 {cake.title}
                             </MDBCol>
                             <MDBCol md='4'>
-                            {<Like cake={cake}  token={token} user={user} likeData = {likeData}/>}
+                            {<Like cake={cake} like={like} unlike ={unlike} 
+                            likeCount = {likeCount} yourLike={yourLike} />}
                             </MDBCol>
                         </MDBRow>
+                    </MDBCardHeader>
+                    <MDBCardTitle>
 
-                        <hr />
                     </MDBCardTitle>
                     <MDBCardText>
                         {cake.description}
@@ -58,8 +69,9 @@ export default function MegaCake({ cake, user, likeData, token }) {
                     </MDBCardText>
 
 
-                </MDBCardOverlay>
+                </MDBCardOverlay>}
             </MDBCard>
+            
         </>
     );
 }
