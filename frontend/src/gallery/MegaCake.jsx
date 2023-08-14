@@ -15,7 +15,9 @@ import {
     MDBCardOverlay,
     MDBCardHeader,
     MDBBtn,
+    MDBCardGroup,
 } from 'mdb-react-ui-kit';
+import moment from 'moment'; // Import Moment.js
 import Like from "./Like"
 import CakeImage from './CakeImage';
 import "./style.css"
@@ -39,38 +41,54 @@ export default function MegaCake({ cake, like, unlike, yourLike, likeCount, show
         setImageLoaded(true);
     };
 
+    const imageStyles = {
+        position: '',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: visible ? "600px" : "100%",
+        objectFit: 'cover',
+        objectPosition: 'center',
+      };
 
     return (
         <>
-            <MDBCard background='dark' className='text-black'>
-                <MDBCardImage
-                    src={imageLoaded ? cake.image : './src/images/loading.gif'}
-                    alt='...'
-                    onLoad={handleImageLoad} // This should be removed
-                />
-                {visible && <MDBCardOverlay>
-                    <MDBCardHeader>
-                    <MDBRow>
-                            <MDBCol md='8'>
-                                {cake.title}
-                            </MDBCol>
-                            <MDBCol md='4'>
-                            {<Like cake={cake} like={like} unlike ={unlike} 
-                            likeCount = {likeCount} yourLike={yourLike} />}
-                            </MDBCol>
-                        </MDBRow>
-                    </MDBCardHeader>
-                    <MDBCardTitle>
 
-                    </MDBCardTitle>
-                    <MDBCardText>
-                        {cake.description}
+      <MDBRow className='g-0'>
+      <MDBCardGroup >
+            <MDBCard>
+        <MDBCardImage
+          src={imageLoaded ? cake.image : './src/images/loading.gif'}
+          alt='...'
+          style={imageStyles}
+          onLoad={handleImageLoad} // This should be removed
+        />
 
-                    </MDBCardText>
+        </MDBCard>
+        {visible && 
+        <MDBCard>
+          <MDBCardBody>
+            <MDBCardTitle>{cake.title} 
+            <br />
+            <br />
+            <Like cake={cake} like={like} unlike ={unlike} likeCount = {likeCount} yourLike={yourLike} />
+            <hr /></MDBCardTitle>
+            <MDBCardText>
+              {cake.description}
+            </MDBCardText>
 
 
-                </MDBCardOverlay>}
-            </MDBCard>
+          </MDBCardBody>
+          <MDBCardFooter>
+        <small className='text-muted'>{moment(cake.created_at).fromNow()}</small>
+      </MDBCardFooter>
+          </MDBCard>
+        }
+        </MDBCardGroup>
+      </MDBRow>
+      
+
+            
             
         </>
     );

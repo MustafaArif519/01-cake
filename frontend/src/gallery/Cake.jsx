@@ -18,6 +18,7 @@ import {
   MDBModalHeader,
   MDBModalTitle,
   MDBModalBody } from 'mdb-react-ui-kit';
+import moment from 'moment'; // Import Moment.js
 import Like from "./Like"
 import MegaCake from "./MegaCake";
 import CakeImage from './CakeImage';
@@ -166,11 +167,11 @@ export default function Cake({ cake, likeData, user, token }) {
     <>
     
       <MDBModal show={optSmModal} tabIndex='-1' setShow={setOptSmModal}>
-        <MDBModalDialog size=''>
+        <MDBModalDialog size='lg'>
           <MDBModalContent>
             <MDBModalHeader>
-              <MDBBtn color="secondary" onClick= {toggleText}>
-                {showText ? "Hide Text" : "Show Text"}
+              <MDBBtn color="secondary"  onClick= {toggleText}>
+                {showText ? "Show Image Only" : "Show Image With Text"}
               </MDBBtn>
               <MDBModalTitle>
                 
@@ -210,7 +211,7 @@ className='bg-image hover-zoom'>
         <MDBCardText>{cake.title}</MDBCardText>
       </MDBCardBody>
       <MDBCardFooter>
-        <small className='text-muted'>Last updated 3 mins ago</small>
+        <small className='text-muted'>{moment(cake.created_at).fromNow()}</small>
       </MDBCardFooter>
     </MDBCard>
 
