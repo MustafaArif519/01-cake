@@ -18,7 +18,7 @@ import Like from "./Like"
 import CakeImage from './CakeImage';
 import "./style.css"
 
-export default function MegaCake({ cake, likeData, userId, token }) {
+export default function MegaCake({ cake, numOfLikes, foundLike, token }) {
     //console.log(description);
     // console.log(likeData);
     // let userId = localStorage.getItem('userId');
@@ -29,58 +29,6 @@ export default function MegaCake({ cake, likeData, userId, token }) {
         setImageLoaded(true);
     };
 
-
-    function findLike() {
-        // console.log(userId);
-        if (likeData == null) {
-            return null;
-        }
-        let temp = likeData.filter((item) => item.cake === cake.id);
-        let foundLike = temp.find((item) => item.author == userId);
-        // console.log(foundLike == null);
-        if (foundLike == null) {
-            return null;
-        }
-        return foundLike;
-    }
-
-    function findCount() {
-        if (likeData == null) {
-            return null;
-        }
-        let count = likeData.filter((item) => item.cake === cake.id);
-        // console.log(cake.id + " " + count.length);
-        return count.length;
-    }
-
-    let foundLike = findLike();
-    let foundCount = findCount();
-
-
-    const cardStyles = {
-        display: 'flex',
-        flexDirection: 'column',
-        maxHeight: '800px', // Make sure the card takes up the full height
-        width: "400px",
-        overflow: 'hidden', // Hide any content that exceeds the fixed height
-        marginBottom: '20px', // Add margin to create spacing between cards
-    };
-
-    const titleStyles = {
-        height: '60px' // Add a little space between title and description
-    };
-
-
-
-    const imageStyles = {
-        position: '',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '300px',
-        objectFit: 'cover',
-        objectPosition: 'center',
-    };
 
     return (
         <>
@@ -98,7 +46,7 @@ export default function MegaCake({ cake, likeData, userId, token }) {
                                 {cake.title}
                             </MDBCol>
                             <MDBCol md='4'>
-                                {<Like cake={cake} lcount={foundCount} token={token} foundLike={foundLike} />}
+                                {<Like cake={cake} numOfLikes={numOfLikes} myLike ={foundLike} token={token} />}
                             </MDBCol>
                         </MDBRow>
 

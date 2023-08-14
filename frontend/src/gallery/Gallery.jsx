@@ -10,8 +10,8 @@ import {
 import { useState } from "react"
 
 
-function Gallery({ userId, token }) {
-
+function Gallery({ user, token }) {
+  // console.log(user);
   const [optSmModal, setOptSmModal] = useState(false);
 
   const toggleShow = () => setOptSmModal(!optSmModal);
@@ -23,7 +23,7 @@ function Gallery({ userId, token }) {
       {console.log('Gallery component rendered')}
 
 
-        <Scroll url="http://127.0.0.1:8000/api/v1/cakes" userId={userId} token={token} />
+        <Scroll url="http://127.0.0.1:8000/api/v1/cakes" user={user} token={token} />
 
 
 

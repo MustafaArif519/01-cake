@@ -13,7 +13,7 @@ import {
 
 // The parameter of this function is an object with a string called url inside it.
 // url is a prop for the Cake component.
-export default function Scroll({ url, userId, token, searching }) {
+export default function Scroll({ url, user, token, searching }) {
   const [results, setResults] = useState([]);
   const [next, setNext] = useState("null");
   const [hasMore, setHasMore] = useState(false);
@@ -99,7 +99,7 @@ export default function Scroll({ url, userId, token, searching }) {
       .then((data) => {
         if (!ignoreStaleRequest) {
           setLikeData(data);
-          console.log(data);
+          // console.log(data);
           // Perform any other logic with the data as needed
         }
       })
@@ -197,7 +197,7 @@ export default function Scroll({ url, userId, token, searching }) {
   <MDBRow>
     {results.map(item => (
       <MDBCol size='12' sm='6' md='4' lg='3' key={item.id} className='d-flex align-items-stretch'>
-        <Cake cake={item} likeData={likeData} userId={userId} token={token} />
+        <Cake cake={item} likeData={likeData} user={user} token={token} />
       </MDBCol>
     ))}
   </MDBRow>

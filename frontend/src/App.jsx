@@ -19,6 +19,8 @@ function App() {
   const [userId, setUserId] = useState(localStorage.getItem('userId') || -1);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || '');
 
+  
+
   useEffect(() =>{
     localStorage.setItem('token', token);
   }, [token])
@@ -109,7 +111,7 @@ function App() {
           <Navigation token = {token} resetToken = {resetToken} recievedToken={recievedToken}/>
           <Routes>
             <Route path="/" element={<Home token = {token} recievedToken = {recievedToken}/>} />
-            <Route path="/gallery" element={<Gallery userId = {userId} token = {token}/>} />
+            <Route path="/gallery" element={<Gallery user = {user} token = {token}/>} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/order" element={<NewOrder token = {token} />} />
             <Route path="/profile" element={<Profile token = {token} user ={user} 

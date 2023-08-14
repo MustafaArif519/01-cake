@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import {
   MDBCard,
   MDBCardBody,
@@ -23,16 +23,43 @@ import MegaCake from "./MegaCake";
 import CakeImage from './CakeImage';
 import "./style.css"
 
-export default function Cake({ cake, likeData, userId, token }) {
-  //console.log(description);
+export default function Cake({ cake, likeData, user, token }) {
+  //console.log(user);
   // console.log(likeData);
   // let userId = localStorage.getItem('userId');
 
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  const [foundCount, setFoundCount] = useState(-1);
-  const [findLike, setFindLike] = useState(null);
   const [optSmModal, setOptSmModal] = useState(false);
+
+  const [yourLike, setYourLike] = useState(null);
+  const [likeCount, setLikeCount] = useState(-1);
+
+  useEffect(() => {
+    // This function will run after the component renders
+    // You can perform asynchronous operations here
+    if(likeData == null){
+      return null;
+    }
+    let count = likeData.filter((item) => item.cake === cake.id);
+    console.log(cake.id + " " + count.length);
+    setLikeCount(count.length);
+  }, [likeData, cake.id]);
+
+//   useEffect(() => {
+//   // This function will run after the component renders
+//   // You can perform asynchronous operations here
+//   if(likeData == null){
+//     return null;
+//   }
+//   let temp = likeData.filter((item) => item.cake === cake.id);
+//   let foundLike = temp.find((item) => item.author == userId);
+//   // console.log(foundLike == null);
+//   if (foundLike == null) {
+//     return null;
+//   }
+//   setYourLike(foundLike);
+// }, [likeData, cake.id]);
 
   const toggleShow = () => setOptSmModal(!optSmModal);
 
@@ -40,32 +67,6 @@ export default function Cake({ cake, likeData, userId, token }) {
     setImageLoaded(true);
   };
 
-
-  function find() {
-    // console.log(userId);
-    if(likeData == null){
-      return null;
-    }
-    let temp = likeData.filter((item) => item.cake === cake.id);
-    let foundLike = temp.find((item) => item.author == userId);
-    // console.log(foundLike == null);
-    if (foundLike == null) {
-      return null;
-    }
-    setFindLike(foundLike);
-  }
-
-  function count() {
-    if(likeData == null){
-      return null;
-    }
-    let count = likeData.filter((item) => item.cake === cake.id);
-    // console.log(cake.id + " " + count.length);
-    setFoundCount(count.length);
-  }
-
-// count();
-// find();
 
 
   const cardStyles = {
@@ -105,7 +106,7 @@ export default function Cake({ cake, likeData, userId, token }) {
               </MDBModalTitle>
               <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
             </MDBModalHeader>
-            <MegaCake cake={cake}  token={token} foundCount = {foundCount} foundLike = {findLike} />
+            {/* <MegaCake cake={cake}  token={token} likeData = {likeData} /> */}
           </MDBModalContent>
         </MDBModalDialog>
       </MDBModal>
@@ -129,8 +130,8 @@ className='bg-image hover-zoom'>
         <div style={titleStyles}>
           <MDBCardTitle>
 
-
-        {<Like cake={cake} lcount={foundCount} token={token} foundLike={findLike} />}
+{/* {console.log("cake id: ", cake.id, " has this number of like: ", foundCount)} */}
+        {<Like cake={cake}  token={token} user={user} likeData = {likeData}/>}
 
             </MDBCardTitle>
         </div>
