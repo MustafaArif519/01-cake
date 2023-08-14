@@ -11,9 +11,15 @@ import {
   MDBRow,
   MDBCol,
   MDBCardFooter,
-  MDBSpinner
-} from 'mdb-react-ui-kit';
+  MDBBtn,
+  MDBModal,
+  MDBModalDialog,
+  MDBModalContent,
+  MDBModalHeader,
+  MDBModalTitle,
+  MDBModalBody } from 'mdb-react-ui-kit';
 import Like from "./Like"
+import MegaCake from "./MegaCake";
 import CakeImage from './CakeImage';
 import "./style.css"
 
@@ -24,12 +30,18 @@ export default function Cake({ cake, likeData, userId, token }) {
 
   const [imageLoaded, setImageLoaded] = useState(false);
 
+  const [foundCount, setFoundCount] = useState(-1);
+  const [findLike, setFindLike] = useState(null);
+  const [optSmModal, setOptSmModal] = useState(false);
+
+  const toggleShow = () => setOptSmModal(!optSmModal);
+
   const handleImageLoad = () => {
     setImageLoaded(true);
   };
 
 
-  function findLike() {
+  function find() {
     // console.log(userId);
     if(likeData == null){
       return null;
@@ -40,20 +52,20 @@ export default function Cake({ cake, likeData, userId, token }) {
     if (foundLike == null) {
       return null;
     }
-    return foundLike;
+    setFindLike(foundLike);
   }
 
-  function findCount() {
+  function count() {
     if(likeData == null){
       return null;
     }
     let count = likeData.filter((item) => item.cake === cake.id);
     // console.log(cake.id + " " + count.length);
-    return count.length;
+    setFoundCount(count.length);
   }
 
-  let foundLike = findLike();
-  let foundCount = findCount();
+// count();
+// find();
 
 
   const cardStyles = {
@@ -66,7 +78,7 @@ export default function Cake({ cake, likeData, userId, token }) {
   };
 
   const titleStyles = {
-    height: '60px' // Add a little space between title and description
+    height: '40px' // Add a little space between title and description
   };
 
 
@@ -83,9 +95,26 @@ export default function Cake({ cake, likeData, userId, token }) {
 
   return (
     <>
+    
+      <MDBModal show={optSmModal} tabIndex='-1' setShow={setOptSmModal}>
+        <MDBModalDialog size=''>
+          <MDBModalContent>
+            <MDBModalHeader>
+              <MDBModalTitle>
+                
+              </MDBModalTitle>
+              <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
+            </MDBModalHeader>
+            <MegaCake cake={cake}  token={token} foundCount = {foundCount} foundLike = {findLike} />
+          </MDBModalContent>
+        </MDBModalDialog>
+      </MDBModal>
+
 <MDBCard style={cardStyles}>
 
-<MDBRipple rippleColor='dark' rippleTag='div' className='bg-image hover-zoom'>
+<MDBRipple rippleColor='dark' rippleTag='div' 
+onDoubleClick={toggleShow}
+className='bg-image hover-zoom'>
 
 <CakeImage
         src={cake.image}
@@ -98,9 +127,14 @@ export default function Cake({ cake, likeData, userId, token }) {
       </MDBRipple>
       <MDBCardBody>
         <div style={titleStyles}>
-          <MDBCardTitle>{cake.title}</MDBCardTitle>
+          <MDBCardTitle>
+
+
+        {<Like cake={cake} lcount={foundCount} token={token} foundLike={findLike} />}
+
+            </MDBCardTitle>
         </div>
-        <MDBCardText>{cake.description}</MDBCardText>
+        <MDBCardText>{cake.title}</MDBCardText>
       </MDBCardBody>
       <MDBCardFooter>
         <small className='text-muted'>Last updated 3 mins ago</small>

@@ -254,7 +254,7 @@ TEMPLATES = [
         },
     },
 ]
-CUSTOM_PASSWORD_RESET_CONFIRM = 'http://localhost:5173/rest-auth/password/reset/confirm/'
+# CUSTOM_PASSWORD_RESET_CONFIRM = 'http://localhost:5173/rest-auth/password/reset/confirm/'
 LOGOUT_ON_PASSWORD_CHANGE = False
 
 

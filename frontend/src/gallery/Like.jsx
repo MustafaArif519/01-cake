@@ -3,23 +3,21 @@ import './style.css';
 import { useState, useEffect } from "react";
 
 
-export default function Like({ cake, lcount, foundLike, token }) {
+export default function Like({ cake, foundCount, foundLike, token }) {
   // const domainName = window.location.hostname;
   const [yourLike, setYourLike] = useState(null);
-  const [likeCount, setLikeCount] = useState(null);
-  // setYourLike(foundLike);
-  // setLikeCount(lcount);
-  // setLikeCount(likeData.length);
-  // console.log(token);
+  const [likeCount, setLikeCount] = useState(foundCount);
 
+console.log(foundCount);
+console.log(likeCount);
   useEffect(() =>{
     setYourLike(foundLike);
-    setLikeCount(lcount);
-  }, [foundLike, lcount])
+    setLikeCount(foundCount);
+  }, [foundLike, foundCount])
 
 
   const like = async () => {
-    // console.log(token);
+    console.log(token);
     if(token == ""){
       return;
     }
@@ -48,7 +46,7 @@ export default function Like({ cake, lcount, foundLike, token }) {
       setYourLike(responseBody);
       setLikeCount(likeCount + 1);
     } catch (error) {
-      // console.error(error);
+      console.log(error);
     }
   };
 
@@ -74,20 +72,15 @@ export default function Like({ cake, lcount, foundLike, token }) {
   return (
     <>
     {/* {console.log("like has rendered with yourLike " + yourLike)} */}
-      <p className="likesCount">{likeCount}</p>
+      
       {/* { console.log(yourLike)} */}
-      {yourLike == null &&<div><img onDoubleClick={like}
-        className="zoom" src='./src/images/ui/like.png'
-        style={{
-          position: "relative", width: '10%',
-          float: "right"
-        }} /></div>}
-      {yourLike && <div><img onDoubleClick={unlike}
-        className="zoom" src='./src/images/ui/unlike.png'
-        style={{
-          position: "relative", width: '10%',
-          float: "right"
-        }} /></div>}
+      {yourLike == null &&<div><img style={{width: "30px", height: "30px"}} onClick={like}
+         src='./src/images/ui/like.png'
+        /> {likeCount} Likes
+        </div>}
+      {yourLike && <div><img style={{width: "30px", height: "30px"}} onClick={unlike}
+         src='./src/images/ui/unlike.png'
+        /> {likeCount} Likes</div>}
 
     </>
   );
