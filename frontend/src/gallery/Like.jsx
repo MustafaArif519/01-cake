@@ -104,11 +104,11 @@ useEffect(() => {
       {/* { console.log(yourLike)} */}
       {yourLike == null &&<div><img style={{width: "30px", height: "30px"}} onClick={like}
          src='./src/images/ui/like.png'
-        /> {likeCount} Likes
+        /> {likeCount} {likeCount == 1 ? "Like" : "Likes"}
         </div>}
       {yourLike && <div><img style={{width: "30px", height: "30px"}} onClick={unlike}
          src='./src/images/ui/unlike.png'
-        /> {likeCount} Likes</div>}
+        /> {likeCount} {likeCount == 1 ? "Like" : "Likes"}</div>}
 
     </>
   );

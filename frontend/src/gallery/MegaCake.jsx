@@ -18,7 +18,7 @@ import Like from "./Like"
 import CakeImage from './CakeImage';
 import "./style.css"
 
-export default function MegaCake({ cake, numOfLikes, foundLike, token }) {
+export default function MegaCake({ cake, user, likeData, token }) {
     //console.log(description);
     // console.log(likeData);
     // let userId = localStorage.getItem('userId');
@@ -46,7 +46,7 @@ export default function MegaCake({ cake, numOfLikes, foundLike, token }) {
                                 {cake.title}
                             </MDBCol>
                             <MDBCol md='4'>
-                                {<Like cake={cake} numOfLikes={numOfLikes} myLike ={foundLike} token={token} />}
+                            {<Like cake={cake}  token={token} user={user} likeData = {likeData}/>}
                             </MDBCol>
                         </MDBRow>
 

@@ -32,35 +32,6 @@ export default function Cake({ cake, likeData, user, token }) {
 
   const [optSmModal, setOptSmModal] = useState(false);
 
-  const [yourLike, setYourLike] = useState(null);
-  const [likeCount, setLikeCount] = useState(-1);
-
-  useEffect(() => {
-    // This function will run after the component renders
-    // You can perform asynchronous operations here
-    if(likeData == null){
-      return null;
-    }
-    let count = likeData.filter((item) => item.cake === cake.id);
-    console.log(cake.id + " " + count.length);
-    setLikeCount(count.length);
-  }, [likeData, cake.id]);
-
-//   useEffect(() => {
-//   // This function will run after the component renders
-//   // You can perform asynchronous operations here
-//   if(likeData == null){
-//     return null;
-//   }
-//   let temp = likeData.filter((item) => item.cake === cake.id);
-//   let foundLike = temp.find((item) => item.author == userId);
-//   // console.log(foundLike == null);
-//   if (foundLike == null) {
-//     return null;
-//   }
-//   setYourLike(foundLike);
-// }, [likeData, cake.id]);
-
   const toggleShow = () => setOptSmModal(!optSmModal);
 
   const handleImageLoad = () => {
@@ -106,7 +77,7 @@ export default function Cake({ cake, likeData, user, token }) {
               </MDBModalTitle>
               <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
             </MDBModalHeader>
-            {/* <MegaCake cake={cake}  token={token} likeData = {likeData} /> */}
+            <MegaCake cake={cake}  token={token} likeData = {likeData} user = {user} />
           </MDBModalContent>
         </MDBModalDialog>
       </MDBModal>
