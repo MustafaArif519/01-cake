@@ -28,18 +28,33 @@ export default function Scroll({ url, user, token, searching }) {
   const [filteredItems, setFilteredItems] = useState([]);
 
 
-  const handleSearchChange = (event) => {
-    const newSearchTerm = event.target.value;
-    setSearchTerm(newSearchTerm);
 
-    // Filter the items based on the search term
-    const filteredResults = allItems.filter(item =>
-      item.toLowerCase().includes(newSearchTerm.toLowerCase())
+
+
+useEffect(() => {
+  const search = ( query ) => {
+    console.log(query);
+    // Normalize the search term to lowercase and split into words
+    setSearchTerm(query);
+    const searchWords = query.toLowerCase().split(/\s+/);
+
+    // Filter the items only if search term is not empty
+    const filteredResults = query.trim() === '' ? results : results.filter(obj =>
+        ['description', 'title'].some(field =>
+            searchWords.every(word =>
+                obj[field].toLowerCase().includes(word)
+            )
+        )
     );
 
+    // Now you can use the filteredResults as needed
     setFilteredItems(filteredResults);
-  };
+    console.log(filteredResults);
+};
+search(searchTerm);
+}, [results, searchTerm]); // Empty dependency array means this effect runs once on moun
 
+  
   useEffect(() => {
     // Declare a boolean flag that we can use to cancel the API request.
     let ignoreStaleRequest = false;
@@ -61,6 +76,7 @@ export default function Scroll({ url, user, token, searching }) {
         // the request. Otherwise, update the state to trigger a new render.
         if (!ignoreStaleRequest) {
           setResults([...results, ...data.results]);
+          setFilteredItems([...filteredItems, ...data.results]);
 
           setNext(data.next);
           if (data.next == 'null') {
@@ -137,6 +153,7 @@ export default function Scroll({ url, user, token, searching }) {
         // If ignoreStaleRequest was set to true, we want to ignore the results of the
         // the request. Otherwise, update the state to trigger a new render.
         setResults([...results, ...data.results]);
+        
         if (JSON.stringify(data.next) === "null") {
           setNext(data.next);
           setHasMore(false);
@@ -166,13 +183,14 @@ export default function Scroll({ url, user, token, searching }) {
          top: '60px', zIndex: 2, 
 
       }}>
+        <MDBIcon fas icon="search"/>
         <input
           className="form-control mr-sm-2 border-0"
           type="text"
           placeholder="Search"
           aria-label="Search"
-          onChange={(e) => setSearching(e.target.value)}
-          value={searching}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          value={searchTerm}
           style={{ width: '200px' , margin: "20px"}}
         />
 
@@ -202,8 +220,8 @@ export default function Scroll({ url, user, token, searching }) {
 
 <MDBContainer>
   <MDBRow>
-    {results.map(item => (
-      <MDBCol size='12' sm='6' md='4' lg='3' key={item.id} className='d-flex align-items-stretch'>
+    {filteredItems.map(item => (
+      <MDBCol size='12' md='4' lg='3' key={item.id} className='d-flex align-items-stretch'>
         <Cake cake={item} likeData={likeData} user={user} token={token} />
       </MDBCol>
     ))}
