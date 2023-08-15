@@ -9,6 +9,8 @@ import {
   MDBCardGroup,
   MDBContainer,
   MDBRipple,
+  MDBBtn,
+  MDBIcon
 } from 'mdb-react-ui-kit';
 
 // The parameter of this function is an object with a string called url inside it.
@@ -19,6 +21,7 @@ export default function Scroll({ url, user, token, searching }) {
   const [hasMore, setHasMore] = useState(false);
   const [resultsSize, setResultsSize] = useState(0);
   const [likeData, setLikeData] = useState([]);
+
 
   
   const [searchTerm, setSearchTerm] = useState('');
@@ -159,7 +162,7 @@ export default function Scroll({ url, user, token, searching }) {
 
 <div style={{
         width: '100%', display: 'flex', justifyContent: 'center',
-        alignItems: 'center', paddingBottom: '20px', paddingTop: '40px',
+        alignItems: 'center', paddingBottom: '20px', paddingTop: '40px', 
          top: '60px', zIndex: 2, 
 
       }}>
@@ -170,8 +173,12 @@ export default function Scroll({ url, user, token, searching }) {
           aria-label="Search"
           onChange={(e) => setSearching(e.target.value)}
           value={searching}
-          style={{ width: '200px' }}
+          style={{ width: '200px' , margin: "20px"}}
         />
+
+        {!user.is_staff && <MDBBtn color = "success" >
+        <MDBIcon fas icon="plus-circle" />
+        </MDBBtn>}
 
       </div>
       

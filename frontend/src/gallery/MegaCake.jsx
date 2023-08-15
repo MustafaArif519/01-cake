@@ -68,10 +68,16 @@ export default function MegaCake({ cake, like, unlike, yourLike, likeCount, show
         {visible && 
         <MDBCard>
           <MDBCardBody>
-            <MDBCardTitle>{cake.title} 
-            <br />
-            <br />
-            <Like cake={cake} like={like} unlike ={unlike} likeCount = {likeCount} yourLike={yourLike} />
+            <MDBCardTitle>
+            <MDBRow>
+      <MDBCol md='8'>
+      {cake.title} 
+      </MDBCol>
+      <MDBCol md='4'>
+      <Like cake={cake} like={like} unlike ={unlike} likeCount = {likeCount} yourLike={yourLike} />
+      </MDBCol>
+    </MDBRow>
+             
             <hr /></MDBCardTitle>
             <MDBCardText>
               {cake.description}
@@ -79,8 +85,13 @@ export default function MegaCake({ cake, like, unlike, yourLike, likeCount, show
 
 
           </MDBCardBody>
-          <MDBCardFooter>
-        <small className='text-muted'>{moment(cake.created_at).fromNow()}</small>
+          <MDBCardFooter style = {{display: "flex", justifyContent: "space-between"}}>
+        <small className='text-muted' >{moment(cake.created_at).fromNow()}</small>
+        <div>
+        <MDBBtn color = "warning" style = {{margin: "10px"}} ><MDBIcon fas icon="edit" /></MDBBtn>
+        <MDBBtn color = "danger" style = {{margin: "10px"}}><MDBIcon far icon="trash-alt" /></MDBBtn>
+        </div>
+        
       </MDBCardFooter>
           </MDBCard>
         }

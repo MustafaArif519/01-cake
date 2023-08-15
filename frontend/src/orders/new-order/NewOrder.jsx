@@ -99,6 +99,9 @@ const NewOrder = ({ token }) => {
   };
 
   return (
+    <>
+    <title>New Order | Farida&#39;s Cake Boutique</title>
+    
     <div className='form'>
 
       <MDBCard alignment='center'>
@@ -192,6 +195,8 @@ const NewOrder = ({ token }) => {
         </MDBCardFooter>
       </MDBCard>
     </div>
+
+    </>
   );
 };
 

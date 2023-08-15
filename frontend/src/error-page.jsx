@@ -18,6 +18,10 @@ const ErrorPage = () => {
 
   return (
     <>
+
+<title>Page Not Found | Farida&#39;s Cake Boutique</title>
+
+
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
       <MDBCard border='danger' background='white' shadow='0' style={{ width: '600px', height: '400px' }}>
         <MDBCardHeader background='transparent' border='danger' className='text-danger' style={{ textAlign: 'center' }}>

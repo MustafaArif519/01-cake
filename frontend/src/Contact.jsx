@@ -3,7 +3,13 @@ import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCar
 
 export default function PersonalProfile() {
   return (
-    <section className="" >
+    < >
+
+<title>Contact | Farida&#39;s Cake Boutique</title>
+
+
+
+
       <MDBContainer className="py-5 h-100">
         <MDBRow className="justify-content-center align-items-center h-100" style={{ width: "1000px" }}>
           <MDBCol lg="6" className="mb-4 mb-lg-0">
@@ -57,6 +63,6 @@ export default function PersonalProfile() {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
-    </section>
+    </>
   );
 }

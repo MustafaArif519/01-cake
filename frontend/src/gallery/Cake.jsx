@@ -210,8 +210,12 @@ className='bg-image hover-zoom'>
         </div>
         <MDBCardText>{cake.title}</MDBCardText>
       </MDBCardBody>
-      <MDBCardFooter>
-        <small className='text-muted'>{moment(cake.created_at).fromNow()}</small>
+      <MDBCardFooter style = {{display: "flex", justifyContent: "space-between"}}>
+        <small className='text-muted' >{moment(cake.created_at).fromNow()}</small>
+        <div >
+        <MDBBtn color = "warning" style = {{margin: "2px"}} ><MDBIcon fas icon="edit" /></MDBBtn>
+        <MDBBtn color = "danger" style = {{margin: "2px"}}><MDBIcon far icon="trash-alt" /></MDBBtn>
+        </div>
       </MDBCardFooter>
     </MDBCard>
 

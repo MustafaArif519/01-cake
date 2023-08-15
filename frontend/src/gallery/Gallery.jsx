@@ -17,6 +17,8 @@ function Gallery({ user, token }) {
   const toggleShow = () => setOptSmModal(!optSmModal);
 
   return (
+    <>
+    <title>Gallery | Farida&#39;s Cake Boutique</title>
     <div style={{
       display: 'flex', flexDirection: 'column', alignItems: 'center',
     }}>
@@ -28,6 +30,8 @@ function Gallery({ user, token }) {
 
 
     </div>
+    </>
+    
   );
 }
 

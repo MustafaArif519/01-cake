@@ -12,6 +12,7 @@ export default function Home(token, recievedToken) {
 
   return (
     <>
+    <title>Home | Farida&#39;s Cake Boutique</title>
 <header>
 
       <div
