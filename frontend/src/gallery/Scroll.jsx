@@ -194,7 +194,7 @@ search(searchTerm);
           style={{ width: '200px' , margin: "20px"}}
         />
 
-        {!user.is_staff && <MDBBtn color = "success" >
+        {user.is_staff && <MDBBtn color = "success" >
         <MDBIcon fas icon="plus-circle" />
         </MDBBtn>}
 
@@ -210,7 +210,7 @@ search(searchTerm);
           dataLength={resultsSize} // This is important field to render the next data
           next={getcakes}
           hasMore={hasMore}
-          loader={<h4>Baking cakes...</h4>}
+          loader={<h4>Scroll Further To Search More Cakes!</h4>}
         >
           {/* {renderedcakes} */}
           <div style={{
@@ -221,10 +221,19 @@ search(searchTerm);
 <MDBContainer >
 
   
-<div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center', alignItems: "center"}}>
-  {filteredItems.map(item => (
+<div>
+  {filteredItems.length === 0 ? <div  style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center', alignItems: "center"}}>
+  {hasMore && <div > <MDBIcon   style= {{height: ""}} icon='search' size='10x'/>
+  <h4>Scroll Further To Search More Cakes!</h4> </div>}
+
+  </div> :  
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', 
+  justifyContent: 'center', alignItems: "center"}}>
+ { filteredItems.map(item => (
     <Cake key={item.id} cake={item} likeData={likeData} user={user} token={token} />
   ))}
+  </div>
+  }
 </div>
 
 
@@ -232,8 +241,18 @@ search(searchTerm);
 </MDBContainer>
 
 
-            {!hasMore && <h4 >All cakes baked!</h4>}
+{!hasMore && filteredItems.length === 0 && 
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center', 
+  alignItems: "center"}}>
+  <MDBIcon  icon='times-circle' size='10x' style= {{height: "200px"}}/>
+</div>
+}
+
+            
           </div>
+
+          {!hasMore && filteredItems.length === 0 && 
+          <h4>No Matching Cakes Found</h4>}
         </InfiniteScroll>
       </div>
     </>

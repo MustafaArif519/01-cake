@@ -179,7 +179,7 @@ export default function Cake({ cake, likeData, user, token }) {
               </MDBModalTitle>
               <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
             </MDBModalHeader>
-            <MegaCake cake={cake} like = {like} unlike = {unlike} likeCount = {likeCount} 
+            <MegaCake cake={cake} like = {like} user = {user} unlike = {unlike} likeCount = {likeCount} 
             yourLike = {yourLike} showText = {showText}/>
           </MDBModalContent>
         </MDBModalDialog>
@@ -213,10 +213,10 @@ className='bg-image hover-zoom'>
       </MDBCardBody>
       <MDBCardFooter style = {{display: "flex", justifyContent: "space-between"}}>
         <small className='text-muted' >{moment(cake.created_at).fromNow()}</small>
-        <div >
+        {user.is_staff && <div >
         <MDBBtn color = "warning" style = {{margin: "2px"}} ><MDBIcon fas icon="edit" /></MDBBtn>
         <MDBBtn color = "danger" style = {{margin: "2px"}}><MDBIcon far icon="trash-alt" /></MDBBtn>
-        </div>
+        </div>}
       </MDBCardFooter>
     </MDBCard>
 

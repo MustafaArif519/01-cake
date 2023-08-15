@@ -22,7 +22,7 @@ import Like from "./Like"
 import CakeImage from './CakeImage';
 import "./style.css"
 
-export default function MegaCake({ cake, like, unlike, yourLike, likeCount, showText }) {
+export default function MegaCake({ cake, user, like, unlike, yourLike, likeCount, showText }) {
     //console.log(description);
     // console.log(likeData);
     // let userId = localStorage.getItem('userId');
@@ -31,12 +31,54 @@ export default function MegaCake({ cake, like, unlike, yourLike, likeCount, show
 
     const [visible, setVisible] = useState(showText);
 
+    const [editing, setEditing] = useState(false);
+    const [editCake, setEditCake] = useState(cake);
+
     useEffect(() => {
         setVisible(showText);
       }, [showText]);
 
 
+      const onChange = (e) => {
+        setEditCake(editCake => ({
+          ...editCake,
+          [e.target.name]: e.target.value
+        }));
+      };
+    
+      const discard = () => {
+        setEditCake(cake);
+        setEditing(!editing);
+      }
 
+      const patchCake = async () => {
+        const windowName = window.location.hostname;
+        console.log('http://localhost:8000/api/v1/dj-rest-auth/cake/'+cake.pk);
+        try {
+          const response = await fetch('http://localhost:8000/api/v1/dj-rest-auth/cake/'+cake.pk, {
+            method: 'PATCH',
+            headers: {
+              'Authorization': "Token " + token,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(editCake), // Convert editUser object to JSON
+          });
+          if (response.ok) {
+            const data = await response.json();
+   
+            setEditing(!editing);
+    
+          } else {
+            // Login failed, handle the error
+            const data = await response.json();
+            console.log('Cake data patching failed', JSON.stringify(data));
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      };
+
+      
     const handleImageLoad = () => {
         setImageLoaded(true);
     };
@@ -87,10 +129,19 @@ export default function MegaCake({ cake, like, unlike, yourLike, likeCount, show
           </MDBCardBody>
           <MDBCardFooter style = {{display: "flex", justifyContent: "space-between"}}>
         <small className='text-muted' >{moment(cake.created_at).fromNow()}</small>
-        <div>
-        <MDBBtn color = "warning" style = {{margin: "10px"}} ><MDBIcon fas icon="edit" /></MDBBtn>
+        {user.is_staff && !editing && <div>
+        <MDBBtn color = "warning" style = {{margin: "10px"}} onClick={() => setEditing(!editing)}><MDBIcon fas icon="edit" /></MDBBtn>
         <MDBBtn color = "danger" style = {{margin: "10px"}}><MDBIcon far icon="trash-alt" /></MDBBtn>
-        </div>
+        </div>}
+
+        {user.is_staff && editing && <div>
+        <MDBBtn color = "success" style = {{margin: "10px"}} onClick={patchCake}>
+          <MDBIcon fas icon="save" />
+        </MDBBtn>
+        <MDBBtn color = "danger" style = {{margin: "10px"}} onClick={discard}>
+          <MDBIcon fas icon="undo-alt" />
+          </MDBBtn>
+        </div>}
         
       </MDBCardFooter>
           </MDBCard>
