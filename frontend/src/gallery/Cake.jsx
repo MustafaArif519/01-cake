@@ -24,14 +24,12 @@ import MegaCake from "./MegaCake";
 import CakeImage from './CakeImage';
 import "./style.css"
 
-export default function Cake({ cake, likeData, user, token }) {
-  //console.log(user);
-  // console.log(likeData);
-  // let userId = localStorage.getItem('userId');
+export default function Cake({ caker, likeData, user, token }) {
 
 
   const [yourLike, setYourLike] = useState(null);
   const [likeCount, setLikeCount] = useState(-3);
+  const [cake, setEditCake] = useState(caker);
 
 
 
@@ -159,7 +157,9 @@ export default function Cake({ cake, likeData, user, token }) {
   };
 
 
-
+  const updateCake = (editCake) => {
+    setEditCake(editCake);
+  };
 
 
   
@@ -179,7 +179,8 @@ export default function Cake({ cake, likeData, user, token }) {
               </MDBModalTitle>
               <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
             </MDBModalHeader>
-            <MegaCake cake={cake} like = {like} user = {user} unlike = {unlike} likeCount = {likeCount} 
+            <MegaCake cake={cake} like = {like} token = {token} user = {user} 
+            unlike = {unlike} likeCount = {likeCount} updateCake={updateCake}
             yourLike = {yourLike} showText = {showText}/>
           </MDBModalContent>
         </MDBModalDialog>

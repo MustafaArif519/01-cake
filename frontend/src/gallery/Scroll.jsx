@@ -230,7 +230,7 @@ search(searchTerm);
   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', 
   justifyContent: 'center', alignItems: "center"}}>
  { filteredItems.map(item => (
-    <Cake key={item.id} cake={item} likeData={likeData} user={user} token={token} />
+    <Cake key={item.id} caker={item} likeData={likeData} user={user} token={token} />
   ))}
   </div>
   }
