@@ -139,7 +139,10 @@ export default function Profile({ token, user, retrieveUser, resetToken }) {
 
 
   return (
-    <section >
+    < >
+
+<title>Profile | Farida&#39;s Cake Boutique</title>
+
       <MDBContainer className="py-5">
 
         <MDBRow>
@@ -401,6 +404,6 @@ export default function Profile({ token, user, retrieveUser, resetToken }) {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
-    </section>
+    </>
   );
 }
