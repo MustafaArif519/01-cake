@@ -41,20 +41,22 @@ export default function MegaCake({ cake, token, user, like, unlike, yourLike, li
   const [selectedFile, setSelectedFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
 
+
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        setSelectedFile(e.target.result);
+  
+        setEditCake((prevEditCake) => ({
+          ...prevEditCake,
+          image: e.target.result, // Use e.target.result here
+        }));
       };
-
-      setEditCake(editCake => ({
-        ...editCake,
-        ['image']: reader
-      }));
-
-
+  
+      reader.readAsDataURL(file); // Start reading the file
+      setSelectedFile(file);
     }
   };
 
@@ -88,7 +90,7 @@ export default function MegaCake({ cake, token, user, like, unlike, yourLike, li
     }
     const headers = {
       'Authorization': "Token " + token,
-          'Content-Type': 'application/json',
+          'Content-Type': 'multipart/form-data',
     };
 
     // console.log(formData);
@@ -128,7 +130,7 @@ export default function MegaCake({ cake, token, user, like, unlike, yourLike, li
         <MDBCardGroup >
           <MDBCard>
             <MDBCardImage
-              src={imageLoaded ? editCake.image : './src/images/loading.gif'}
+              src={editing ? editCake.image : cake.image}
               alt='...'
               style={imageStyles}
               onLoad={handleImageLoad} // This should be removed
