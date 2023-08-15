@@ -7,7 +7,7 @@ from rest_framework.authtoken.models import Token
 
 from .models import Cake, CakeLike, CakeView
 from .serializers import CakeSerializer, CakeViewSerializer, CakeLikeSerializer, UserSerializer
-from .permissions import IsAuthorOrReadOnly, GuestPermission
+from .permissions import IsAuthorOrReadOnly, GuestPermission, StaffEditPermission
 
 
 class UserList(viewsets.ModelViewSet):
@@ -21,7 +21,7 @@ class CustomPagination(pagination.PageNumberPagination):
     max_page_size = 100  # Maximum page size allowed]
 
 class CakeViewSet(viewsets.ModelViewSet):
-    permission_classes = (GuestPermission,)
+    permission_classes = (StaffEditPermission,)
     queryset = Cake.objects.all().order_by('-id')
     serializer_class = CakeSerializer
     pagination_class = CustomPagination
