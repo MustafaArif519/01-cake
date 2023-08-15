@@ -218,14 +218,17 @@ search(searchTerm);
           }}>
 
 
-<MDBContainer>
-  <MDBRow>
-    {filteredItems.map(item => (
-      <MDBCol size='12' md='4' lg='3' key={item.id} className='d-flex align-items-stretch'>
-        <Cake cake={item} likeData={likeData} user={user} token={token} />
-      </MDBCol>
-    ))}
-  </MDBRow>
+<MDBContainer >
+
+  
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center', alignItems: "center"}}>
+  {filteredItems.map(item => (
+    <Cake key={item.id} cake={item} likeData={likeData} user={user} token={token} />
+  ))}
+</div>
+
+
+
 </MDBContainer>
 
 

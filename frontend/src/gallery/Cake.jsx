@@ -134,11 +134,12 @@ export default function Cake({ cake, likeData, user, token }) {
 
   const cardStyles = {
     display: 'flex',
-    flexDirection: 'column',
-    maxHeight: '800px', // Make sure the card takes up the full height
-    width: "400px",
+    width: "250px",
+    height: "500px",
+    minWidth: '200px',
     overflow: 'hidden', // Hide any content that exceeds the fixed height
-    marginBottom: '20px', // Add margin to create spacing between cards
+    margin: '10px', // Add margin to create spacing between cards
+
   };
 
   const titleStyles = {
