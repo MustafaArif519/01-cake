@@ -53,18 +53,18 @@ const LoginModal = ({ showModal, handleSubmit, display, setDisplay, createAccoun
           <MDBModalContent >
             <MDBModalHeader >
             <div className="MDBTabsContainer">
-              <MDBTabs  justify>
-                <MDBTabsItem  >
-                  <MDBTabsLink onClick={() => handleJustifyClick('tab1')} active={justifyActive === 'tab1'}>
-                    Sign In
-                  </MDBTabsLink>
-                </MDBTabsItem>
-                <MDBTabsItem  >
-                  <MDBTabsLink onClick={() => handleJustifyClick('tab2')} active={justifyActive === 'tab2'}>
-                    Create Account
-                  </MDBTabsLink>
-                </MDBTabsItem>
-              </MDBTabs>
+            <MDBTabs pills justify className='mb-3 d-flex flex-row justify-content-between'>
+        <MDBTabsItem>
+          <MDBTabsLink onClick={() => handleJustifyClick('tab1')} active={justifyActive === 'tab1'}>
+            Login
+          </MDBTabsLink>
+        </MDBTabsItem>
+        <MDBTabsItem>
+          <MDBTabsLink onClick={() => handleJustifyClick('tab2')} active={justifyActive === 'tab2'}>
+            Register
+          </MDBTabsLink>
+        </MDBTabsItem>
+      </MDBTabs>
               </div>
             </MDBModalHeader>
             <MDBTabsContent>

@@ -13,6 +13,9 @@ import {
   MDBCol,
   MDBModal,
   MDBModalDialog,
+  MDBCheckbox,
+  MDBRow,
+
 
 } from 'mdb-react-ui-kit';
 // Functional Component
@@ -73,77 +76,110 @@ const Login = ({ showModal, showCenteredModal, handleSubmit, display }) => {
 
 
       <MDBModalBody>
-        <div style={{ display: "flex", flexDirection: "row" }}>
 
-          <div style={{ width: "225px", marginLeft: "30px" }}>
-            <MDBValidation isValidated style={{ marginBottom: "40px", marginTop: "20px" }}>
-              <MDBValidationItem className='' invalid feedback='ex: JohnDoe/jDoes@yahoo.com'>
+        <div className="text-center mb-3">
+          <p>Sign in with:</p>
 
-                <MDBInput
-                  className=""
-                  name='username'
-                  onChange={(e) => setUsername(e.target.value)}
-                  id='username'
-                  required
-                  label='Username/Email'
-                  value={username}
-                />
-              </MDBValidationItem>
-            </MDBValidation>
+          {/* <div className='d-flex justify-content-between mx-auto' style={{width: '40%'}}>
+              <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
+                <MDBIcon fab icon='facebook-f' size="sm"/>
+              </MDBBtn>
 
-            <MDBValidation isValidated style={{ marginBottom: "10px" }}>
-              <MDBValidationItem className='' invalid feedback=" ">
-                <MDBInput
-                  type='password'
-                  name='password'
-                  onChange={(e) => setPassword(e.target.value)}
-                  id='password'
-                  required
-                  label='Password'
-                  value={password}
-                />
-                <MDBCol size="auto">
-                  <span id='textExample2' className='form-text' style={{ cursor: 'pointer' }} onClick={() => setShowRecovery(!showRecovery)} >
-                    Forgot Password?
-                  </span>
-                </MDBCol>
-              </MDBValidationItem>
-            </MDBValidation>
+              <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
+                <MDBIcon fab icon='twitter' size="sm"/>
+              </MDBBtn>
+
+              <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
+                <MDBIcon fab icon='google' size="sm"/>
+              </MDBBtn>
+
+              <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
+                <MDBIcon fab icon='github' size="sm"/>
+              </MDBBtn>
+            </div>
+
+            <p className="text-center mt-3">or:</p> */}
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
+          <MDBValidation isValidated>
+            <MDBValidationItem className='' invalid feedback='ex: jDoe@yahoo.com' style={{ marginBottom: '40px', marginTop: '20px' }}>
+              <MDBInput
+                wrapperClass='mb-4'
+                className=''
+                name='username'
+                onChange={(e) => setUsername(e.target.value)}
+                id='username'
+                required
+                label='Username/Email'
+                value={username}
+                style={{ width: "350px" }}
+              />
+            </MDBValidationItem>
+
+            <MDBValidationItem className='' invalid feedback=''>
+              <MDBInput
+                wrapperClass='mb-4'
+                type='password'
+                name='password'
+                onChange={(e) => setPassword(e.target.value)}
+                id='password'
+                required
+                label='Password'
+                value={password}
+              />
+            </MDBValidationItem>
+          </MDBValidation>
+
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '350px', marginTop: '20px' }}>
+          <a 
+  onClick={() => setShowRecovery(!showRecovery)}
+  style={{ cursor: 'pointer', }}
+>
+  Forgot password?
+</a>
+
+            <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
+          </div>
+       
+
+
+
+
+
+
 
             {showRecovery &&
-              <div>
-                <MDBValidation isValidated style={{ marginBottom: "40px", marginTop: "20px" }}>
-                  <MDBValidationItem className='' invalid feedback='ex: jDoe@yahoo.com'>
+              <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '350px', margin: '20px auto' }}>
+              <MDBRow style={{ width: '100%' }}>
+                <MDBCol size='8' >
+                  <MDBValidation isValidated>
+                    <MDBValidationItem className='' invalid feedback='ex: jDoe@yahoo.com'>
+                      <MDBInput
+                        className=''
+                        name='email'
+                        onChange={(e) => setEmail(e.target.value)}
+                        id='email'
+                        required
+                        label='Email'
+                        value={email}
+                        
+                      />
+                    </MDBValidationItem>
+                  </MDBValidation>
+                </MDBCol>
+                <MDBCol size='4'>
+                  <MDBBtn disabled={email === ""} onClick={requestRecovery} color='warning' >
+                    Recover
+                  </MDBBtn>
+                </MDBCol>
+              </MDBRow>
+            </div>
+            }
+                
 
-                    <MDBInput
-                      className=""
-                      name='email'
-                      onChange={(e) => setEmail(e.target.value)}
-                      id='email'
-                      required
-                      label='Account Email'
-                      value={email}
-                    />
-                  </MDBValidationItem>
-                </MDBValidation>
+                
 
-                <MDBBtn disabled={email == ""} onClick={requestRecovery} color="warning">Recover Password</MDBBtn> </div>}
-          </div>
-
-          {/* <div style={{ marginLeft: "50px", marginTop: "20px", display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <p style={{}}>Or Sign in Using:</p>
-      <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
-        <MDBBtn style={{ marginRight: "20px" }} color="info" outline onClick={showModal}> 
-            <img style={{width: "30px", height: "30px"}} src ="./src/images/googleIcon.png" />
-         </MDBBtn>
-        
-        <MDBBtn onClick={showModal} color="info" outline>
-          <img style={{width: "30px", height: "30px"}} src ="./src/images/facebookIcon.png" />
-          </MDBBtn>
-      </div>
-    </div> */}
-
-        </div>
+</div>
 
 
 
@@ -152,7 +188,9 @@ const Login = ({ showModal, showCenteredModal, handleSubmit, display }) => {
         <MDBBtn color="danger" onClick={showModal}>
           Close
         </MDBBtn>
-        <MDBBtn color="success" disabled={username == "" || password == ""} onClick={() => handleSubmit(username, password)}>Login</MDBBtn>
+        <MDBBtn color="success" disabled={username == "" || password == ""}
+          onClick={() => handleSubmit(username, password)}>
+          Sign in</MDBBtn>
       </MDBModalFooter>
 
     </>
