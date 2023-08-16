@@ -30,19 +30,12 @@ export default function Scroll({ url, user, token, searching }) {
   const [resultsSize, setResultsSize] = useState(0);
   const [likeData, setLikeData] = useState([]);
 
-
+  const [showCreate, setShowCreate] = useState(false);
+  const toggleCreate = () => setShowCreate(!showCreate);
   
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredItems, setFilteredItems] = useState([]);
 
-
-
-
-  const [createModal, setCreateModal] = useState(false);
-
-  const [showText, setShowText] = useState(true);
-
-  const toggleCreate = () => setCreateModal(!createModal);
 
 
 
@@ -242,22 +235,8 @@ search(searchTerm);
   return (
     <>
 
-<MDBModal show={toggleCreate} tabIndex='-1' setShow={setCreateModal}>
-        <MDBModalDialog size='lg'>
-          <MDBModalContent>
-            <MDBModalHeader>
-              <MDBBtn color="secondary"  onClick= {toggleCreate}>
-                {showText ? "Show Image Only" : "Show Image With Text"}
-              </MDBBtn>
-              <MDBModalTitle>
-                
-              </MDBModalTitle>
-              <MDBBtn className='btn-close' color='none' onClick={toggleCreate}></MDBBtn>
-            </MDBModalHeader>
-            <CreateCakeModal token = {token} user = {user} postCake = {postCake}/>
-          </MDBModalContent>
-        </MDBModalDialog>
-      </MDBModal>
+<CreateCakeModal token = {token} user = {user} postCake={postCake} 
+toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreate} />
 
 
 <div style={{
@@ -277,7 +256,7 @@ search(searchTerm);
           style={{ width: '200px' , margin: "20px"}}
         />
 
-        {user.is_staff && <MDBBtn color = "success" >
+        {user.is_staff && <MDBBtn color = "success"  onClick={() => setShowCreate(!showCreate)}>
         <MDBIcon fas icon="plus-circle" />
         </MDBBtn>}
 
