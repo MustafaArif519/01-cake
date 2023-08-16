@@ -44,6 +44,7 @@ function App() {
   const resetToken = useCallback(() => {
     setToken('');
     setUserId(-1);
+    setUser('');
     // const navigate = useNavigate();
 //   console.log("checking token....");
 // navigate('/gallery');

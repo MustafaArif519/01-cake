@@ -244,16 +244,15 @@ function Navigation({ token, resetToken, recievedToken }) {
               <div className="d-flex justify-content-center">
                                 
                 <div className='position-relative d-inline-block'>
-                <MDBBtn  className="mx-2" rounded>
-                               
-                               Messages
-                               
-                             </MDBBtn>
-
-      </div>
-                <Link to="/profile" className="mx-2">
+                <Link to="/profile" className="mx-2" rounded>
                   <MDBBtn color="info">Profile</MDBBtn>
                 </Link>
+                
+
+      </div>
+      <MDBBtn color="danger" className="" onClick={resetToken} >
+                      Logout
+                    </MDBBtn>
 
 
               </div>
