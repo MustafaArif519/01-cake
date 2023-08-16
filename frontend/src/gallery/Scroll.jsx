@@ -87,6 +87,19 @@ export default function Scroll({ url, user, token, searching }) {
     setResults(updatedResults);
   };
 
+  const postLike = (like) => {
+    const newItem = like;
+    const updatedResults = addToFrontOfList(likeData, newItem);
+    setLikeData(updatedResults);
+  };
+
+  function deleteLike(like) {
+    console.log(like);
+    const itemToRemove = like;
+    const updatedResults = removeObjectByCondition(likeData, itemToRemove);
+    setLikeData(updatedResults);
+    console.log(updatedResults);
+  }
 
 useEffect(() => {
   const search = ( query ) => {
@@ -294,6 +307,7 @@ toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreat
  { filteredItems.map(item => (
     <Cake key={item.id} caker={item} likeData={likeData} user={user} token={token} 
     deleteCake={deleteCake} patchCake = {patchCake} postCake = {postCake}
+    postLike = {postLike} deleteLike = {deleteLike}
     />
   ))}
   </div>

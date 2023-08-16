@@ -26,7 +26,7 @@ import CakeImage from './CakeImage';
 import "./style.css"
 
 export default function Cake({ caker, likeData, user, token,
-   deleteCake, patchCake }) {
+   deleteCake, patchCake, postLike, deleteLike}) {
 
 
   const [yourLike, setYourLike] = useState(null);
@@ -89,8 +89,10 @@ console.log(caker);
 
       // Do something with the response, if needed
       //let temp = console.log(JSON.stringify(responseBody, null, 4));
-      setYourLike(responseBody);
+
       setLikeCount(likeCount + 1);
+      postLike(responseBody);
+
     } catch (error) {
       console.log(error);
     }
@@ -108,8 +110,9 @@ console.log(caker);
           'cake': cake.id,
         }), // Replace with your data object
       });
-      setYourLike(null);
+      deleteLike(yourLike);
       setLikeCount(likeCount - 1);
+      
     } catch (error) {
       console.error(error);
     }
