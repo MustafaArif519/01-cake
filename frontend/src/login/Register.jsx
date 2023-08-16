@@ -9,7 +9,9 @@ import {
     MDBValidation,
     MDBValidationItem,
     MDBInput,
-    MDBRadio
+    MDBRadio,
+    MDBCheckbox,
+    MDBIcon,
 
 } from 'mdb-react-ui-kit';
 // Functional Component
@@ -53,30 +55,52 @@ const Register = ({ showModal, createAccount, display }) => {
     return (
         <>
             <MDBModalBody>
-                <h2>Please Fill Out the Following</h2>
-                <div className='section'>
+
+            <div className="text-center mb-3">
+            <p>Sign up with:</p>
+{/* 
+            <div className='d-flex justify-content-between mx-auto' style={{width: '40%'}}>
+              <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
+                <MDBIcon fab icon='facebook-f' size="sm"/>
+              </MDBBtn>
+
+              <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
+                <MDBIcon fab icon='twitter' size="sm"/>
+              </MDBBtn>
+
+              <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
+                <MDBIcon fab icon='google' size="sm"/>
+              </MDBBtn>
+
+              <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
+                <MDBIcon fab icon='github' size="sm"/>
+              </MDBBtn>
+            </div>
+
+            <p className="text-center mt-3">or:</p> */}
+                <div style={{ display: 'flex', justifyContent: 'center'  }}>
                     <MDBValidation isValidated>
 
 
-                        <MDBValidationItem className='field' invalid feedback='ex: Andrew'>
-                            <div className="textInputWrapper">
+                        <MDBValidationItem className='' invalid feedback='ex: Andrew'>
+                            <div style = {{paddingBottom: "20px"}}>
                                 <MDBInput
+                                wrapperClass='mb-4'
                                     value={registerForm.first_name}
                                     name='first_name'
                                     onChange={onChange}
                                     id='validationCustom01'
                                     required
                                     label='First Name'
+                                    style={{ width: "350px" }}
                                 />
                             </div>
                         </MDBValidationItem>
-                    </MDBValidation>
-                    <MDBValidation isValidated>
 
-
-                        <MDBValidationItem className='field' invalid feedback='ex: Jiang'>
-                            <div className="textInputWrapper">
+                        <MDBValidationItem className='' invalid feedback='ex: Jiang'>
+                            <div style = {{paddingBottom: "20px"}}>
                                 <MDBInput
+                                wrapperClass='mb-4'
                                     value={registerForm.last_name}
                                     name='last_name'
                                     onChange={onChange}
@@ -86,12 +110,12 @@ const Register = ({ showModal, createAccount, display }) => {
                                 />
                             </div>
                         </MDBValidationItem>
-                    </MDBValidation>
-                    <MDBValidation isValidated>
 
-                        <MDBValidationItem className='field' invalid feedback='ex: 123-456-7890'>
-                            <div className="textInputWrapper">
+
+                        <MDBValidationItem className='' invalid feedback='ex: 123-456-7890'>
+                            <div style = {{paddingBottom: "20px"}}>
                                 <MDBInput
+                                wrapperClass='mb-4'
                                     value={registerForm.pNumber}
                                     name='pNumber'
                                     onChange={onChange}
@@ -103,13 +127,10 @@ const Register = ({ showModal, createAccount, display }) => {
                         </MDBValidationItem>
 
 
-
-                    </MDBValidation>
-                    <MDBValidation isValidated>
-
-                        <MDBValidationItem className='field' invalid feedback='ex: jDoe@gmail.com'>
-                            <div className="textInputWrapper">
+                        <MDBValidationItem className='' invalid feedback='ex: jDoe@gmail.com'>
+                            <div style = {{paddingBottom: "20px"}}>
                                 <MDBInput
+                                wrapperClass='mb-4'
                                     value={registerForm.email}
                                     name='email'
                                     onChange={onChange}
@@ -119,13 +140,12 @@ const Register = ({ showModal, createAccount, display }) => {
                                 />
                             </div>
                         </MDBValidationItem>
-                    </MDBValidation>
 
-                    <MDBValidation isValidated>
 
-                        <MDBValidationItem className='field' invalid feedback='ex: james545'>
-                            <div className="textInputWrapper">
+                        <MDBValidationItem className='' invalid feedback='ex: james545'>
+                            <div style = {{paddingBottom: "20px"}}>
                                 <MDBInput
+                                wrapperClass='mb-4'
                                     value={registerForm.username}
                                     name='username'
                                     onChange={onChange}
@@ -136,12 +156,11 @@ const Register = ({ showModal, createAccount, display }) => {
                             </div>
                         </MDBValidationItem>
 
-                    </MDBValidation>
-                    <MDBValidation isValidated>
 
-                        <MDBValidationItem className='field' invalid feedback=''>
-                            <div className="textInputWrapper">
+                        <MDBValidationItem className='' invalid feedback=''>
+                            <div style = {{paddingBottom: "0px"}}>
                                 <MDBInput
+                                wrapperClass='mb-4'
                                     value={registerForm.password1}
                                     name='password1'
                                     onChange={onChange}
@@ -153,15 +172,14 @@ const Register = ({ showModal, createAccount, display }) => {
                             </div>
                         </MDBValidationItem>
 
-                    </MDBValidation>
-                    <MDBValidation isValidated>
 
-                        <MDBValidationItem className='field'
+                        <MDBValidationItem className=''
                             invalid={registerForm.password != "" &&
                                 registerForm.password === registerForm.confrimPassword}
                             feedback='passwords must match'>
-                            <div className="textInputWrapper">
+                            <div style = {{paddingBottom: "20px"}}>
                                 <MDBInput
+                                wrapperClass='mb-4'
                                     value={registerForm.password2}
                                     name='password2'
                                     onChange={onChange}
@@ -173,77 +191,95 @@ const Register = ({ showModal, createAccount, display }) => {
                             </div>
                         </MDBValidationItem>
 
+
+                        <MDBValidation isValidated>
+  <div key={display} style={{ alignItems: "left", textAlign: 'left', marginLeft: '0', paddingBottom: "20px" }}>
+    <h3>How did you hear about us?</h3>
+    <MDBRadio
+      name='heard_from'
+      id='flexRadioDefault1'
+      value="Instagram"
+      onChange={onChange}
+      required
+      label="Instagram"
+      style={{ textAlign: 'left', marginLeft: '0' }} // Align text to the left
+    />
+    <MDBRadio
+      name='heard_from'
+      id='flexRadioDefasdfasdfrault2'
+      value="Facebook"
+      onChange={onChange}
+      required
+      label="Facebook"
+      style={{ textAlign: 'left', marginLeft: '0' }} // Align text to the left
+    />
+    <MDBRadio
+      name='heard_from'
+      id='flexRadioDeasdffault2'
+      value="Online Search"
+      onChange={onChange}
+      required
+      label="Online Search"
+      style={{ textAlign: 'left', marginLeft: '0' }} // Align text to the left
+    />
+    <MDBRadio
+      name='heard_from'
+      id='flexRadioDefault2'
+      value="Friends / Family"
+      onChange={onChange}
+      required
+      label="Friends / Family"
+      style={{ textAlign: 'left', marginLeft: '0' }} // Align text to the left
+    />
+    <MDBValidationItem invalid feedback='' >
+      <MDBRadio
+        name='heard_from'
+        id='flexRadioDefaulte5'
+        value="Other"
+        onChange={onChange}
+        required
+        label="Other"
+        style={{ textAlign: 'left', marginLeft: '0' }} // Align text to the left
+      />
+    </MDBValidationItem>
+    {showOtherInput && (
+      <div style={{ width: "200px", marginLeft: '20px'  }}>
+        <MDBValidationItem invalid feedback='ex: YouTube'>
+          <div>
+            <MDBInput
+              value={registerForm.heardFromOther}
+              name='heardFromOther'
+              onChange={onChange}
+              id='validationCustom99'
+              required
+              label='Other'
+            />
+          </div>
+        </MDBValidationItem>
+      </div>
+    )}
+  </div>
+</MDBValidation>
+
+
                     </MDBValidation>
+                    
                 </div>
-                <MDBValidation isValidated>
-                    <div className="radio" key = {display}>
-                        <h3>How did you hear about us?</h3>
-                        <MDBRadio
-                            name='heard_from'
-                            id='flexRadioDefault1'
-                            value="Instagram"
-                            onChange={onChange}
-                            required
-                            label="Instagram"
-                        />
-                        <MDBRadio
-                            name='heard_from'
-                            id='flexRadioDefasdfasdfrault2'
-                            value="Facebook"
-                            onChange={onChange}
-                            required
-                            label="Facebook"
-                        />
-                        <MDBRadio
-                            name='heard_from'
-                            id='flexRadioDeasdffault2'
-                            value="Online Search"
-                            onChange={onChange}
-                            required
-                            label="Online Search"
-                        />
-                        <MDBRadio
-                            name='heard_from'
-                            id='flexRadioDefault2'
-                            value="Friends / Family"
-                            onChange={onChange}
-                            required
-                            label="Friends / Family"
-                        />
-                        <MDBValidationItem invalid feedback=''>
-                            <MDBRadio
-                                name='heard_from'
-                                id='flexRadioDefaulte5'
-                                value="Other"
-                                onChange={onChange}
-                                required
-                                label="Other"
-                            />
-                        </MDBValidationItem>
-                        {showOtherInput && (
-                            <div style={{ width: "200px" }}>
-                                <MDBValidationItem invalid feedback='ex: YouTube'>
-                                    <div>
-                                        <MDBInput
-                                            value={registerForm.heardFromOther}
-                                            name='heardFromOther'
-                                            onChange={onChange}
-                                            id='validationCustom99'
-                                            required
-                                            label='Other'
-                                        />
-                                    </div>
-                                </MDBValidationItem>
-                            </div>
-                        )}
-                    </div>
-                </MDBValidation>
+            <div className='d-flex justify-content-center mb-4'>
+            <MDBCheckbox name='flexCheck' id='flexCheckDefault' label='I have read and agree to the terms' />
+          </div>
+
+  
+
+
+          </div>
+          
             </MDBModalBody>
             <MDBModalFooter>
                 <MDBBtn color="danger" onClick={showModal}>
                     Close
                 </MDBBtn>
-                <MDBBtn color="success" onClick={() => createAccount(registerForm)}>Create Account</MDBBtn>
+                <MDBBtn color="success" onClick={() => createAccount(registerForm)}>Register</MDBBtn>
             </MDBModalFooter>
         </>
     );
