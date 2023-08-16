@@ -21,17 +21,19 @@ import {
 import moment from 'moment'; // Import Moment.js
 import Like from "./Like"
 import MegaCake from "./MegaCake";
+
 import CakeImage from './CakeImage';
 import "./style.css"
 
-export default function Cake({ caker, likeData, user, token }) {
+export default function Cake({ caker, likeData, user, token,
+   deleteCake, patchCake }) {
 
 
   const [yourLike, setYourLike] = useState(null);
   const [likeCount, setLikeCount] = useState(-3);
   const [cake, setEditCake] = useState(caker);
 
-
+console.log(caker);
 
   useEffect(() => {
     // This function will run after the component renders
@@ -117,10 +119,12 @@ export default function Cake({ caker, likeData, user, token }) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const [optSmModal, setOptSmModal] = useState(false);
+  const [createModal, setCreateModal] = useState(false);
 
   const [showText, setShowText] = useState(true);
 
   const toggleShow = () => setOptSmModal(!optSmModal);
+  const toggleCreate = () => setOptSmModal(!createModal);
 
   const toggleText = () => setShowText(!showText);
 
@@ -157,9 +161,7 @@ export default function Cake({ caker, likeData, user, token }) {
   };
 
 
-  const updateCake = (editCake) => {
-    setEditCake(editCake);
-  };
+
 
 
   
@@ -179,12 +181,15 @@ export default function Cake({ caker, likeData, user, token }) {
               </MDBModalTitle>
               <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
             </MDBModalHeader>
-            <MegaCake cake={cake} like = {like} token = {token} user = {user} 
-            unlike = {unlike} likeCount = {likeCount} updateCake={updateCake}
+            <MegaCake cake={caker} like = {like} token = {token} user = {user} 
+            unlike = {unlike} likeCount = {likeCount}
+            setOptSmModal = {setOptSmModal}
+            deleteCake = {deleteCake} updateCake = {patchCake}
             yourLike = {yourLike} showText = {showText}/>
           </MDBModalContent>
         </MDBModalDialog>
       </MDBModal>
+
 
 <MDBCard style={cardStyles}>
 
@@ -214,10 +219,10 @@ className='bg-image hover-zoom'>
       </MDBCardBody>
       <MDBCardFooter style = {{display: "flex", justifyContent: "space-between"}}>
         <small className='text-muted' >{moment(cake.created_at).fromNow()}</small>
-        {user.is_staff && <div >
+        {/* {user.is_staff && <div >
         <MDBBtn color = "warning" style = {{margin: "2px"}} ><MDBIcon fas icon="edit" /></MDBBtn>
         <MDBBtn color = "danger" style = {{margin: "2px"}}><MDBIcon far icon="trash-alt" /></MDBBtn>
-        </div>}
+        </div>} */}
       </MDBCardFooter>
     </MDBCard>
 
@@ -227,6 +232,6 @@ className='bg-image hover-zoom'>
 }
 
 Cake.propTypes = {
-  cake: PropTypes.object.isRequired,
+  caker: PropTypes.object.isRequired,
   likeData: PropTypes.array.isRequired,
 };

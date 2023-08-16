@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import InfiniteScroll from "react-infinite-scroll-component";
 import './style.css';
 import Cake from "./Cake"
+import CreateCakeModal from "./CreateCakeModal"
 import {
   MDBRow,
   MDBCol,
@@ -10,7 +11,14 @@ import {
   MDBContainer,
   MDBRipple,
   MDBBtn,
-  MDBIcon
+  MDBIcon,
+  MDBModalDialog,
+  MDBModalContent,
+  MDBModalHeader,
+  MDBModalTitle,
+  MDBModalBody,
+  MDBModalFooter,
+  MDBModal
 } from 'mdb-react-ui-kit';
 
 // The parameter of this function is an object with a string called url inside it.
@@ -29,6 +37,62 @@ export default function Scroll({ url, user, token, searching }) {
 
 
 
+
+  const [createModal, setCreateModal] = useState(false);
+
+  const [showText, setShowText] = useState(true);
+
+  const toggleCreate = () => setCreateModal(!createModal);
+
+
+
+  function removeObjectByCondition(list, conditionObject) {
+    return list.filter(item => {
+      // Assuming conditionObject and item are both JSON objects
+      // Compare each key-value pair in the conditionObject
+      for (const key in conditionObject) {
+        if (Object.hasOwnProperty.call(conditionObject, key)) {
+          if (item[key] !== conditionObject[key]) {
+            return true; // Keep the item if there's a mismatch
+          }
+        }
+      }
+      return false; // Remove the item if all key-value pairs match
+    });
+  }
+
+
+  function updateObjectById(list, updatedObject) {
+    return list.map(item => (item.id === updatedObject.id ? updatedObject : item));
+  }
+
+
+  function addToFrontOfList(list, newItem) {
+    return [newItem, ...list];
+  }
+
+  function deleteCake(cake) {
+    console.log(cake);
+    const itemToRemove = cake;
+    const updatedResults = removeObjectByCondition(results, itemToRemove);
+    setResults(updatedResults);
+    console.log(updatedResults);
+  }
+
+
+
+  function patchCake(cake) {
+    const updatedItem = cake;
+    const updatedResults = updateObjectById(results, updatedItem);
+    setResults(updatedResults);
+
+  }
+
+  const postCake = (cake) => {
+    const newItem = cake;
+    const updatedResults = addToFrontOfList(results, newItem);
+    setResults(updatedResults);
+  };
 
 
 useEffect(() => {
@@ -50,6 +114,7 @@ useEffect(() => {
     // Now you can use the filteredResults as needed
     setFilteredItems(filteredResults);
     console.log(filteredResults);
+    console.log(results);
 };
 search(searchTerm);
 }, [results, searchTerm]); // Empty dependency array means this effect runs once on moun
@@ -168,14 +233,32 @@ search(searchTerm);
       })
       .catch((error) => console.log(error));
   };
-  // Return HTML for one clue
-  //   const renderedcakes = results.map((result) => (
-  //     <cake key={result.id} />
-  //   ));
 
-  // Render cake image and cake owner
+
+
+
+
+
   return (
     <>
+
+<MDBModal show={toggleCreate} tabIndex='-1' setShow={setCreateModal}>
+        <MDBModalDialog size='lg'>
+          <MDBModalContent>
+            <MDBModalHeader>
+              <MDBBtn color="secondary"  onClick= {toggleCreate}>
+                {showText ? "Show Image Only" : "Show Image With Text"}
+              </MDBBtn>
+              <MDBModalTitle>
+                
+              </MDBModalTitle>
+              <MDBBtn className='btn-close' color='none' onClick={toggleCreate}></MDBBtn>
+            </MDBModalHeader>
+            <CreateCakeModal token = {token} user = {user} postCake = {postCake}/>
+          </MDBModalContent>
+        </MDBModalDialog>
+      </MDBModal>
+
 
 <div style={{
         width: '100%', display: 'flex', justifyContent: 'center',
@@ -230,7 +313,9 @@ search(searchTerm);
   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', 
   justifyContent: 'center', alignItems: "center"}}>
  { filteredItems.map(item => (
-    <Cake key={item.id} caker={item} likeData={likeData} user={user} token={token} />
+    <Cake key={item.id} caker={item} likeData={likeData} user={user} token={token} 
+    deleteCake={deleteCake} patchCake = {patchCake} postCake = {postCake}
+    />
   ))}
   </div>
   }
