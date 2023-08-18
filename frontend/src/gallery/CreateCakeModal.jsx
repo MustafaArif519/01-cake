@@ -106,8 +106,10 @@ const formData = new FormData();
     axios.post('http://localhost:8000/api/v1/cakes/', formData, { headers })
     .then(response => {
       console.log('Data uploaded successfully', response.data);
-      postCake(newCake);
+      
+      postCake(response.data);
       toggleCreate();
+      discard();
     })
     .catch(error => {
       console.error('Error uploading data', error);

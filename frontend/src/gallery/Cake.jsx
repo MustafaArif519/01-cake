@@ -17,7 +17,11 @@ import {
   MDBModalContent,
   MDBModalHeader,
   MDBModalTitle,
-  MDBModalBody } from 'mdb-react-ui-kit';
+  MDBTabsItem,
+  MDBTabsLink,
+  MDBTabs,
+  MDBModalBody,
+ } from 'mdb-react-ui-kit';
 import moment from 'moment'; // Import Moment.js
 import Like from "./Like"
 import MegaCake from "./MegaCake";
@@ -25,15 +29,24 @@ import MegaCake from "./MegaCake";
 import CakeImage from './CakeImage';
 import "./style.css"
 
-export default function Cake({ caker, likeData, user, token,
+export default function Cake({ cake, likeData, user, token,
    deleteCake, patchCake, postLike, deleteLike}) {
 
 
   const [yourLike, setYourLike] = useState(null);
   const [likeCount, setLikeCount] = useState(-3);
-  const [cake, setEditCake] = useState(caker);
 
-console.log(caker);
+  const [justifyActive, setJustifyActive] = useState('tab1');
+
+  const handleJustifyClick = (value) => {
+    if (value === justifyActive) {
+      return;
+    }
+toggleText();
+    setJustifyActive(value);
+  };
+
+// console.log(cake);
 
   useEffect(() => {
     // This function will run after the component renders
@@ -63,7 +76,7 @@ console.log(caker);
 
 
   const like = async () => {
-    console.log(token);
+    console.log(cake.id);
     if(token == ""){
       return;
     }
@@ -176,15 +189,25 @@ console.log(caker);
         <MDBModalDialog size='lg'>
           <MDBModalContent>
             <MDBModalHeader>
-              <MDBBtn color="secondary"  onClick= {toggleText}>
-                {showText ? "Show Image Only" : "Show Image With Text"}
-              </MDBBtn>
-              <MDBModalTitle>
-                
-              </MDBModalTitle>
-              <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
+              
+            <div className="MDBTabsContainer">
+ <MDBTabs pills justify className='mb-3 d-flex flex-row justify-content-between'>
+        <MDBTabsItem>
+          <MDBTabsLink onClick={() => handleJustifyClick('tab1')} active={justifyActive === 'tab1'}>
+            Image With Text
+          </MDBTabsLink>
+        </MDBTabsItem>
+        <MDBTabsItem>
+          <MDBTabsLink onClick={() => handleJustifyClick('tab2')} active={justifyActive === 'tab2'}>
+            Image Only
+          </MDBTabsLink>
+        </MDBTabsItem>
+      </MDBTabs>
+      </div>
+             
+              {/* <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn> */}
             </MDBModalHeader>
-            <MegaCake cake={caker} like = {like} token = {token} user = {user} 
+            <MegaCake cake={cake} like = {like} token = {token} user = {user} 
             unlike = {unlike} likeCount = {likeCount}
             setOptSmModal = {setOptSmModal}
             deleteCake = {deleteCake} updateCake = {patchCake}
@@ -235,6 +258,6 @@ className='bg-image hover-zoom'>
 }
 
 Cake.propTypes = {
-  caker: PropTypes.object.isRequired,
+  cake: PropTypes.object.isRequired,
   likeData: PropTypes.array.isRequired,
 };

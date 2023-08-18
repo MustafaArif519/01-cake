@@ -113,8 +113,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home token = {token} recievedToken = {recievedToken}/>} />
             <Route path="/gallery" element={<Gallery user = {user} token = {token}/>} />
-            <Route path="/orders" element={<Orders />} />
-            <Route path="/order" element={<NewOrder token = {token} />} />
+            <Route path="/view-order" element={<Orders />} />
+            <Route path="/new-order" element={<NewOrder token = {token} />} />
             <Route path="/profile" element={<Profile token = {token} user ={user} 
             retrieveUser = {retrieveUser} resetToken={resetToken}/>} />
             <Route path="/password-reset" element={<ResetPassword />} />

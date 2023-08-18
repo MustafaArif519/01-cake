@@ -78,7 +78,7 @@ export default function Scroll({ url, user, token, searching }) {
     const updatedItem = cake;
     const updatedResults = updateObjectById(results, updatedItem);
     setResults(updatedResults);
-
+    console.log(updatedResults);
   }
 
   const postCake = (cake) => {
@@ -298,14 +298,14 @@ toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreat
   
 <div>
   {filteredItems.length === 0 ? <div  style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center', alignItems: "center"}}>
-  {hasMore && <div > <MDBIcon   style= {{height: ""}} icon='search' size='10x'/>
+  {hasMore && <div > <MDBIcon   style= {{height: ""}} icon='search' size='8x'/>
   <h4>Scroll Further To Search More Cakes!</h4> </div>}
 
   </div> :  
   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', 
   justifyContent: 'center', alignItems: "center"}}>
  { filteredItems.map(item => (
-    <Cake key={item.id} caker={item} likeData={likeData} user={user} token={token} 
+    <Cake key={item.id} cake={item} likeData={likeData} user={user} token={token} 
     deleteCake={deleteCake} patchCake = {patchCake} postCake = {postCake}
     postLike = {postLike} deleteLike = {deleteLike}
     />
