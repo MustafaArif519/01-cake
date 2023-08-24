@@ -1,5 +1,5 @@
 import { useEffect, useCallback, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate  } from 'react-router-dom';
 import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
 
 import Navigation from './Navigation';
@@ -18,8 +18,9 @@ function App() {
   const [token, setToken] = useState(localStorage.getItem('token') || '');
   const [userId, setUserId] = useState(localStorage.getItem('userId') || -1);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || '');
+  // const navigate = useNavigate();
 
-  
+
 
   useEffect(() =>{
     localStorage.setItem('token', token);
@@ -115,8 +116,9 @@ function App() {
             <Route path="/gallery" element={<Gallery user = {user} token = {token}/>} />
             <Route path="/view-order" element={<Orders />} />
             <Route path="/new-order" element={<NewOrder token = {token} />} />
-            <Route path="/profile" element={<Profile token = {token} user ={user} 
-            retrieveUser = {retrieveUser} resetToken={resetToken}/>} />
+            <Route path="/profile" element= {user ? <Profile token = {token} user ={user} 
+            retrieveUser = {retrieveUser} resetToken={resetToken}/> :
+             <Navigate to="/" />}/>
             <Route path="/password-reset" element={<ResetPassword />} />
             <Route path="/contact" element={<Contact token = {token} />} />
             {/* <Route path="/login" element={<Login token = {token} recievedToken = {recievedToken}/>} /> */}
