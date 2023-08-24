@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "allauth.socialaccount.providers.github",
     "drf_spectacular",
+    'django_cleanup.apps.CleanupConfig',
     # For adding google sign in authentication
     "allauth.socialaccount.providers.google",
     # local apps

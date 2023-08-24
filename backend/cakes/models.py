@@ -1,5 +1,9 @@
 from django.db import models
 from django.conf import settings
+from django.db.models.signals import post_delete
+from .utils import file_cleanup
+
+
 
 # Create your models here.
 class Cake(models.Model):
@@ -7,6 +11,7 @@ class Cake(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to="cakes/", blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    post_delete.connect(file_cleanup, sender=image, dispatch_uid="gallery.image.file_cleanup")
 
     def __str__(self):
         return self.title
