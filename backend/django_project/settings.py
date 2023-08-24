@@ -221,16 +221,15 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
-
+FRONTEND_URL = 'localhost:5173/'
 
 REST_AUTH  = {
     'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
      'USER_DETAILS_SERIALIZER': 'accounts.serializers.CustomUserDetailsSerializer',
      'PASSWORD_RESET_USE_SITES_DOMAIN': True,
+     'PASSWORD_RESET_SERIALIZER': 'accounts.forms.MyPasswordResetSerializer',
 }
-REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'users.serializers.CustomRegisterSerializer',
-}
+
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = 'my-app-auth' # The cookie key name can be the one you want
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
@@ -271,6 +270,6 @@ LOGOUT_ON_PASSWORD_CHANGE = False
 # reason for error was ing LOGIN_URL redirect url included HTTPS by accident!
 
 
-FRONTEND_URL = 'http://localhost:5173/'
-ACCOUNT_EMAIL_CONFIRMATION_URL = FRONTEND_URL
-ACCOUNT_PASSWORD_RESET_CONFIRM = FRONTEND_URL + 'password-reset/'
+# FRONTEND_URL = 'localhost:5173/'
+# ACCOUNT_EMAIL_CONFIRMATION_URL = FRONTEND_URL + 'verify-email/{}'
+# ACCOUNT_PASSWORD_RESET_CONFIRM = FRONTEND_URL + 'password-reset/confirm/'
