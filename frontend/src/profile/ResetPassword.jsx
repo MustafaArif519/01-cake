@@ -25,23 +25,24 @@ export default function ResetPassword() {
 
     const [showPassword1, setShowPassword1] = useState('password');
     const [showPassword2, setShowPassword2] = useState('password');
+    
+    const searchParams = new URLSearchParams(location.search);
+    const uid = searchParams.get('id');   // Get the 'uid' parameter value from the URL
+    const token = searchParams.get('token'); // Get the 'token' parameter value from the URL
 
-    const uId = '';
-    const token = '';
 
 
     const resetPass = async () => {
         const windowName = window.location.hostname;
-        console.log('http://localhost:8000/api/v1/dj-rest-auth/password/reset/confirm/');
+        console.log(uid, token);
         try {
             const response = await fetch('http://localhost:8000/api/v1/dj-rest-auth/password/reset/confirm/', {
                 method: 'POST',
                 headers: {
-                    'Authorization': "Token " + token,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    uid: uId,
+                    uid: uid,
                     token: token,
                     new_password1: password1,
                     new_password2: password2,
@@ -49,13 +50,12 @@ export default function ResetPassword() {
             });
             if (response.ok) {
                 const data = await response.json();
-                retrieveUser(token);
-                setEditing(!editing);
+                console.log(data);
 
             } else {
                 // Login failed, handle the error
                 const data = await response.json();
-                console.log('User data patching failed', JSON.stringify(data));
+                console.log('User password changing failed', JSON.stringify(data));
             }
         } catch (error) {
             console.error('Error:', error);

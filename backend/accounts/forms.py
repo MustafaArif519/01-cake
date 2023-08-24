@@ -32,7 +32,7 @@ class CustomAllAuthPasswordResetForm(AllAuthPasswordResetForm):
             path = f"custom_password_reset_url/{user_pk_to_url_str(user)}/{temp_key}/"
             print(user_pk_to_url_str(user), temp_key)
             url = build_absolute_uri(request, path)
-            base_url = "http://localhost:5173"
+            base_url = "http://localhost:5173/password-reset/"
             query_params = {
                 "id": user_pk_to_url_str(user),
                 "token": temp_key
