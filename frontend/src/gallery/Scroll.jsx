@@ -119,9 +119,7 @@ useEffect(() => {
 
     // Now you can use the filteredResults as needed
     setFilteredItems(filteredResults);
-    if(filteredResults.length === 0 && hasMore){
-      getcakes();
-    }
+
     console.log(filteredResults);
     console.log(results);
 };
@@ -261,7 +259,7 @@ toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreat
          top: '60px', zIndex: 2, 
 
       }}>
-        <MDBIcon fas icon="search"/>
+        <MDBIcon fas icon="search" color = "secondary"/>
         <input
           className="form-control mr-sm-2 border-0"
           type="text"
@@ -288,7 +286,7 @@ toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreat
           dataLength={resultsSize} // This is important field to render the next data
           next={getcakes}
           hasMore={hasMore}
-          loader={<h4>Scroll Further To Search More Cakes!</h4>}
+
         >
           {/* {renderedcakes} */}
           <div style={{
@@ -299,14 +297,18 @@ toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreat
 <MDBContainer >
 
   
-<div>
-  {filteredItems.length === 0 ? <div  style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center', alignItems: "center"}}>
-  {hasMore && <div > <MDBIcon   style= {{height: ""}} icon='search' size='8x'/>
-  <h4>Scroll Further To Search More Cakes!</h4> </div>}
+<div >
+  {filteredItems.length === 0 ? 
+  <div  style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: '', alignItems: ""}}>
+  {hasMore && <div style={{ display: 'flex', flexDirection: "column", gap: '10px', justifyContent: 'center', 
+  alignItems: "center"}}>
+  <MDBIcon  icon='angle-double-down' size='10x' color= "info" style= {{height: "200px"}}/>
+  <h4>Scroll down to search more cakes!</h4>
+</div>}
 
   </div> :  
   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', 
-  justifyContent: 'center', alignItems: "center"}}>
+  justifyContent: '', alignItems: ""}}>
  { filteredItems.map(item => (
     <Cake key={item.id} cake={item} likeData={likeData} user={user} token={token} 
     deleteCake={deleteCake} patchCake = {patchCake} postCake = {postCake}
@@ -323,17 +325,16 @@ toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreat
 
 
 {!hasMore && filteredItems.length === 0 && 
-  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center', 
+  <div  style={{ display: 'flex', flexDirection: "column", gap: '10px', justifyContent: 'center', 
   alignItems: "center"}}>
-  <MDBIcon  icon='times-circle' size='10x' style= {{height: "200px"}}/>
+  <MDBIcon  icon='times-circle' color="danger" size='10x' style= {{height: "200px"}}/>
+  <h4>No Matching Cakes Found</h4>
 </div>
 }
 
             
           </div>
 
-          {!hasMore && filteredItems.length === 0 && 
-          <h4>No Matching Cakes Found</h4>}
         </InfiniteScroll>
       </div>
     </>
