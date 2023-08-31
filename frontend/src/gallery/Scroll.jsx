@@ -119,6 +119,9 @@ useEffect(() => {
 
     // Now you can use the filteredResults as needed
     setFilteredItems(filteredResults);
+    if(filteredResults.length === 0 && hasMore){
+      getcakes();
+    }
     console.log(filteredResults);
     console.log(results);
 };
