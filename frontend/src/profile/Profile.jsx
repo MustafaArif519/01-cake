@@ -156,7 +156,7 @@ export default function Profile({ token, user, retrieveUser, resetToken }) {
                     src="./src/images/profile.png"
                     alt="avatar"
                     className="rounded-circle"
-                    style={{ width: '150px', height: '150px' }}
+                    style={{ maxWidth: '150px', height: '150px' }}
                     fluid />
 
                   <div className=" justify-content-center">
@@ -247,7 +247,7 @@ export default function Profile({ token, user, retrieveUser, resetToken }) {
 
                       <div className="d-flex justify-content-end">
                         <MDBBtn color="danger" className="me-1" onClick={() => discardPass()}>Discard</MDBBtn>
-                        <MDBBtn color="success" className="me-1" style={{ width: '100px' }} onClick={changePassword}>
+                        <MDBBtn color="success" className="me-1" style={{ maxWidth: '100px' }} onClick={changePassword}>
                           Save
                         </MDBBtn>
                       </div>
@@ -276,7 +276,7 @@ export default function Profile({ token, user, retrieveUser, resetToken }) {
           </MDBCol>
           <MDBCol lg="8">
             <MDBCard className="mb-4"
-              style={{ width: '500px' }}>
+              style={{ maxWidth: '500px' }}>
               <MDBCardBody>
                 <MDBRow>
                   <MDBCol sm="3">
@@ -385,7 +385,7 @@ export default function Profile({ token, user, retrieveUser, resetToken }) {
                 {editing &&
                   <div className="d-flex justify-content-end">
                     <MDBBtn color="danger" className="me-1" onClick={discard}>Discard</MDBBtn>
-                    <MDBBtn color="success" className="me-1" style={{ width: '100px' }} onClick={patchUser}>
+                    <MDBBtn color="success" className="me-1" style={{ maxmaxWidth: '100px' }} onClick={patchUser}>
                       Save
                     </MDBBtn>
                   </div>
