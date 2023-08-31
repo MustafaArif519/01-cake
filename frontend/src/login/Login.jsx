@@ -112,7 +112,7 @@ const Login = ({ showModal, showCenteredModal, handleSubmit, display }) => {
                 required
                 label='Username/Email'
                 value={username}
-                style={{ width: "350px" }}
+                style={{ maxWidth: "350px" }}
               />
             </MDBValidationItem>
 

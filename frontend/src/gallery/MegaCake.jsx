@@ -220,7 +220,9 @@ export default function MegaCake({ cake, token, user, like, unlike,
 
               </MDBCardBody>
               <MDBCardFooter style={{ display: "flex", justifyContent: "space-between" }}>
-                <small className='text-muted' >{moment(cake.created_at).fromNow()}</small>
+                <small className='text-muted' >
+                  Created {moment(cake.created_at).fromNow()}
+                  </small>
                 {user.is_staff && !editing && <div>
                   <MDBBtn color="warning" style={{ margin: "10px" }} onClick={() => setEditing(!editing)}><MDBIcon fas icon="edit" /></MDBBtn>
                   <MDBBtn color="danger" style={{ margin: "10px" }} onClick={toggleShow}>

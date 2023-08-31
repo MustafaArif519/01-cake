@@ -92,7 +92,7 @@ const Register = ({ showModal, createAccount, display }) => {
                                     id='validationCustom01'
                                     required
                                     label='First Name'
-                                    style={{ width: "350px" }}
+                                    style={{ maxWidth: "350px" }}
                                 />
                             </div>
                         </MDBValidationItem>

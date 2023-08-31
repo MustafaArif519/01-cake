@@ -191,7 +191,7 @@ toggleText();
             <MDBModalHeader>
               
             <div className="MDBTabsContainer">
- <MDBTabs pills justify className='mb-3 d-flex flex-row justify-content-between'>
+ <MDBTabs pills justify className=' d-flex p2 flex-row justify-content-between'>
         <MDBTabsItem>
           <MDBTabsLink onClick={() => handleJustifyClick('tab1')} active={justifyActive === 'tab1'}>
             Image With Text
@@ -205,7 +205,7 @@ toggleText();
       </MDBTabs>
       </div>
              
-              {/* <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn> */}
+              <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
             </MDBModalHeader>
             <MegaCake cake={cake} like = {like} token = {token} user = {user} 
             unlike = {unlike} likeCount = {likeCount}
@@ -220,7 +220,7 @@ toggleText();
 <MDBCard style={cardStyles}>
 
 <MDBRipple rippleColor='dark' rippleTag='div' 
-onDoubleClick={toggleShow}
+onClick={toggleShow}
 className='bg-image hover-zoom'>
 
 <CakeImage

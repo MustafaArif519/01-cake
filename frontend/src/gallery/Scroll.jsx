@@ -288,7 +288,7 @@ toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreat
           hasMore={hasMore}
           loader = {
             <div style={{ display: 'flex', flexDirection: "column", gap: '10px', justifyContent: 'center', 
-  alignItems: "center"}}>
+  alignItems: "center", marginBottom: "30px"}}>
     <h4>Scroll down to search more cakes!</h4>
   <MDBIcon  icon='angle-double-down' size='10x' color= "info" style= {{height: "200px"}}/>
   
@@ -327,7 +327,7 @@ toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreat
 
 {!hasMore && filteredItems.length === 0 && 
   <div  style={{ display: 'flex', flexDirection: "column", gap: '10px', justifyContent: 'center', 
-  alignItems: "center"}}>
+  alignItems: "center", marginBottom: "35px"}}>
     <h4>No Matching Cakes Found</h4>
   <MDBIcon  icon='times-circle' color="danger" size='10x' style= {{height: "200px"}}/>
   
