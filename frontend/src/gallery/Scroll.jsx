@@ -286,6 +286,14 @@ toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreat
           dataLength={resultsSize} // This is important field to render the next data
           next={getcakes}
           hasMore={hasMore}
+          loader = {
+            <div style={{ display: 'flex', flexDirection: "column", gap: '10px', justifyContent: 'center', 
+  alignItems: "center"}}>
+    <h4>Scroll down to search more cakes!</h4>
+  <MDBIcon  icon='angle-double-down' size='10x' color= "info" style= {{height: "200px"}}/>
+  
+</div>
+          }
 
         >
           {/* {renderedcakes} */}
@@ -294,29 +302,22 @@ toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreat
           }}>
 
 
-<MDBContainer >
+<MDBContainer fluid>
 
   
 <div >
-  {filteredItems.length === 0 ? 
-  <div  style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: '', alignItems: ""}}>
-  {hasMore && <div style={{ display: 'flex', flexDirection: "column", gap: '10px', justifyContent: 'center', 
-  alignItems: "center"}}>
-  <MDBIcon  icon='angle-double-down' size='10x' color= "info" style= {{height: "200px"}}/>
-  <h4>Scroll down to search more cakes!</h4>
-</div>}
-
-  </div> :  
+ 
   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', 
-  justifyContent: '', alignItems: ""}}>
+  justifyContent: 'center', alignItems: "center"}}>
  { filteredItems.map(item => (
     <Cake key={item.id} cake={item} likeData={likeData} user={user} token={token} 
     deleteCake={deleteCake} patchCake = {patchCake} postCake = {postCake}
     postLike = {postLike} deleteLike = {deleteLike}
+    
     />
   ))}
   </div>
-  }
+  
 </div>
 
 
@@ -327,8 +328,9 @@ toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreat
 {!hasMore && filteredItems.length === 0 && 
   <div  style={{ display: 'flex', flexDirection: "column", gap: '10px', justifyContent: 'center', 
   alignItems: "center"}}>
+    <h4>No Matching Cakes Found</h4>
   <MDBIcon  icon='times-circle' color="danger" size='10x' style= {{height: "200px"}}/>
-  <h4>No Matching Cakes Found</h4>
+  
 </div>
 }
 
