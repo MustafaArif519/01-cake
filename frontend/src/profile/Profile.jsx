@@ -275,15 +275,15 @@ export default function Profile({ token, user, retrieveUser, resetToken }) {
 
           </MDBCol>
           <MDBCol lg="8">
-            <MDBCard className="mb-4"
-              style={{ maxWidth: '500px' }}>
+            <MDBCard className="mb-3 w-100 p-3"
+              style = {{maxWidth: "520px" }}>
               <MDBCardBody>
                 <MDBRow>
                   <MDBCol sm="3">
                     <MDBCardText>Full Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">
+                    <MDBCardText className="text-muted" >
                       {!editing &&
                         <div>
                           {user.first_name}
