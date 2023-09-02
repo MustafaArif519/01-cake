@@ -212,7 +212,15 @@ function Navigation({ token, resetToken, recievedToken }) {
               <MDBNavbarItem>
                 <Nav.Link as={Link} to={`/gallery`}>Gallery</Nav.Link>
               </MDBNavbarItem>
+
               <MDBNavbarItem>
+                <Nav.Link 
+                target="_blank"
+                href = "https://docs.google.com/forms/d/e/1FAIpQLScXUGXztc-mJNSmaPuNWoBMwB8xvuDbnKlYk_wK5jn54Jk7ag/viewform?usp=sf_link"
+                >Place Order</Nav.Link>
+              </MDBNavbarItem>
+
+              {/* <MDBNavbarItem>
                 <MDBDropdown>
                   <MDBDropdownToggle tag='a' className='nav-link' role='button'>
                     Orders
@@ -229,7 +237,9 @@ function Navigation({ token, resetToken, recievedToken }) {
                     </MDBDropdownItem>
                   </MDBDropdownMenu>
                 </MDBDropdown>
-              </MDBNavbarItem>
+              </MDBNavbarItem> */}
+
+
               <MDBNavbarItem>
                 <Nav.Link as={Link} to={`/contact`}>Contact</Nav.Link>
               </MDBNavbarItem>

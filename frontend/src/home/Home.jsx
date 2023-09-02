@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Modal from "../administration/Modal"
 import {
 
   MDBCarousel,
@@ -27,7 +26,10 @@ export default function Home(token, recievedToken) {
               <br />
               <br />
               <h4 className='mb-3'>Each cake is made with care and precision</h4>
-              <MDBBtn tag="a" outline color="info" size="lg">
+              <MDBBtn tag="a" outline color="info" size="lg"
+              target="_blank"
+              href = "https://docs.google.com/forms/d/e/1FAIpQLScXUGXztc-mJNSmaPuNWoBMwB8xvuDbnKlYk_wK5jn54Jk7ag/viewform?usp=sf_link"
+              >
                 Place Order
               </MDBBtn>
             </div>
