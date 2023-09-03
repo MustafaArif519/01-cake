@@ -1,4 +1,5 @@
 import Scroll from './Scroll';
+import PropTypes from "prop-types";
 import { 
   MDBBtn,
   MDBModal,
@@ -10,10 +11,10 @@ import {
 import { useState } from "react"
 
 
-function Gallery({ user, token }) {
+function Gallery({ user, token, blastModal}) {
   // console.log(user);
   const [optSmModal, setOptSmModal] = useState(false);
-
+//console.log(blastModal);
   const toggleShow = () => setOptSmModal(!optSmModal);
 
   return (
@@ -25,7 +26,8 @@ function Gallery({ user, token }) {
       {console.log('Gallery component rendered')}
 
 
-        <Scroll url="http://127.0.0.1:8000/api/v1/cakes" user={user} token={token} />
+        <Scroll url="http://127.0.0.1:8000/api/v1/cakes" user={user} token={token} 
+        blastModal={blastModal} />
 
 
 
@@ -36,3 +38,4 @@ function Gallery({ user, token }) {
 }
 
 export default Gallery;
+

@@ -11,6 +11,7 @@ import NewOrder from './orders/new-order/NewOrder';
 import Profile from './profile/Profile'
 import ResetPassword from './profile/ResetPassword';
 import Contact from './Contact.jsx'
+import AdminModal from './administration/AdminModal';
 import "./background.css"
 
 
@@ -18,6 +19,10 @@ function App() {
   const [token, setToken] = useState(localStorage.getItem('token') || '');
   const [userId, setUserId] = useState(localStorage.getItem('userId') || -1);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || '');
+
+  const [modalMessage, setModalMessage] = useState('');
+  const [modalType, setModalType] = useState('');
+  const [centredModal, setCentredModal] = useState(false);
   // const navigate = useNavigate();
 
 
@@ -105,15 +110,27 @@ function App() {
     }
   };
 
-  
+  const blastModal = (type, message) => {
+    
+    setModalMessage(message);
+    setModalType(type);
+    setCentredModal(true);
+    console.log(centredModal);
+  }
+
+
+
   return (
     <>
         {console.log("App componenet rendered", token)}
         <Router >
           <Navigation token = {token} resetToken = {resetToken} recievedToken={recievedToken}/>
+          <AdminModal showModal={centredModal} message={modalMessage} type = {modalType} 
+         setShowModal={setCentredModal}/>
           <Routes>
             <Route path="/" element={<Home token = {token} recievedToken = {recievedToken}/>} />
-            <Route path="/gallery" element={<Gallery user = {user} token = {token}/>} />
+            <Route path="/gallery" element={<Gallery user = {user} token = {token} 
+            blastModal={blastModal}/>} />
             <Route path="/view-order" element={<Orders />} />
             <Route path="/new-order" element={<NewOrder token = {token} />} />
             <Route path="/profile" element= {user ? <Profile token = {token} user ={user} 

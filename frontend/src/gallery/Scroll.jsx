@@ -23,7 +23,7 @@ import {
 
 // The parameter of this function is an object with a string called url inside it.
 // url is a prop for the Cake component.
-export default function Scroll({ url, user, token, searching }) {
+export default function Scroll({ url, user, token, searching, blastModal }) {
   const [results, setResults] = useState([]);
   const [next, setNext] = useState("null");
   const [hasMore, setHasMore] = useState(false);
@@ -160,7 +160,10 @@ search(searchTerm);
           setResultsSize(data.results.length);
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        // Call blastModal with the error message
+        blastModal("error", "Failed to Connect to Backend Server");
+      });
 
     return () => {
       // This is a cleanup function that runs whenever the cake component
