@@ -198,7 +198,7 @@ search(searchTerm);
         }
       })
       .catch((error) => {
-        console.error('Error:', error);
+        blastModal("error", "Error retriving like data from server.")
       });
 
     return () => {
@@ -241,7 +241,10 @@ search(searchTerm);
           setResultsSize(data.results.length + resultsSize);
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        blastModal("error", "Error retrieving more cakes from server. Make sure internet connection\
+        is stable.")
+      });
   };
 
 
@@ -316,7 +319,7 @@ toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreat
     <Cake key={item.id} cake={item} likeData={likeData} user={user} token={token} 
     deleteCake={deleteCake} patchCake = {patchCake} postCake = {postCake}
     postLike = {postLike} deleteLike = {deleteLike}
-    
+    blastModal = {blastModal}
     />
   ))}
   </div>

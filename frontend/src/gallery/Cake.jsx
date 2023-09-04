@@ -30,7 +30,7 @@ import CakeImage from './CakeImage';
 import "./style.css"
 
 export default function Cake({ cake, likeData, user, token,
-   deleteCake, patchCake, postLike, deleteLike}) {
+   deleteCake, patchCake, postLike, deleteLike, blastModal}) {
 
 
   const [yourLike, setYourLike] = useState(null);
@@ -78,6 +78,8 @@ toggleText();
   const like = async () => {
     console.log(cake.id);
     if(token == ""){
+      blastModal("info", "To like photos, please create or sign into an account by clicking the\
+       login button!")
       return;
     }
     try {
@@ -107,11 +109,16 @@ toggleText();
       postLike(responseBody);
 
     } catch (error) {
-      console.log(error);
+      blastModal("error", "Error posting like to server. Make sure internet connection is stable.")
     }
   };
 
   const unlike = async () => {
+    if(token == ""){
+      blastModal("info", "To unlike photos, please create or sign into an account by clicking the\
+       login button!")
+      return;
+    }
     try {
       const response = await fetch('http://127.0.0.1:8000/api/v1/cake-likes/'+yourLike.id+"/", {
         method: 'DELETE',
@@ -127,7 +134,10 @@ toggleText();
       setLikeCount(likeCount - 1);
       
     } catch (error) {
-      console.error(error);
+      if(token == ""){
+        blastModal("error", "There was an error in removing your like from the server")
+        return;
+      }
     }
   };
 
@@ -211,6 +221,7 @@ toggleText();
             unlike = {unlike} likeCount = {likeCount}
             setOptSmModal = {setOptSmModal}
             deleteCake = {deleteCake} updateCake = {patchCake}
+            blastModal = {blastModal}
             yourLike = {yourLike} showText = {showText}/>
           </MDBModalContent>
         </MDBModalDialog>

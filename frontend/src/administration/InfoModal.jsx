@@ -10,14 +10,14 @@ import {
     MDBModalFooter,
 } from 'mdb-react-ui-kit';
 
-export default function ErrorModal({ toggleShow, centredModal, setCentredModal, message}) {
+export default function InfoModal({ toggleShow, centredModal, setCentredModal, message}) {
     return (
         <>
 <MDBModal tabIndex='-1' show={centredModal} setShow={setCentredModal}>
         <MDBModalDialog centered>
-        <MDBModalContent className='text-white' style={{backgroundColor: "#DC4C64"}}>
+        <MDBModalContent className='text-white' style={{backgroundColor: "#54B4D3"}}>
             <MDBModalHeader>
-              <MDBModalTitle>Oh no, It looks like an Error occurred!</MDBModalTitle>
+              <MDBModalTitle>Account Status Update</MDBModalTitle>
               <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody>

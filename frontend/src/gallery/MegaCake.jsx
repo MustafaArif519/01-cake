@@ -28,7 +28,7 @@ import CakeImage from './CakeImage';
 import "./style.css"
 
 export default function MegaCake({ cake, token, user, like, unlike, 
-  yourLike, likeCount, showText, deleteCake, updateCake }) {
+  yourLike, likeCount, showText, deleteCake, updateCake, blastModal }) {
   //console.log(description);
   // console.log(likeData);
   // let userId = localStorage.getItem('userId');
