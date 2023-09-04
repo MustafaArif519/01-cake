@@ -71,7 +71,7 @@ toggleText();
     // console.log(foundLike == null);
   
     setYourLike(foundLike);
-  }, [likeData, cake.id]);
+  }, [likeData, cake.id, user]);
 
 
 
