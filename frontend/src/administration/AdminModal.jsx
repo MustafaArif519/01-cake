@@ -21,7 +21,6 @@ export default function AdminModal( {showModal, setShowModal, type, message }) {
 
   return (
     <>
-     <MDBBtn onClick={toggleShow}>Vertically centered modal</MDBBtn>
 {type === "error" && 
 <ErrorModal toggleShow={toggleShow} centredModal={showModal} setCentredModal={setShowModal} 
 message = {message}/>}

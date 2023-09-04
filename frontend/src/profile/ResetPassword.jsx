@@ -19,7 +19,7 @@ import {
     MDBListGroupItem
 } from 'mdb-react-ui-kit';
 
-export default function ResetPassword() {
+export default function ResetPassword({blastModal}) {
     const [password1, setPassword1] = useState('');
     const [password2, setPassword2] = useState('');
 
@@ -51,11 +51,13 @@ export default function ResetPassword() {
             if (response.ok) {
                 const data = await response.json();
                 console.log(data);
+                blastModal("info", "Password reset succesfully");
 
             } else {
                 // Login failed, handle the error
                 const data = await response.json();
                 console.log('User password changing failed', JSON.stringify(data));
+                blastModal("error", "Password not reset succesfully: "+JSON.stringify(data));
             }
         } catch (error) {
             console.error('Error:', error);

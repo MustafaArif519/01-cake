@@ -108,6 +108,8 @@ export default function MegaCake({ cake, token, user, like, unlike,
     })
     .catch(error => {
       console.error('Error uploading data', error);
+      blastModal("error", "Cake details not updated, make sure you have admin rights and \
+      stable internet connection.")
     });
 
   };
@@ -127,6 +129,8 @@ export default function MegaCake({ cake, token, user, like, unlike,
       // Handle success or navigate to another page
     } catch (error) {
       console.error('Error deleting cake', error);
+      blastModal("error", "Cake was not deleted, make sure you have admin status and \
+      stable internet connection.")
       // Handle error
     }
   };

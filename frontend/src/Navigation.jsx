@@ -31,7 +31,7 @@ import LoginModal from './login/LoginModal';
 
 
 // eslint-disable-next-line react/prop-types
-function Navigation({ token, resetToken, recievedToken }) {
+function Navigation({ token, resetToken, recievedToken, blastModal }) {
   const [basicModal, setBasicModal] = useState(false);
   const toggleShow = () => setBasicModal(!basicModal);
 
@@ -88,11 +88,14 @@ function Navigation({ token, resetToken, recievedToken }) {
           recievedToken(data.key);
           setBasicModal(false);
         } else {
+          const data = await response.json();
           // Login failed, handle the error
           console.log('Login failed');
+          blastModal("error", "Error logging into account:\n" + JSON.stringify(data));
         }
       } catch (error) {
         console.error('Error:', error);
+        blastModal("error", "Error logging in:\n" + error);
       }
     };
     tryLogin();
@@ -123,9 +126,11 @@ function Navigation({ token, resetToken, recievedToken }) {
           console.log('Registration failed');
           const errorResponse = await response.json();
           console.log(errorResponse);
+          blastModal("error", "Error creating account:\n" + JSON.stringify(errorResponse));
         }
       } catch (error) {
         console.error('Error:', error);
+        blastModal("error", "Error creating account:\n" + error);
       }
     };
     tryCreate();

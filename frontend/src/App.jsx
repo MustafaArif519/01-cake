@@ -124,7 +124,8 @@ function App() {
     <>
         {console.log("App componenet rendered", token)}
         <Router >
-          <Navigation token = {token} resetToken = {resetToken} recievedToken={recievedToken}/>
+          <Navigation token = {token} resetToken = {resetToken} recievedToken={recievedToken}
+          blastModal={blastModal}/>
           <AdminModal showModal={centredModal} message={modalMessage} type = {modalType} 
          setShowModal={setCentredModal}/>
           <Routes>
@@ -132,11 +133,11 @@ function App() {
             <Route path="/gallery" element={<Gallery user = {user} token = {token} 
             blastModal={blastModal}/>} />
             <Route path="/view-order" element={<Orders />} />
-            <Route path="/new-order" element={<NewOrder token = {token} />} />
+            <Route path="/new-order" element={<NewOrder token = {token} blastModal={blastModal} />} />
             <Route path="/profile" element= {user ? <Profile token = {token} user ={user} 
-            retrieveUser = {retrieveUser} resetToken={resetToken}/> :
+            retrieveUser = {retrieveUser} resetToken={resetToken} blastModal={blastModal} /> :
              <Navigate to="/" />}/>
-            <Route path="/password-reset" element={<ResetPassword />} />
+            <Route path="/password-reset" element={<ResetPassword blastModal={blastModal} />} />
             <Route path="/contact" element={<Contact token = {token} />} />
             {/* <Route path="/login" element={<Login token = {token} recievedToken = {recievedToken}/>} /> */}
             <Route path="*" element={<ErrorPage />} />

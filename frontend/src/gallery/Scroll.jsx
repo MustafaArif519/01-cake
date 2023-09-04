@@ -255,7 +255,7 @@ search(searchTerm);
   return (
     <>
 
-<CreateCakeModal token = {token} user = {user} postCake={postCake} 
+<CreateCakeModal token = {token} user = {user} postCake={postCake} blastModal={blastModal}
 toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreate} />
 
 

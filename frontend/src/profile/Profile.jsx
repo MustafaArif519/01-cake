@@ -19,7 +19,7 @@ import {
   MDBListGroupItem
 } from 'mdb-react-ui-kit';
 
-export default function Profile({ token, user, retrieveUser, resetToken }) {
+export default function Profile({ token, user, retrieveUser, resetToken, blastModal }) {
   const [editUser, setEditUser] = useState(user);
   const [editing, setEditing] = useState(false);
 
@@ -98,6 +98,7 @@ export default function Profile({ token, user, retrieveUser, resetToken }) {
       }
     } catch (error) {
       console.error('Error:', error);
+      blastModal("error", "User data not updated succesfully.")
     }
   };
 
@@ -123,14 +124,17 @@ export default function Profile({ token, user, retrieveUser, resetToken }) {
         setNewPassword2('');
         setShowPassword1('password');
         setShowPassword2('password');
+        blastModal("info", "Password updated succesfully.")
 
       } else {
         // Login failed, handle the error
         const data = await response.json();
         console.log('User data password change failed', JSON.stringify(data));
+        blastModal("error", "Password not updated scucessfully:\n" + JSON.stringify(data));
       }
     } catch (error) {
       console.error('Error:', error);
+      blastModal("error", "Password not updated scucessfully. Please try again.");
     }
   };
 

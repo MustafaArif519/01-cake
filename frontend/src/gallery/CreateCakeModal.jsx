@@ -29,7 +29,8 @@ import {
 import "./style.css"
 import CreateCakeWarning from "./CreateCakeWarning";
 
-export default function CreateCakeModal({ token, user, postCake, toggleCreate, showCreate, setShowCreate }) {
+export default function CreateCakeModal({ token, user, postCake, toggleCreate, showCreate, 
+  setShowCreate, blastModal }) {
 
 
 
@@ -113,6 +114,8 @@ const formData = new FormData();
     })
     .catch(error => {
       console.error('Error uploading data', error);
+      blastModal("error", "Cake not uploaded, make sure you have admin rights and stable\
+      internet connection.")
     });
     
   };
