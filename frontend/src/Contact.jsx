@@ -24,8 +24,8 @@ export default function PersonalProfile() {
             <MDBRow className="g-0">
               <MDBCol md="3" className="gradient-custom text-center text-white"
                 style={{ borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem' }}>
-                <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                  alt="Avatar" className="my-5" fluid />
+                {/* <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                  alt="Avatar" className="my-5" fluid /> */}
                 <MDBTypography tag="h5">Marie Horwitz</MDBTypography>
                 <MDBCardText>Web Designer</MDBCardText>
                 <MDBIcon far icon="edit mb-5" />
@@ -51,7 +51,7 @@ export default function PersonalProfile() {
                       <MDBRow className="pt-1">
                         <MDBCol size="7" className="mb-3">
                           <MDBCardText className="text-muted">Weekdays: 9AM - 5PM</MDBCardText>
-                          <MDBCardText className="text-muted">Weekends: 9AM - 8PM</MDBCardText>
+                          <MDBCardText className="text-muted">Weekends: 10AM - 6PM</MDBCardText>
 
                         </MDBCol>
                         <MDBCol size="5" className="mb-3">
