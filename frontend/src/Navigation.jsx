@@ -104,22 +104,26 @@ function Navigation({ token, resetToken, recievedToken, blastModal }) {
 
 
   const createAccount = useCallback((registerForm) => {
+    console.log(registerForm);
     const tryCreate = async () => {
       try {
         const response = await fetch('http://127.0.0.1:8000/api/v1/dj-rest-auth/registration/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            // Add an Authorization header if you have an authentication token
+            // 'Authorization': `Bearer ${yourAuthToken}`,
           },
-          body: JSON.stringify(registerForm), // Corrected: Pass the entire object as the body
+          body: JSON.stringify(registerForm),
         });
-
+  
         if (response.ok) {
-          const data = await response.json();
-
+          // const data = await response.json();
+  
           // Save the token to local storage
           // TODO: Use the token for authenticated requests
           console.log('Registration successful. Token:');
+          blastModal("success", "Account successfully registered!");
           setBasicModal(false);
         } else {
           // Registration failed, handle the error
@@ -135,6 +139,7 @@ function Navigation({ token, resetToken, recievedToken, blastModal }) {
     };
     tryCreate();
   }, []);
+  
 
   const handleRegistrationSubmit = (registerForm) => {
     const register = {
@@ -143,14 +148,14 @@ function Navigation({ token, resetToken, recievedToken, blastModal }) {
       password1: registerForm.password1,
       password2: registerForm.password2,
       heard_from: registerForm.heard_from,
-      phone_number: registerForm.pNumber, // Corrected: Use pNumber instead of phone_number
-      firstname: registerForm.first_name, // Corrected: Use first_name instead of firstname
-      lastname: registerForm.last_name, // Corrected: Use last_name instead of lastname
+      phone_number: registerForm.phone_number, // Corrected: Use pNumber instead of phone_number
+      firstname: registerForm.firstname, // Corrected: Use first_name instead of firstname
+      lastname: registerForm.lastname, // Corrected: Use last_name instead of lastname
     };
     if (registerForm.heard_from === "Other") {
       register.heard_from = registerForm.heardFromOther;
     }
-    createAccount(register);
+    createAccount(registerForm);
   };
 
   return (

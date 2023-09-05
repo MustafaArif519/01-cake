@@ -22,7 +22,7 @@ export default function Home(token, recievedToken) {
           <div className='d-flex justify-content-center align-items-center h-100'>
             <div className='text-white'>
               <h1 className='mb-3'  style = {{textAlign: "center"}}>
-                Welcome to Farida Cake Boutique!</h1>
+                Welcome to Farida&apos;s Cake Boutique!</h1>
               <br />
               <br />
               <h4 className='mb-3'>Each cake is made with care and precision</h4>

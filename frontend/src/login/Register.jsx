@@ -18,10 +18,10 @@ import {
 const Register = ({ showModal, createAccount, display }) => {
     const [registerForm, setRegisterForm] = useState({
         email: "",
-        first_name: "",
-        last_name: "",
+        firstname: "",
+        lastname: "",
         username: "",
-        pNumber: "",
+        phone_number: "",
         password1: "",
         password2: "",
         heard_from: "",
@@ -29,10 +29,10 @@ const Register = ({ showModal, createAccount, display }) => {
 
     const initialFormState = {
         email: "",
-        first_name: "",
-        last_name: "",
+        firstname: "",
+        lastname: "",
         username: "",
-        pNumber: "",
+        phone_number: "",
         password1: "",
         password2: "",
         heard_from: "",
@@ -86,8 +86,8 @@ const Register = ({ showModal, createAccount, display }) => {
                             <div style = {{paddingBottom: "20px"}}>
                                 <MDBInput
                                 wrapperClass='mb-4'
-                                    value={registerForm.first_name}
-                                    name='first_name'
+                                    value={registerForm.firstname}
+                                    name='firstname'
                                     onChange={onChange}
                                     id='validationCustom01'
                                     required
@@ -101,8 +101,8 @@ const Register = ({ showModal, createAccount, display }) => {
                             <div style = {{paddingBottom: "20px"}}>
                                 <MDBInput
                                 wrapperClass='mb-4'
-                                    value={registerForm.last_name}
-                                    name='last_name'
+                                    value={registerForm.lastname}
+                                    name='lastname'
                                     onChange={onChange}
                                     id='validationCustom01'
                                     required
@@ -116,8 +116,8 @@ const Register = ({ showModal, createAccount, display }) => {
                             <div style = {{paddingBottom: "20px"}}>
                                 <MDBInput
                                 wrapperClass='mb-4'
-                                    value={registerForm.pNumber}
-                                    name='pNumber'
+                                    value={registerForm.phone_number}
+                                    name='phone_number'
                                     onChange={onChange}
                                     id='validationCustom023'
                                     required
@@ -266,7 +266,7 @@ const Register = ({ showModal, createAccount, display }) => {
                     
                 </div>
             <div className='d-flex justify-content-center mb-4'>
-            <MDBCheckbox name='flexCheck' id='flexCheckDefault' label='I have read and agree to the terms' />
+            
           </div>
 
   

@@ -233,11 +233,11 @@ REST_AUTH  = {
 
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = 'my-app-auth' # The cookie key name can be the one you want
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 LOGIN_URL = 'http://localhost:5173'
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 TEMPLATES = [
     {
@@ -258,15 +258,15 @@ TEMPLATES = [
 LOGOUT_ON_PASSWORD_CHANGE = False
 
 
-# Following settings are that for AWS SES sandbox mode configuration!
-AWS_ACCESS_KEY_ID = 'AKIAWIRDHOFWXNAKZUH3'
-AWS_SECRET_ACCESS_KEY = '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'
+# # Following settings are that for AWS SES sandbox mode configuration!
+# AWS_ACCESS_KEY_ID = 'AKIAWIRDHOFWXNAKZUH3'
+# AWS_SECRET_ACCESS_KEY = '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'
 
-# # Email configuration
-EMAIL_BACKEND = "django_ses.SESBackend"
-AWS_SES_REGION_NAME = 'us-west-2'
-AWS_SES_REGION_ENDPOINT = 'email.us-west-2.amazonaws.com'
-DEFAULT_FROM_EMAIL = "testusersender519@gmail.com"
+# # # Email configuration
+# EMAIL_BACKEND = "django_ses.SESBackend"
+# AWS_SES_REGION_NAME = 'us-west-2'
+# AWS_SES_REGION_ENDPOINT = 'email.us-west-2.amazonaws.com'
+# DEFAULT_FROM_EMAIL = "testusersender519@gmail.com"
 
 # You're accessing the development server over HTTPS, but it only supports HTTP. ERROR FIX ATTEMPT
 # reason for error was ing LOGIN_URL redirect url included HTTPS by accident!

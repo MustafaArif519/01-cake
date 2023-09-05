@@ -138,7 +138,7 @@ const Login = ({ showModal, showCenteredModal, handleSubmit, display }) => {
   Forgot password?
 </a>
 
-            <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
+
           </div>
        
 

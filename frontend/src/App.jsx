@@ -150,19 +150,23 @@ function App() {
         </div>
 
         <div>
-          <a href='' className='me-4 text-reset'>
+          <a href='https://www.facebook.com/Faridas-Cake-Boutique-101880002352320'
+          target="_blank" rel="noopener noreferrer"
+           className='me-4 text-reset' >
           <MDBIcon fab icon="facebook fa-lg" style={{ color: '#3b5998' }} />
           </a>
-          <a href='' className='me-4 text-reset'>
-          <MDBIcon fab icon="twitter fa-lg" style={{ color: '#55acee' }} />
-          </a>
+          
           <a href="https://www.instagram.com/faridascakeboutique/" 
           className='me-4 text-reset' target="_blank" rel="noopener noreferrer">
             <MDBIcon fab icon="instagram fa-lg" style={{ color: '#ac2bac' }} />
           </a>
+
+          {/* <a href='' className='me-4 text-reset'>
+          <MDBIcon fab icon="twitter fa-lg" style={{ color: '#55acee' }} />
+          </a>
           <a href='' className='me-4 text-reset'>
             <MDBIcon fab icon="linkedin fa-lg" style={{ color: '#0077b5' }} />
-          </a>
+          </a> */}
 
         </div>
       </section>
@@ -171,7 +175,7 @@ function App() {
 
       <div className='text-center p-4' style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
         © 2023 Copyright: <span></span>
-        <a className='text-reset fw-bold' href='https://mdbootstrap.com/'>
+        <a className='text-reset fw-bold' >
           FaridasCakeBoutique LLC
         </a>
       </div>
