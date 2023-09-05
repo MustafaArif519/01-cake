@@ -26,3 +26,6 @@ dist-ssr
 *.sln
 *.sw?
 backend/db.sqlite3
+
+.venv/
+.env

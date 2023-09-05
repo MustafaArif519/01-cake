@@ -11,7 +11,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from environs import Env
 import os
+
+env = Env()
+env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -259,14 +263,7 @@ LOGOUT_ON_PASSWORD_CHANGE = False
 
 
 # # Following settings are that for AWS SES sandbox mode configuration!
-# AWS_ACCESS_KEY_ID = 'AKIAWIRDHOFWXNAKZUH3'
-# AWS_SECRET_ACCESS_KEY = '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'
 
-# # # Email configuration
-# EMAIL_BACKEND = "django_ses.SESBackend"
-# AWS_SES_REGION_NAME = 'us-west-2'
-# AWS_SES_REGION_ENDPOINT = 'email.us-west-2.amazonaws.com'
-# DEFAULT_FROM_EMAIL = "testusersender519@gmail.com"
 
 # You're accessing the development server over HTTPS, but it only supports HTTP. ERROR FIX ATTEMPT
 # reason for error was ing LOGIN_URL redirect url included HTTPS by accident!
