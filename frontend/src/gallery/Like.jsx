@@ -12,11 +12,11 @@ export default function Like({ cake, token, like, unlike, likeCount, yourLike })
       
       {/* { console.log(yourLike)} */}
       {yourLike == null &&<div><img style={{width: "30px", height: "30px"}} onClick={like}
-         src='./src/images/ui/like.png'
+         src='images/ui/like.png'
         /> {likeCount} {likeCount == 1 ? "Like" : "Likes"}
         </div>}
       {yourLike && <div><img style={{width: "30px", height: "30px"}} onClick={unlike}
-         src='./src/images/ui/unlike.png'
+         src='images/ui/unlike.png'
         /> {likeCount} {likeCount == 1 ? "Like" : "Likes"}</div>}
 
     </>

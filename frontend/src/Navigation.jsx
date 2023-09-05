@@ -194,7 +194,7 @@ function Navigation({ token, resetToken, recievedToken, blastModal }) {
   <Nav.Link as={Link} to={`/`}>
     <img
       alt=""
-      src="./src/images/icon.jpg"
+      src="images/icon.jpg"
       width="30"
       height="30"
       className="d-inline-block align-top"

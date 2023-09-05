@@ -13,7 +13,7 @@ function CakeImage({ src, alt, style }) {
     <div style={{ position: 'relative' }}>
   
         <MDBCardImage
-          src={imageLoaded ? src : './src/images/loading.gif'}
+          src={imageLoaded ? src : 'loading.gif'}
           alt='...'
           style={style}
           onLoad={handleImageLoad} // This should be removed
