@@ -11,7 +11,7 @@ import {
 import { useState } from "react"
 
 
-function Gallery({ user, token, blastModal}) {
+function Gallery({ user, token, blastModal, backendUrl}) {
   // console.log(user);
   const [optSmModal, setOptSmModal] = useState(false);
 //console.log(blastModal);
@@ -26,7 +26,7 @@ function Gallery({ user, token, blastModal}) {
       {console.log('Gallery component rendered')}
 
 
-        <Scroll url="http://127.0.0.1:8000/api/v1/cakes" user={user} token={token} 
+        <Scroll url={backendUrl+"/api/v1/cakes"} user={user} token={token} 
         blastModal={blastModal} />
 
 

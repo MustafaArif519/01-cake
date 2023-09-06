@@ -24,7 +24,7 @@ function App() {
   const [modalType, setModalType] = useState('');
   const [centredModal, setCentredModal] = useState(false);
   // const navigate = useNavigate();
-
+  const backendUrl = "https://faridascakeboutique.com";
 
 
   useEffect(() =>{
@@ -60,7 +60,7 @@ function App() {
 
   const retrieveUserId = async (key) => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/v1/user-id/', {
+      const response = await fetch(backendUrl+'/api/v1/user-id/', {
         method: 'GET',
         headers: {
           'Authorization': "Token " + key,
@@ -84,10 +84,9 @@ function App() {
 
 
   const retrieveUser = async (key) => {
-    const windowName = window.location.hostname;
-    console.log('http://localhost:8000/api/v1/dj-rest-auth/user/');
+    console.log(backendUrl + '/api/v1/dj-rest-auth/user/');
     try {
-      const response = await fetch('http://localhost:8000/api/v1/dj-rest-auth/user/', {
+      const response = await fetch(backendUrl+'/api/v1/dj-rest-auth/user/', {
         method: 'GET',
         headers: {
           'Authorization': "Token " + key,
@@ -125,13 +124,13 @@ function App() {
         {console.log("App componenet rendered", token)}
         <Router >
           <Navigation token = {token} resetToken = {resetToken} recievedToken={recievedToken}
-          blastModal={blastModal}/>
+          blastModal={blastModal} backendUrl={backendUrl} />
           <AdminModal showModal={centredModal} message={modalMessage} type = {modalType} 
          setShowModal={setCentredModal}/>
           <Routes>
             <Route path="/" element={<Home token = {token} recievedToken = {recievedToken}/>} />
             <Route path="/gallery" element={<Gallery user = {user} token = {token} 
-            blastModal={blastModal}/>} />
+            blastModal={blastModal} backendUrl={backendUrl} />} />
             <Route path="/view-order" element={<Orders />} />
             <Route path="/new-order" element={<NewOrder token = {token} blastModal={blastModal} />} />
             <Route path="/profile" element= {user ? <Profile token = {token} user ={user} 

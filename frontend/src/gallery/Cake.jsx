@@ -30,7 +30,7 @@ import CakeImage from './CakeImage';
 import "./style.css"
 
 export default function Cake({ cake, likeData, user, token,
-   deleteCake, patchCake, postLike, deleteLike, blastModal}) {
+   deleteCake, patchCake, postLike, deleteLike, blastModal, backendUrl}) {
 
 
   const [yourLike, setYourLike] = useState(null);
@@ -83,7 +83,7 @@ toggleText();
       return;
     }
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/v1/cake-likes/', {
+      const response = await fetch(backendUrl+'/api/v1/cake-likes/', {
         method: 'POST',
         headers: {
           'Authorization': "Token " + token,
@@ -120,7 +120,7 @@ toggleText();
       return;
     }
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/v1/cake-likes/'+yourLike.id+"/", {
+      const response = await fetch(backendUrl+'/api/v1/cake-likes/'+yourLike.id+"/", {
         method: 'DELETE',
         headers: {
           'Authorization': "Token " + token,
@@ -218,7 +218,7 @@ toggleText();
               <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
             </MDBModalHeader>
             <MegaCake cake={cake} like = {like} token = {token} user = {user} 
-            unlike = {unlike} likeCount = {likeCount}
+            unlike = {unlike} likeCount = {likeCount} backendUrl={backendUrl}
             setOptSmModal = {setOptSmModal}
             deleteCake = {deleteCake} updateCake = {patchCake}
             blastModal = {blastModal}

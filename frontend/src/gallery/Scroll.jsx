@@ -23,7 +23,7 @@ import {
 
 // The parameter of this function is an object with a string called url inside it.
 // url is a prop for the Cake component.
-export default function Scroll({ url, user, token, searching, blastModal }) {
+export default function Scroll({ url, user, token, searching, blastModal, backendUrl }) {
   const [results, setResults] = useState([]);
   const [next, setNext] = useState("null");
   const [hasMore, setHasMore] = useState(false);
@@ -178,7 +178,7 @@ search(searchTerm);
   useEffect(() => {
     let ignoreStaleRequest = false;
 
-    fetch('http://127.0.0.1:8000/api/v1/cake-likes/', {
+    fetch(backendUrl+'/api/v1/cake-likes/', {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
