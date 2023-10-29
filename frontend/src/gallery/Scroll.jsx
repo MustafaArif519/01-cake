@@ -23,7 +23,7 @@ import {
 
 // The parameter of this function is an object with a string called url inside it.
 // url is a prop for the Cake component.
-export default function Scroll({ url, user, token, searching, blastModal, backendUrl }) {
+export default function Scroll({ url, user, token, searching, blastModal }) {
   const [results, setResults] = useState([]);
   const [next, setNext] = useState("null");
   const [hasMore, setHasMore] = useState(false);
@@ -36,7 +36,7 @@ export default function Scroll({ url, user, token, searching, blastModal, backen
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredItems, setFilteredItems] = useState([]);
 
-
+  const backendUrl = "https://faridascakeboutique.com";
 
 
   function removeObjectByCondition(list, conditionObject) {
@@ -174,11 +174,10 @@ search(searchTerm);
   }, [url]);
 
 
-  // Declare a boolean flag that we can use to cancel the API request.
   useEffect(() => {
     let ignoreStaleRequest = false;
 
-    fetch(backendUrl+'/api/v1/cake-likes/', {
+    fetch(backendUrl + '/api/v1/cake-likes/', {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
@@ -193,12 +192,12 @@ search(searchTerm);
       .then((data) => {
         if (!ignoreStaleRequest) {
           setLikeData(data);
-          // console.log(data);
-          // Perform any other logic with the data as needed
+          console.log(data);
         }
       })
       .catch((error) => {
-        blastModal("error", "Error retriving like data from server.")
+        // Handle error here
+        console.error('Error retrieving like data from server:', error);
       });
 
     return () => {
@@ -242,8 +241,8 @@ search(searchTerm);
         }
       })
       .catch((error) => {
-        blastModal("error", "Error retrieving more cakes from server. Make sure internet connection\
-        is stable.")
+        // blastModal("error", "Error retrieving more cakes from server. Make sure internet connection\
+        // is stable.")
       });
   };
 

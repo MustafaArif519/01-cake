@@ -30,12 +30,12 @@ import CakeImage from './CakeImage';
 import "./style.css"
 
 export default function Cake({ cake, likeData, user, token,
-   deleteCake, patchCake, postLike, deleteLike, blastModal, backendUrl}) {
+   deleteCake, patchCake, postLike, deleteLike, blastModal}) {
 
-
+  const backendUrl = "https://faridascakeboutique.com";
   const [yourLike, setYourLike] = useState(null);
   const [likeCount, setLikeCount] = useState(-3);
-
+console.log(likeData);
   const [justifyActive, setJustifyActive] = useState('tab1');
 
   const handleJustifyClick = (value) => {
@@ -71,12 +71,13 @@ toggleText();
     // console.log(foundLike == null);
   
     setYourLike(foundLike);
+    // console.log(likeData);
   }, [likeData, cake.id, user]);
 
 
 
   const like = async () => {
-    console.log(cake.id);
+    console.log(backendUrl+'/api/v1/cake-likes/');
     if(token == ""){
       blastModal("info", "To like photos, please create or sign into an account by clicking the\
        login button!")
@@ -120,6 +121,7 @@ toggleText();
       return;
     }
     try {
+      console.log(backendUrl+'/api/v1/cake-likes/'+yourLike.id+"/");
       const response = await fetch(backendUrl+'/api/v1/cake-likes/'+yourLike.id+"/", {
         method: 'DELETE',
         headers: {

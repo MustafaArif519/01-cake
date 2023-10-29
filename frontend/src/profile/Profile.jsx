@@ -30,7 +30,7 @@ export default function Profile({ token, user, retrieveUser, resetToken, blastMo
   const [showPassword1, setShowPassword1] = useState('password');
   const [showPassword2, setShowPassword2] = useState('password');
 
-
+  const backendUrl = "https://faridascakeboutique.com";
 
   const onChange = (e) => {
     setEditUser(editUser => ({
@@ -75,10 +75,9 @@ export default function Profile({ token, user, retrieveUser, resetToken, blastMo
 
 
   const patchUser = async () => {
-    const windowName = window.location.hostname;
-    console.log('http://localhost:8000/api/v1/dj-rest-auth/user/');
+    console.log(backendUrl+'/api/v1/dj-rest-auth/user/');
     try {
-      const response = await fetch('http://localhost:8000/api/v1/dj-rest-auth/user/', {
+      const response = await fetch(backendUrl+'api/v1/dj-rest-auth/user/', {
         method: 'PATCH',
         headers: {
           'Authorization': "Token " + token,
@@ -103,10 +102,9 @@ export default function Profile({ token, user, retrieveUser, resetToken, blastMo
   };
 
   const changePassword = async () => {
-    const windowName = window.location.hostname;
-    console.log('http://localhost:8000/api/v1/dj-rest-auth/password/change/');
+    console.log(backendUrl+'/api/v1/dj-rest-auth/password/change/');
     try {
-      const response = await fetch('http://localhost:8000/api/v1/dj-rest-auth/password/change/', {
+      const response = await fetch(backendUrl+'/api/v1/dj-rest-auth/password/change/', {
         method: 'POST',
         headers: {
           'Authorization': "Token " + token,
@@ -157,7 +155,7 @@ export default function Profile({ token, user, retrieveUser, resetToken, blastMo
               <MDBCard className="mb-4">
                 <MDBCardBody className="text-center">
                   <MDBCardImage
-                    src="profile.png"
+                    src="images/profile.png"
                     alt="avatar"
                     className="rounded-circle"
                     style={{ maxWidth: '150px', height: '150px' }}

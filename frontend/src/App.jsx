@@ -124,13 +124,13 @@ function App() {
         {console.log("App componenet rendered", token)}
         <Router >
           <Navigation token = {token} resetToken = {resetToken} recievedToken={recievedToken}
-          blastModal={blastModal} backendUrl={backendUrl} />
+          blastModal={blastModal} />
           <AdminModal showModal={centredModal} message={modalMessage} type = {modalType} 
          setShowModal={setCentredModal}/>
           <Routes>
             <Route path="/" element={<Home token = {token} recievedToken = {recievedToken}/>} />
             <Route path="/gallery" element={<Gallery user = {user} token = {token} 
-            blastModal={blastModal} backendUrl={backendUrl} />} />
+            blastModal={blastModal} />} />
             <Route path="/view-order" element={<Orders />} />
             <Route path="/new-order" element={<NewOrder token = {token} blastModal={blastModal} />} />
             <Route path="/profile" element= {user ? <Profile token = {token} user ={user} 

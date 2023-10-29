@@ -26,8 +26,8 @@ export default function PersonalProfile() {
                 style={{ borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem' }}>
                 {/* <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
                   alt="Avatar" className="my-5" fluid /> */}
-                <MDBTypography tag="h5">Marie Horwitz</MDBTypography>
-                <MDBCardText>Web Designer</MDBCardText>
+                <MDBTypography tag="h5"></MDBTypography>
+                <MDBCardText> </MDBCardText>
                 <MDBIcon far icon="edit mb-5" />
               </MDBCol>
               <MDBCol md="9">

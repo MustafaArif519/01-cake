@@ -32,7 +32,7 @@ import CreateCakeWarning from "./CreateCakeWarning";
 export default function CreateCakeModal({ token, user, postCake, toggleCreate, showCreate, 
   setShowCreate, blastModal }) {
 
-
+    const backendUrl = "https://faridascakeboutique.com";
 
   const standard = {
     title: '',
@@ -104,7 +104,7 @@ const formData = new FormData();
     }
 
     // console.log(formData);
-    axios.post('http://localhost:8000/api/v1/cakes/', formData, { headers })
+    axios.post(backendUrl + '/api/v1/cakes/', formData, { headers })
     .then(response => {
       console.log('Data uploaded successfully', response.data);
       

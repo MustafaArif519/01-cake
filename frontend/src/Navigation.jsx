@@ -31,14 +31,14 @@ import LoginModal from './login/LoginModal';
 
 
 // eslint-disable-next-line react/prop-types
-function Navigation({ token, resetToken, recievedToken, blastModal, backendUrl }) {
+function Navigation({ token, resetToken, recievedToken, blastModal }) {
   const [basicModal, setBasicModal] = useState(false);
   const toggleShow = () => setBasicModal(!basicModal);
 
   const [showNavNoToggler, setShowNavNoToggler] = useState(false);
   const [centredModal, setCentredModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-
+  const backendUrl = "https://faridascakeboutique.com";
   const toggleErrorShow = () => {
     setCentredModal(!centredModal);
 

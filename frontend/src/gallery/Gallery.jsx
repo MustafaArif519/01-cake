@@ -11,10 +11,11 @@ import {
 import { useState } from "react"
 
 
-function Gallery({ user, token, blastModal, backendUrl}) {
+function Gallery({ user, token, blastModal}) {
   // console.log(user);
   const [optSmModal, setOptSmModal] = useState(false);
 //console.log(blastModal);
+const backendUrl = "https://faridascakeboutique.com";
   const toggleShow = () => setOptSmModal(!optSmModal);
 
   return (
