@@ -38,11 +38,11 @@ export default function PersonalProfile() {
                   <MDBRow className="pt-1">
                     <MDBCol size="6" className="mb-3">
                       <MDBTypography tag="h6">Email</MDBTypography>
-                      <MDBCardText className="text-muted">info@example.com</MDBCardText>
+                      <MDBCardText className="text-muted">faridascakeboutique@gmail.com</MDBCardText>
                     </MDBCol>
                     <MDBCol size="6" className="mb-3">
                       <MDBTypography tag="h6">Phone</MDBTypography>
-                      <MDBCardText className="text-muted">(248)-525-3097</MDBCardText>
+                      <MDBCardText className="text-muted">(248)-275-1180</MDBCardText>
                     </MDBCol>
                   </MDBRow>
                   <br />
