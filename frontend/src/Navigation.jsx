@@ -38,7 +38,7 @@ function Navigation({ token, resetToken, recievedToken, blastModal }) {
   const [showNavNoToggler, setShowNavNoToggler] = useState(false);
   const [centredModal, setCentredModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const backendUrl = "https://faridascakeboutique.com";
+  const backendUrl = "https://faridascakeboutiquesbackend.net/";
   const toggleErrorShow = () => {
     setCentredModal(!centredModal);
 

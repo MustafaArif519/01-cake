@@ -9,6 +9,7 @@ import {
 } from 'mdb-react-ui-kit';
 
 export default function PersonalProfile() {
+  const backendUrl = "https://faridascakeboutiquesbackend.net/";
   return (
     < >
 

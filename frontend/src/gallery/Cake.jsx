@@ -32,7 +32,7 @@ import "./style.css"
 export default function Cake({ cake, likeData, user, token,
    deleteCake, patchCake, postLike, deleteLike, blastModal}) {
 
-  const backendUrl = "https://faridascakeboutique.com";
+    const backendUrl = "https://faridascakeboutiquesbackend.net/";
   const [yourLike, setYourLike] = useState(null);
   const [likeCount, setLikeCount] = useState(-3);
 console.log(likeData);

@@ -32,7 +32,7 @@ import CreateCakeWarning from "./CreateCakeWarning";
 export default function CreateCakeModal({ token, user, postCake, toggleCreate, showCreate, 
   setShowCreate, blastModal }) {
 
-    const backendUrl = "https://faridascakeboutique.com";
+    const backendUrl = "https://faridascakeboutiquesbackend.net/";
 
   const standard = {
     title: '',

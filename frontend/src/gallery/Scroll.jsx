@@ -36,7 +36,7 @@ export default function Scroll({ url, user, token, searching, blastModal }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredItems, setFilteredItems] = useState([]);
 
-  const backendUrl = "https://faridascakeboutique.com";
+  const backendUrl = "https://faridascakeboutiquesbackend.net/";
 
 
   function removeObjectByCondition(list, conditionObject) {

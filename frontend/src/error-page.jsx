@@ -15,7 +15,7 @@ const ErrorPage = () => {
   const location = useLocation();
   const currentUrl = location.pathname;
   const domainName = window.location.hostname;
-
+  const backendUrl = "https://faridascakeboutiquesbackend.net/";
   return (
     <>
 

@@ -24,8 +24,7 @@ function App() {
   const [modalType, setModalType] = useState('');
   const [centredModal, setCentredModal] = useState(false);
   // const navigate = useNavigate();
-  const backendUrl = "https://faridascakeboutique.com";
-
+  const backendUrl = "https://faridascakeboutiquesbackend.net/";
 
   useEffect(() =>{
     localStorage.setItem('token', token);

@@ -30,7 +30,7 @@ export default function Profile({ token, user, retrieveUser, resetToken, blastMo
   const [showPassword1, setShowPassword1] = useState('password');
   const [showPassword2, setShowPassword2] = useState('password');
 
-  const backendUrl = "https://faridascakeboutique.com";
+  const backendUrl = "https://faridascakeboutiquesbackend.net/";
 
   const onChange = (e) => {
     setEditUser(editUser => ({

@@ -15,7 +15,7 @@ function Gallery({ user, token, blastModal}) {
   // console.log(user);
   const [optSmModal, setOptSmModal] = useState(false);
 //console.log(blastModal);
-const backendUrl = "https://faridascakeboutique.com";
+const backendUrl = "https://faridascakeboutiquesbackend.net/";
   const toggleShow = () => setOptSmModal(!optSmModal);
 
   return (
