@@ -149,9 +149,10 @@ search(searchTerm);
         if (!ignoreStaleRequest) {
           setResults([...results, ...data.results]);
           setFilteredItems([...filteredItems, ...data.results]);
+          console.log(data.next);
 
           setNext(data.next);
-          if (data.next == 'null') {
+          if (data.next === 'null') {
             setHasMore(false);
           }
           else {

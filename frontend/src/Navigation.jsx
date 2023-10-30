@@ -192,7 +192,7 @@ function Navigation({ token, resetToken, recievedToken, blastModal }) {
         <MDBContainer fluid>
 
         <MDBNavbarBrand>
-  <Nav.Link as={Link} to={`/`}>
+  <Nav.Link as={Link} to={`/`}  onClick={() => setShowNavNoToggler(false)}>
     <img
       alt=""
       src="images/icon.jpg"
@@ -217,17 +217,22 @@ function Navigation({ token, resetToken, recievedToken, blastModal }) {
             <MDBNavbarNav className='me-auto mb-2 mb-lg-0'>
               <MDBNavbarItem className='active'>
 
-                <Nav.Link as={Link} to={`/`}>Home</Nav.Link>
+                <Nav.Link as={Link} to={`/`}
+                 onClick={() => setShowNavNoToggler(false)}
+                 >Home</Nav.Link>
 
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <Nav.Link as={Link} to={`/gallery`}>Gallery</Nav.Link>
+                <Nav.Link as={Link} to={`/gallery`}
+                 onClick={() => setShowNavNoToggler(false)}
+                 >Gallery</Nav.Link>
               </MDBNavbarItem>
 
               <MDBNavbarItem>
                 <Nav.Link 
                 target="_blank"
                 href = "https://docs.google.com/forms/d/e/1FAIpQLScXUGXztc-mJNSmaPuNWoBMwB8xvuDbnKlYk_wK5jn54Jk7ag/viewform?usp=sf_link"
+                onClick={() => setShowNavNoToggler(false)}
                 >Place Order</Nav.Link>
               </MDBNavbarItem>
 
@@ -252,7 +257,9 @@ function Navigation({ token, resetToken, recievedToken, blastModal }) {
 
 
               <MDBNavbarItem>
-                <Nav.Link as={Link} to={`/contact`}>Contact</Nav.Link>
+                <Nav.Link as={Link} to={`/contact`}
+                 onClick={() => setShowNavNoToggler(false)}
+                 >Contact</Nav.Link>
               </MDBNavbarItem>
 
 
@@ -264,7 +271,9 @@ function Navigation({ token, resetToken, recievedToken, blastModal }) {
                                 
                 <div className='position-relative d-inline-block'>
                 <Link to="/profile" className="mx-2" rounded>
-                  <MDBBtn color="info">Profile</MDBBtn>
+                  <MDBBtn color="info"
+                   onClick={() => setShowNavNoToggler(false)}
+                   >Profile</MDBBtn>
                 </Link>
                 
 
