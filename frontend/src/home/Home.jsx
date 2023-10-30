@@ -1,16 +1,10 @@
 import React, { useState } from "react";
 import {
-  MDBBtn,
-  MDBNavbar,
-  MDBNavbarToggler,
-  MDBIcon,
-  MDBNavbarNav,
-  MDBNavbarItem,
-  MDBNavbarLink,
-  MDBContainer
 
+  MDBCarousel,
+  MDBCarouselItem,
+  MDBBtn
 } from "mdb-react-ui-kit";
-
 
 
 export default function Home(token, recievedToken) {
@@ -18,12 +12,11 @@ export default function Home(token, recievedToken) {
   return (
     <>
     <title>Home | Farida&#39;s Cake Boutique</title>
-    <header style={{ paddingLeft: 0 }}>
-
+<header>
 
       <div
         className='p-5 text-center bg-image'
-        style={{ backgroundImage: "url(./images/makingCake.gif)", height: 500 }}
+        style={{ backgroundImage: "images/makingCake.gif", height: '600px'}}
       >
         <div className='mask' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
           <div className='d-flex justify-content-center align-items-center h-100'>
