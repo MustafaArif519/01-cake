@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from environs import Env
 import os
+import pymysql
+pymysql.install_as_MySQLdb()
 
 env = Env()
 env.read_env()
@@ -30,7 +32,11 @@ SECRET_KEY = env.str("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = []
+AWS_CNAME = "cake-env.eba-cmfm9hy4.us-west-2.elasticbeanstalk.com"
+FRONTEND_URL = "https://faridascakeboutique.com"
+
+ALLOWED_HOSTS = [AWS_CNAME, '127.0.0.1', 'localhost', '172.31.21.253',
+                  FRONTEND_URL]
 
 
 # Application definition
@@ -117,17 +123,29 @@ MIDDLEWARE = [
     # 'social_django.middleware.SocialAuthExceptionMiddleware',  # <--
 ]
 
-STATIC_URL = "/static/"
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [BASE_DIR / "static"]
-STATIC_ROOT = BASE_DIR / "staticfiles"
+# STATICFILES_MANIFEST = os.path.join(STATIC_ROOT, 'staticfiles.json')
+
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
 
 CORS_ORIGIN_WHITELIST = (
     "http://localhost:5173",
     "http://localhost:8000",
+    AWS_CNAME,
+    FRONTEND_URL,
 )
 
-# CSRF_TRUSTED_ORIGINS = ["http://localhost:5173"]
+# CORS_ALLOW_ALL_ORIGINS = False
+# CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOWED_ORIGINS = [
+#     'https://cake-testing-1.web.app',  # Add your frontend's URL here
+# ]
+
+CSRF_TRUSTED_ORIGINS = [AWS_CNAME, FRONTEND_URL]
 
 ROOT_URLCONF = 'django_project.urls'
 
@@ -166,8 +184,12 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': "BOUTIQUE",
+        'USER': env.str("DATABASE_USER"),
+        'PASSWORD': env.str("DATABASE_PASSWORD"),
+        'HOST': env.str("DATABASE_HOST"),
+        'PORT': 3306,
     }
 }
 
@@ -233,7 +255,7 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
-FRONTEND_URL = 'localhost:5173/'
+
 
 REST_AUTH  = {
     'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
