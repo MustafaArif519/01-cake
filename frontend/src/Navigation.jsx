@@ -66,12 +66,12 @@ function Navigation({ token, resetToken, recievedToken, blastModal }) {
 
     login.password = password;
 
-    console.log(backendUrl+'/api/v1/dj-rest-auth/login/');
+    console.log(backendUrl+'api/v1/dj-rest-auth/login/');
     console.log(login);
 
     const tryLogin = async () => {
       try {
-        const response = await fetch(backendUrl+'/api/v1/dj-rest-auth/login/', {
+        const response = await fetch(backendUrl+'api/v1/dj-rest-auth/login/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -108,7 +108,7 @@ function Navigation({ token, resetToken, recievedToken, blastModal }) {
     console.log(registerForm);
     const tryCreate = async () => {
       try {
-        const response = await fetch(backendUrl+'/api/v1/dj-rest-auth/registration/', {
+        const response = await fetch(backendUrl+'api/v1/dj-rest-auth/registration/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -75,7 +75,7 @@ export default function Profile({ token, user, retrieveUser, resetToken, blastMo
 
 
   const patchUser = async () => {
-    console.log(backendUrl+'/api/v1/dj-rest-auth/user/');
+    console.log(backendUrl+'api/v1/dj-rest-auth/user/');
     try {
       const response = await fetch(backendUrl+'api/v1/dj-rest-auth/user/', {
         method: 'PATCH',
@@ -102,9 +102,9 @@ export default function Profile({ token, user, retrieveUser, resetToken, blastMo
   };
 
   const changePassword = async () => {
-    console.log(backendUrl+'/api/v1/dj-rest-auth/password/change/');
+    console.log(backendUrl+'api/v1/dj-rest-auth/password/change/');
     try {
-      const response = await fetch(backendUrl+'/api/v1/dj-rest-auth/password/change/', {
+      const response = await fetch(backendUrl+'api/v1/dj-rest-auth/password/change/', {
         method: 'POST',
         headers: {
           'Authorization': "Token " + token,

@@ -104,7 +104,7 @@ const formData = new FormData();
     }
 
     // console.log(formData);
-    axios.post(backendUrl + '/api/v1/cakes/', formData, { headers })
+    axios.post(backendUrl + 'api/v1/cakes/', formData, { headers })
     .then(response => {
       console.log('Data uploaded successfully', response.data);
       

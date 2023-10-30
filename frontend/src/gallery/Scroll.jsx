@@ -177,7 +177,7 @@ search(searchTerm);
   useEffect(() => {
     let ignoreStaleRequest = false;
 
-    fetch(backendUrl + '/api/v1/cake-likes/', {
+    fetch(backendUrl + 'api/v1/cake-likes/', {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',

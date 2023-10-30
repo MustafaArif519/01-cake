@@ -100,7 +100,7 @@ export default function MegaCake({ cake, token, user, like, unlike,
     };
 
     // console.log(formData);
-    axios.patch(backendUrl+'/api/v1/cakes/' + cake.id + "/", formData, { headers })
+    axios.patch(backendUrl+'api/v1/cakes/' + cake.id + "/", formData, { headers })
     .then(response => {
       console.log('Data uploaded successfully', response.data);
       updateCake(editCake);
@@ -121,7 +121,7 @@ export default function MegaCake({ cake, token, user, like, unlike,
     };
   
     try {
-      const response = await axios.delete(backendUrl+`/api/v1/cakes/${cake.id}/`, { headers });
+      const response = await axios.delete(backendUrl+`api/v1/cakes/${cake.id}/`, { headers });
       console.log('Cake deleted successfully', response.data);
       toggleShow();
       deleteCake(cake);

@@ -30,13 +30,14 @@ export default function ResetPassword({blastModal}) {
     const uid = searchParams.get('id');   // Get the 'uid' parameter value from the URL
     const token = searchParams.get('token'); // Get the 'token' parameter value from the URL
 
+    const backendUrl = "https://faridascakeboutiquesbackend.net/";
 
 
     const resetPass = async () => {
         const windowName = window.location.hostname;
         console.log(uid, token);
         try {
-            const response = await fetch('http://localhost:8000/api/v1/dj-rest-auth/password/reset/confirm/', {
+            const response = await fetch(backendUrl+'api/v1/dj-rest-auth/password/reset/confirm/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

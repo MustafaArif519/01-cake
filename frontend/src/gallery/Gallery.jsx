@@ -27,7 +27,7 @@ const backendUrl = "https://faridascakeboutiquesbackend.net/";
       {console.log('Gallery component rendered')}
 
 
-        <Scroll url={backendUrl+"/api/v1/cakes"} user={user} token={token} 
+        <Scroll url={backendUrl+"api/v1/cakes"} user={user} token={token} 
         blastModal={blastModal} />
 
 

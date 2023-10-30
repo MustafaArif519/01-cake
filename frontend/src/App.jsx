@@ -59,7 +59,7 @@ function App() {
 
   const retrieveUserId = async (key) => {
     try {
-      const response = await fetch(backendUrl+'/api/v1/user-id/', {
+      const response = await fetch(backendUrl+'api/v1/user-id/', {
         method: 'GET',
         headers: {
           'Authorization': "Token " + key,
@@ -83,9 +83,9 @@ function App() {
 
 
   const retrieveUser = async (key) => {
-    console.log(backendUrl + '/api/v1/dj-rest-auth/user/');
+    console.log(backendUrl + 'api/v1/dj-rest-auth/user/');
     try {
-      const response = await fetch(backendUrl+'/api/v1/dj-rest-auth/user/', {
+      const response = await fetch(backendUrl+'api/v1/dj-rest-auth/user/', {
         method: 'GET',
         headers: {
           'Authorization': "Token " + key,

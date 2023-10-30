@@ -34,9 +34,10 @@ DEBUG = env.bool("DEBUG", default=False)
 
 AWS_CNAME = "cake-env.eba-cmfm9hy4.us-west-2.elasticbeanstalk.com"
 FRONTEND_URL = "https://faridascakeboutique.com"
+BACKEND_URL = "faridascakeboutiquesbackend.net"
 
 ALLOWED_HOSTS = [AWS_CNAME, '127.0.0.1', 'localhost', '172.31.21.253',
-                  FRONTEND_URL]
+                  FRONTEND_URL, BACKEND_URL]
 
 
 # Application definition

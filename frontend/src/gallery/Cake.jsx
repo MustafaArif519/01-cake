@@ -77,14 +77,14 @@ toggleText();
 
 
   const like = async () => {
-    console.log(backendUrl+'/api/v1/cake-likes/');
+    console.log(backendUrl+'api/v1/cake-likes/');
     if(token == ""){
       blastModal("info", "To like photos, please create or sign into an account by clicking the\
        login button!")
       return;
     }
     try {
-      const response = await fetch(backendUrl+'/api/v1/cake-likes/', {
+      const response = await fetch(backendUrl+'api/v1/cake-likes/', {
         method: 'POST',
         headers: {
           'Authorization': "Token " + token,
@@ -121,8 +121,8 @@ toggleText();
       return;
     }
     try {
-      console.log(backendUrl+'/api/v1/cake-likes/'+yourLike.id+"/");
-      const response = await fetch(backendUrl+'/api/v1/cake-likes/'+yourLike.id+"/", {
+      console.log(backendUrl+'api/v1/cake-likes/'+yourLike.id+"/");
+      const response = await fetch(backendUrl+'api/v1/cake-likes/'+yourLike.id+"/", {
         method: 'DELETE',
         headers: {
           'Authorization': "Token " + token,
