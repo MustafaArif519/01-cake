@@ -34,6 +34,7 @@ DEBUG = env.bool("DEBUG", default=False)
 
 AWS_CNAME = "cake-env.eba-cmfm9hy4.us-west-2.elasticbeanstalk.com"
 FRONTEND_URL = "https://faridascakeboutique.com"
+FRONTEND_URL_WWW = "https://www.faridascakeboutique.com"
 BACKEND_URL = "faridascakeboutiquesbackend.net"
 
 ALLOWED_HOSTS = [AWS_CNAME, '127.0.0.1', 'localhost', '172.31.21.253',
@@ -138,6 +139,7 @@ CORS_ORIGIN_WHITELIST = (
     "http://localhost:8000",
     AWS_CNAME,
     FRONTEND_URL,
+    FRONTEND_URL_WWW,
 )
 
 # CORS_ALLOW_ALL_ORIGINS = False
