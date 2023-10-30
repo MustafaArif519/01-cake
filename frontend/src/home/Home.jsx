@@ -8,7 +8,7 @@ import {
 
 
 export default function Home(token, recievedToken) {
-
+  console.log(import.meta.env.BASE_URL);
   return (
     <>
     <title>Home | Farida&#39;s Cake Boutique</title>

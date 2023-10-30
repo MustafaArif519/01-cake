@@ -165,7 +165,7 @@ const formData = new FormData();
               <MDBCardGroup >
                 <MDBCard>
                   <MDBCardImage
-                    src={newCake.image ? newCake.image : './images/upload.png'}
+                    src={newCake.image ? newCake.image : import.meta.env.BASE_URL+'images/upload.png'}
                     alt='...'
                     style={imageStyles}
                     onLoad={handleImageLoad} // This should be removed

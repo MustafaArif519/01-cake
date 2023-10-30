@@ -195,7 +195,7 @@ function Navigation({ token, resetToken, recievedToken, blastModal }) {
   <Nav.Link as={Link} to={`/`}  onClick={() => setShowNavNoToggler(false)}>
     <img
       alt=""
-      src="./images/icon.jpg"
+      src= {import.meta.env.BASE_URL+"images/icon.jpg"}
       width="30"
       height="30"
       className="d-inline-block align-top"
