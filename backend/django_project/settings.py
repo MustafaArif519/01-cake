@@ -115,6 +115,8 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     # cors related middleware
     "corsheaders.middleware.CorsMiddleware",
+
+    # whitenoise middleware
     "whitenoise.middleware.WhiteNoiseMiddleware",
 
     'django.middleware.common.CommonMiddleware',
@@ -149,7 +151,7 @@ CORS_ORIGIN_WHITELIST = (
 #     'https://cake-testing-1.web.app',  # Add your frontend's URL here
 # ]
 
-CSRF_TRUSTED_ORIGINS = [AWS_CNAME, FRONTEND_URL]
+CSRF_TRUSTED_ORIGINS = [AWS_CNAME, FRONTEND_URL, FRONTEND_URL_WWW]
 
 ROOT_URLCONF = 'django_project.urls'
 
@@ -306,8 +308,8 @@ LOGOUT_ON_PASSWORD_CHANGE = False
 # ACCOUNT_EMAIL_CONFIRMATION_URL = FRONTEND_URL + 'verify-email/{}'
 # ACCOUNT_PASSWORD_RESET_CONFIRM = FRONTEND_URL + 'password-reset/confirm/'
 
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# AWS_ACCESS_KEY_ID = 'AWS_ACCESS_KEY_ID'
-# AWS_SECRET_ACCESS_KEY = 'AWS_SECRET_ACCESS_KEY'
-# AWS_STORAGE_BUCKET_NAME = 'AWS_STORAGE_BUCKET_NAME'
-# AWS_QUERYSTRING_AUTH = False
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = env.str("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = env.str("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = env.str("AWS_STORAGE_BUCKET_NAME")
+AWS_QUERYSTRING_AUTH = False

@@ -89,12 +89,12 @@ toggleText();
         headers: {
           'Authorization': "Token " + token,
           'Content-Type': 'application/json',
-          'Origin': 'https://www.faridascakeboutique.com', // Set the origin here'
+
         },
         body: JSON.stringify({
           'cake': cake.id,
         }), // Replace with your data object
-        mode: 'cors', // Set the request mode to 'cors'
+
       });
       // console.log(token);
       const responseBody = await response.json();
@@ -129,12 +129,10 @@ toggleText();
         headers: {
           'Authorization': "Token " + token,
           'Content-Type': 'application/json',
-          'Origin': 'https://www.faridascakeboutique.com', // Set the origin here'
         },
         body: JSON.stringify({
           'cake': cake.id,
         }), // Replace with your data object
-        mode: 'cors', // Set the request mode to 'cors'
       });
       deleteLike(yourLike);
       setLikeCount(likeCount - 1);

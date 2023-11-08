@@ -91,7 +91,6 @@ export default function CreateCakeModal({ token, user, postCake, toggleCreate, s
     const headers = {
       'Authorization': "Token " + token,
       'Content-Type': 'multipart/form-data',
-      'Origin': 'https://www.faridascakeboutique.com', // Set the origin here
     };
 if( newCake.title === '' || newCake.description === '' || newCake.image === ''){
   toggleCentered();
@@ -105,7 +104,7 @@ const formData = new FormData();
     }
 
     // console.log(formData);
-    axios.post(backendUrl + 'api/v1/cakes/', formData, { headers, mode: 'cors' })
+    axios.post(backendUrl + 'api/v1/cakes/', formData, { headers })
     .then(response => {
       console.log('Data uploaded successfully', response.data);
       
