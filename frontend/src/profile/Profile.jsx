@@ -155,7 +155,7 @@ export default function Profile({ token, user, retrieveUser, resetToken, blastMo
               <MDBCard className="mb-4">
                 <MDBCardBody className="text-center">
                   <MDBCardImage
-                    src="images/profile.png"
+                    src={import.meta.env.BASE_URL+"images/profile.png"}
                     alt="avatar"
                     className="rounded-circle"
                     style={{ maxWidth: '150px', height: '150px' }}

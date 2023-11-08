@@ -34,8 +34,8 @@ const ErrorPage = () => {
           </MDBCardTitle>
           <MDBCardText style={{ display: 'flex', justifyContent: 'center' }}>
             <img
-              style={{ width: '400px', height: '200px' }}
-              src='https://thumbs.gfycat.com/AnotherAmazingBirdofparadise.webp'
+              style={{ width: '200px', height: '200px' }}
+              src={import.meta.env.BASE_URL+"images/error.png"}
               alt='Error 404'
             />
           </MDBCardText>
