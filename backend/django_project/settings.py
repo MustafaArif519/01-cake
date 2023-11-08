@@ -44,6 +44,7 @@ ALLOWED_HOSTS = [AWS_CNAME, '127.0.0.1', 'localhost', '172.31.21.253',
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -304,3 +305,9 @@ LOGOUT_ON_PASSWORD_CHANGE = False
 # FRONTEND_URL = 'localhost:5173/'
 # ACCOUNT_EMAIL_CONFIRMATION_URL = FRONTEND_URL + 'verify-email/{}'
 # ACCOUNT_PASSWORD_RESET_CONFIRM = FRONTEND_URL + 'password-reset/confirm/'
+
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# AWS_ACCESS_KEY_ID = 'AWS_ACCESS_KEY_ID'
+# AWS_SECRET_ACCESS_KEY = 'AWS_SECRET_ACCESS_KEY'
+# AWS_STORAGE_BUCKET_NAME = 'AWS_STORAGE_BUCKET_NAME'
+# AWS_QUERYSTRING_AUTH = False

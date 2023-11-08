@@ -134,10 +134,11 @@ search(searchTerm);
     // Call REST API to get the cake's information
     fetch(url, {
       method: 'GET', // or any other HTTP method
-      // headers: {
-      //   'Authorization': "Token " + token, // Include the token in the Authorization header
-
-      // },
+      headers: {
+        // 'Authorization': "Token " + token, // Include the token in the Authorization header
+        'Origin': 'https://www.faridascakeboutique.com', // Set the origin here'
+      },
+      mode: 'cors', // Set the request mode to 'cors'
     })
       .then((response) => {
         if (!response.ok) throw Error(response.statusText);
@@ -182,7 +183,9 @@ search(searchTerm);
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
+        'Origin': 'https://www.faridascakeboutique.com', // Set the origin here'
       },
+      mode: 'cors', // Set the request mode to 'cors'
     })
       .then((response) => {
         if (!response.ok) {
@@ -213,10 +216,11 @@ search(searchTerm);
 
     fetch(next, {
       method: 'GET', // or any other HTTP method
-      // headers: {
-      //   'Authorization': "Token " + token, // Include the token in the Authorization header
-
-      // },
+      headers: {
+        // 'Authorization': "Token " + token, // Include the token in the Authorization header
+        'Origin': 'https://www.faridascakeboutique.com', // Set the origin here'
+      },
+      mode: 'cors', // Set the request mode to 'cors'
     })
       .then((response) => {
         if (!response.ok) throw Error(response.statusText);
