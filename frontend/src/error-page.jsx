@@ -23,7 +23,7 @@ const ErrorPage = () => {
 
 
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-      <MDBCard border='danger' background='white' shadow='0' style={{ width: '600px', height: '400px' }}>
+      <MDBCard border='danger' background='white' shadow='0' style={{ width: '600px', height: '450px' }}>
         <MDBCardHeader background='transparent' border='danger' className='text-danger' style={{ textAlign: 'center' }}>
           Error 404: Page Not Found <span></span>
           <MDBIcon far icon='frown' />

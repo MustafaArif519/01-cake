@@ -300,7 +300,7 @@ toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreat
           dataLength={resultsSize} // This is important field to render the next data
           next={getcakes}
           hasMore={hasMore}
-          loader = {!searchTerm &&
+          loader = {
             <div style={{ display: 'flex', flexDirection: "column", gap: '10px', justifyContent: 'center', 
   alignItems: "center", marginBottom: "30px"}}>
     <h4>Scroll down to search more cakes!</h4>
