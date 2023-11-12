@@ -176,7 +176,7 @@ toggleText();
 
   const titleStyles = {
     height: '40px', // Add a little space between title and description
-    fontFamily: 'Lucida Handwriting', 
+    fontFamily: 'cursive', 
   };
 
   const likeStyle = {
