@@ -22,7 +22,7 @@ export default function Home(token, recievedToken) {
         <div className='mask' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
           <div className='d-flex justify-content-center align-items-center h-100'>
             <div className='text-white'>
-              <h1 className='mb-3'  style = {{textAlign: "center", fontFamily: 'cursive'}}>
+              <h1 className='mb-3'  style = {{textAlign: "center", fontFamily: 'Lucida Handwriting, cursive'}}>
                 Welcome to Farida&apos;s Cake Boutique!</h1>
               <br />
               <br />
