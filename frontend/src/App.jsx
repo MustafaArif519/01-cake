@@ -12,6 +12,7 @@ import Profile from './profile/Profile'
 import ResetPassword from './profile/ResetPassword';
 import Contact from './Contact.jsx'
 import AdminModal from './administration/AdminModal';
+import GuestOrder from './orders/GuestOrder.jsx';
 import "./background.css"
 
 
@@ -131,6 +132,7 @@ function App() {
             <Route path="/gallery" element={<Gallery user = {user} token = {token} 
             blastModal={blastModal} />} />
             <Route path="/view-order" element={<Orders />} />
+            <Route path="/order" element={<GuestOrder />} />
             <Route path="/new-order" element={<NewOrder token = {token} blastModal={blastModal} />} />
             <Route path="/profile" element= {user ? <Profile token = {token} user ={user} 
             retrieveUser = {retrieveUser} resetToken={resetToken} blastModal={blastModal} /> :

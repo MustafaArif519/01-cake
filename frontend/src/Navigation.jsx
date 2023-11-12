@@ -229,11 +229,9 @@ function Navigation({ token, resetToken, recievedToken, blastModal }) {
               </MDBNavbarItem>
 
               <MDBNavbarItem>
-                <Nav.Link 
-                target="_blank"
-                href = "https://docs.google.com/forms/d/e/1FAIpQLScXUGXztc-mJNSmaPuNWoBMwB8xvuDbnKlYk_wK5jn54Jk7ag/viewform?usp=sf_link"
-                onClick={() => setShowNavNoToggler(false)}
-                >Place Order</Nav.Link>
+              <Nav.Link as={Link} to={`/order`}
+                 onClick={() => setShowNavNoToggler(false)}
+                 >Place Order</Nav.Link>
               </MDBNavbarItem>
 
               {/* <MDBNavbarItem>
