@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import Nav from 'react-bootstrap/Nav';
 import {
 
   MDBCarousel,
   MDBCarouselItem,
   MDBBtn
 } from "mdb-react-ui-kit";
-
+import { Outlet, Link } from "react-router-dom";
 
 export default function Home(token, recievedToken) {
   console.log(import.meta.env.BASE_URL);
@@ -26,12 +27,16 @@ export default function Home(token, recievedToken) {
               <br />
               <br />
               <h4 className='mb-3'>Where each cake is made with care and precision</h4>
+              <Link to={`/order`} >
               <MDBBtn tag="a" outline color="info" size="lg"
               target="_blank"
-              href = "https://docs.google.com/forms/d/e/1FAIpQLScXUGXztc-mJNSmaPuNWoBMwB8xvuDbnKlYk_wK5jn54Jk7ag/viewform?usp=sf_link"
+              
               >
+
                 Place Order
+
               </MDBBtn>
+              </Link>
             </div>
           </div>
         </div>

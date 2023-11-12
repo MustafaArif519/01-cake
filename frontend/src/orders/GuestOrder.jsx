@@ -7,13 +7,14 @@ const GoogleFormCard = () => {
       <MDBRow md="12" style = {{width: "100%", maxWidth: "800px",}}>
         <MDBCol md="12" style = {{width: "100%"}}>
           <MDBCard style = {{width: "100%"}}>
-            <MDBCardBody lg='4' className="p-3" style={{ width: "100%", height: "600px", overflow: "hidden" }}>
+            <MDBCardBody lg='4' className="p-3" style={{ width: "100%", height: "500px", overflow: "hidden" }}>
 
               <iframe
                 title="Google Form"
                 src="https://docs.google.com/forms/d/e/1FAIpQLScXUGXztc-mJNSmaPuNWoBMwB8xvuDbnKlYk_wK5jn54Jk7ag/viewform?embedded=true"
-                style={{ width: "100%", height: "100%", overflow: "hidden" }} // Responsive styles for the iframe
+                style={{ width: "100%", height: "100%",overflowY : "scroll" }} // Responsive styles for the iframe
                 allowFullScreen={true}
+                
               />
 
             </MDBCardBody>
