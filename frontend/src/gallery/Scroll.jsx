@@ -38,6 +38,7 @@ export default function Scroll({ url, user, token, searching, blastModal }) {
 
   const backendUrl = "https://faridascakeboutiquesbackend.net/";
 
+  const [loaded, setLoaded] = useState(false);
 
   function removeObjectByCondition(list, conditionObject) {
     return list.filter(item => {
@@ -119,6 +120,9 @@ useEffect(() => {
 
     // Now you can use the filteredResults as needed
     setFilteredItems(filteredResults);
+    if(filteredResults.length === 0 && hasMore){
+      getcakes();
+    }
 
     console.log(filteredResults);
     console.log(results);
@@ -151,7 +155,7 @@ search(searchTerm);
           setResults([...results, ...data.results]);
           setFilteredItems([...filteredItems, ...data.results]);
           console.log(data.next);
-
+          setLoaded(true);
           setNext(data.next);
           if (data.next === 'null') {
             setHasMore(false);
@@ -296,7 +300,7 @@ toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreat
           dataLength={resultsSize} // This is important field to render the next data
           next={getcakes}
           hasMore={hasMore}
-          loader = {
+          loader = {!searchTerm &&
             <div style={{ display: 'flex', flexDirection: "column", gap: '10px', justifyContent: 'center', 
   alignItems: "center", marginBottom: "30px"}}>
     <h4>Scroll down to search more cakes!</h4>
@@ -335,7 +339,7 @@ toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreat
 </MDBContainer>
 
 
-{!hasMore && filteredItems.length === 0 && 
+{!hasMore && filteredItems.length === 0 && loaded &&
   <div  style={{ display: 'flex', flexDirection: "column", gap: '10px', justifyContent: 'center', 
   alignItems: "center", marginBottom: "35px"}}>
     <h4>No Matching Cakes Found</h4>
@@ -343,6 +347,14 @@ toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreat
   
 </div>
 }
+
+{!loaded&& 
+  <div  style={{ display: 'flex', flexDirection: "column", gap: '10px', justifyContent: 'center', 
+  alignItems: "center", marginBottom: "35px"}}>
+    <h4>Fetching Cake Images!</h4>
+  <MDBIcon fas icon="truck" size='10x' style= {{height: "200px", color: "#F06292"}} />
+  </div>
+  }
 
             
           </div>

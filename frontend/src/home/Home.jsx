@@ -21,11 +21,11 @@ export default function Home(token, recievedToken) {
         <div className='mask' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
           <div className='d-flex justify-content-center align-items-center h-100'>
             <div className='text-white'>
-              <h1 className='mb-3'  style = {{textAlign: "center"}}>
+              <h1 className='mb-3'  style = {{textAlign: "center", fontFamily: 'Lucida Handwriting'}}>
                 Welcome to Farida&apos;s Cake Boutique!</h1>
               <br />
               <br />
-              <h4 className='mb-3'>Each cake is made with care and precision</h4>
+              <h4 className='mb-3'>Where each cake is made with care and precision</h4>
               <MDBBtn tag="a" outline color="info" size="lg"
               target="_blank"
               href = "https://docs.google.com/forms/d/e/1FAIpQLScXUGXztc-mJNSmaPuNWoBMwB8xvuDbnKlYk_wK5jn54Jk7ag/viewform?usp=sf_link"

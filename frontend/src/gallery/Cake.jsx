@@ -175,7 +175,13 @@ toggleText();
   };
 
   const titleStyles = {
-    height: '40px' // Add a little space between title and description
+    height: '40px', // Add a little space between title and description
+    fontFamily: 'Lucida Handwriting', 
+  };
+
+  const likeStyle = {
+    height: '40px', // Add a little space between title and description
+    fontFamily: 'Times New Roman',
   };
 
 
@@ -248,7 +254,7 @@ className='bg-image hover-zoom'>
         </a>
       </MDBRipple>
       <MDBCardBody>
-        <div style={titleStyles}>
+        <div style={likeStyle}>
           <MDBCardTitle>
 
 {/* {console.log("cake id: ", cake.id, " has this number of like: ", foundCount)} */}
@@ -256,7 +262,7 @@ className='bg-image hover-zoom'>
 
             </MDBCardTitle>
         </div>
-        <MDBCardText>{cake.title}</MDBCardText>
+        <MDBCardText style={titleStyles}>{cake.title}</MDBCardText>
       </MDBCardBody>
       <MDBCardFooter style = {{display: "flex", justifyContent: "space-between"}}>
         <small className='text-muted' >{moment(cake.created_at).fromNow()}</small>

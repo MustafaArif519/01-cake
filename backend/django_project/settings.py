@@ -14,10 +14,49 @@ from pathlib import Path
 from environs import Env
 import os
 import pymysql
+import requests
 pymysql.install_as_MySQLdb()
 
 env = Env()
 env.read_env()
+
+def is_ec2_linux():
+    """Detect if we are running on an EC2 Linux Instance
+    See http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/identify_ec2_instances.html
+    """
+    if os.path.isfile("/sys/hypervisor/uuid"):
+        with open("/sys/hypervisor/uuid") as f:
+            uuid = f.read()
+            return uuid.startswith("ec2")
+    return False
+
+def get_token():
+    """Set the autorization token to live for 6 hours (maximum)"""
+    headers = {
+        'X-aws-ec2-metadata-token-ttl-seconds': '21600',
+    }
+    response = requests.put('http://169.254.169.254/latest/api/token', headers=headers)
+    return response.text
+
+
+def get_linux_ec2_private_ip():
+    """Get the private IP Address of the machine if running on an EC2 linux server.
+    See https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html"""
+
+    if not is_ec2_linux():
+        return None
+    try:
+        token = get_token()
+        headers = {
+            'X-aws-ec2-metadata-token': f"{token}",
+        }
+        response = requests.get('http://169.254.169.254/latest/meta-data/local-ipv4', headers=headers)
+        return response.text
+    except:
+        return None
+    finally:
+        if response:
+            response.close()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,19 +71,24 @@ SECRET_KEY = env.str("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", default=False)
 
-AWS_CNAME = "cake-env.eba-cmfm9hy4.us-west-2.elasticbeanstalk.com"
-FRONTEND_URL = "https://faridascakeboutique.com"
-FRONTEND_URL_WWW = "https://www.faridascakeboutique.com"
+AWS_CNAME = "cake-env.eba-xjnwqgm6.us-west-2.elasticbeanstalk.com"
+FRONTEND_URL = "faridascakeboutique.com"
+FRONTEND_URL_WWW = "www.faridascakeboutique.com"
 BACKEND_URL = "faridascakeboutiquesbackend.net"
 
-ALLOWED_HOSTS = [AWS_CNAME, '127.0.0.1', 'localhost', '172.31.21.253',
-                  FRONTEND_URL, BACKEND_URL]
+ALLOWED_HOSTS = [AWS_CNAME, FRONTEND_URL, FRONTEND_URL_WWW, BACKEND_URL, "172.31.4.186",
+                 "34.212.220.116", '127.0.0.1']
+private_ip = get_linux_ec2_private_ip()
+if private_ip:
+   ALLOWED_HOSTS.append(private_ip)
+USE_X_FORWARDED_HOST = True
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
+    'storages',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -133,17 +177,31 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [BASE_DIR / "static"]
 # STATICFILES_MANIFEST = os.path.join(STATIC_ROOT, 'staticfiles.json')
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
+# CORS_ORIGIN_ALLOW_ALL = False
 
-CORS_ORIGIN_WHITELIST = (
-    "http://localhost:5173",
-    "http://localhost:8000",
-    AWS_CNAME,
-    FRONTEND_URL,
-    FRONTEND_URL_WWW,
-)
+# CORS_ORIGIN_WHITELIST = (
+#         AWS_CNAME, FRONTEND_URL, FRONTEND_URL_WWW, BACKEND_URL, "172.31.4.186",
+#                  "34.212.220.116", '127.0.0.1'
+# )
+# CORS_ALLOWED_ORIGINS = [
+#     AWS_CNAME, FRONTEND_URL, FRONTEND_URL_WWW, BACKEND_URL, "172.31.4.186",
+#                  "34.212.220.116", '127.0.0.1'
+# ]
+
+# Temporary fix
+CORS_ORIGIN_ALLOW_ALL = True
+
+# CORS_ORIGIN_WHITELIST = (
+#     "http://localhost:5173",
+#     "http://localhost:8000",
+#     AWS_CNAME,
+#     FRONTEND_URL,
+#     FRONTEND_URL_WWW,
+# )
 
 # CORS_ALLOW_ALL_ORIGINS = False
 # CORS_ALLOW_CREDENTIALS = True

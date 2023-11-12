@@ -75,9 +75,9 @@ export default function Profile({ token, user, retrieveUser, resetToken, blastMo
 
 
   const patchUser = async () => {
-    console.log(backendUrl+'api/v1/dj-rest-auth/user/');
+    console.log(backendUrl + 'api/v1/dj-rest-auth/user/');
     try {
-      const response = await fetch(backendUrl+'api/v1/dj-rest-auth/user/', {
+      const response = await fetch(backendUrl + 'api/v1/dj-rest-auth/user/', {
         method: 'PATCH',
         headers: {
           'Authorization': "Token " + token,
@@ -102,9 +102,9 @@ export default function Profile({ token, user, retrieveUser, resetToken, blastMo
   };
 
   const changePassword = async () => {
-    console.log(backendUrl+'api/v1/dj-rest-auth/password/change/');
+    console.log(backendUrl + 'api/v1/dj-rest-auth/password/change/');
     try {
-      const response = await fetch(backendUrl+'api/v1/dj-rest-auth/password/change/', {
+      const response = await fetch(backendUrl + 'api/v1/dj-rest-auth/password/change/', {
         method: 'POST',
         headers: {
           'Authorization': "Token " + token,
@@ -143,19 +143,19 @@ export default function Profile({ token, user, retrieveUser, resetToken, blastMo
   return (
     < >
 
-<title>Profile | Farida&#39;s Cake Boutique</title>
+      <title>Profile | Farida&#39;s Cake Boutique</title>
 
       <MDBContainer className="py-5">
 
         <MDBRow>
-          <MDBCol lg="4">
+          <MDBCol md="4" >
 
             <div className="d-flex flex-column align-items-center">
 
               <MDBCard className="mb-4">
                 <MDBCardBody className="text-center">
                   <MDBCardImage
-                    src={import.meta.env.BASE_URL+"images/profile.png"}
+                    src={import.meta.env.BASE_URL + "images/profile.png"}
                     alt="avatar"
                     className="rounded-circle"
                     style={{ maxWidth: '150px', height: '150px' }}
@@ -274,12 +274,13 @@ export default function Profile({ token, user, retrieveUser, resetToken, blastMo
 
             </div>
 
-
           </MDBCol>
-          <MDBCol lg="8">
-            <MDBCard className="mb-3 w-100 p-3"
-              style = {{maxWidth: "520px" }}>
-              <MDBCardBody>
+
+
+          <MDBCol md="8" size="8">
+            <MDBCard 
+              >
+              <MDBCardBody >
                 <MDBRow>
                   <MDBCol sm="3">
                     <MDBCardText>Full Name</MDBCardText>
