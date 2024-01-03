@@ -41,7 +41,7 @@ export default function Scroll({ url, user, token, searching, blastModal, backen
 
   const [loaded, setLoaded] = useState(false);
 
-  const [category, setCategory] = useState("all");
+  const [category, setCategory] = useState("#all");
 
   function removeObjectByCondition(list, conditionObject) {
     return list.filter(item => {
@@ -121,8 +121,17 @@ useEffect(() => {
         )
     );
 
+    // Filter the items only if search term is not empty
+    const categoryCakes = filteredResults.filter((cake) => {
+      const cakeCategory = cake.category;
+      const filterCategory = category === "#all" ? "" : category;
+  
+      // Check if the cake category contains the filter category
+      return cakeCategory.includes(filterCategory);
+    });
+
     // Now you can use the filteredResults as needed
-    setFilteredItems(filteredResults);
+    setFilteredItems(categoryCakes);
     if(filteredResults.length === 0 && hasMore){
       getcakes();
     }
@@ -131,7 +140,7 @@ useEffect(() => {
     console.log(results);
 };
 search(searchTerm);
-}, [results, searchTerm]); // Empty dependency array means this effect runs once on moun
+}, [results, searchTerm, category]); // Empty dependency array means this effect runs once on moun
 
   
   useEffect(() => {
@@ -282,20 +291,20 @@ backendUrl={backendUrl} />
         
         <MDBDropdown >
       <MDBDropdownToggle tag='a' className='btn btn-primary rounded'>
-        #{category}
+        {category}
       </MDBDropdownToggle>
       <MDBDropdownMenu>
-      <MDBDropdownItem link onClick={() => setCategory("all")}>#all</MDBDropdownItem>
-        <MDBDropdownItem link onClick={() => setCategory("wedding")}>#wedding</MDBDropdownItem>
-        <MDBDropdownItem link onClick={() => setCategory("babyShower")}>#babyShower</MDBDropdownItem>
-        <MDBDropdownItem link onClick={() => setCategory("kidsBirthdays")}>#kidsBirthdays</MDBDropdownItem>
-        <MDBDropdownItem link onClick={() => setCategory("adultBirthdays")}>#adultBirthdays</MDBDropdownItem>
-        <MDBDropdownItem link onClick={() => setCategory("anniversary")}>#anniversary</MDBDropdownItem>
-        <MDBDropdownItem link onClick={() => setCategory("babyShower")}>#babyShower</MDBDropdownItem>
-        <MDBDropdownItem link onClick={() => setCategory("sculptedCakes")}>#sculptedCakes</MDBDropdownItem>
-        <MDBDropdownItem link onClick={() => setCategory("cakePops")}>#cakePops</MDBDropdownItem>
-        <MDBDropdownItem link onClick={() => setCategory("cupcakes")}>#cupcakes</MDBDropdownItem>
-        <MDBDropdownItem link onClick={() => setCategory("cakeShooters")}>#cakeShooters</MDBDropdownItem>
+      <MDBDropdownItem link onClick={() => setCategory("#all")}>#all</MDBDropdownItem>
+        <MDBDropdownItem link onClick={() => setCategory("#wedding")}>#wedding</MDBDropdownItem>
+        <MDBDropdownItem link onClick={() => setCategory("#babyShower")}>#babyShower</MDBDropdownItem>
+        <MDBDropdownItem link onClick={() => setCategory("#kidsBirthdays")}>#kidsBirthdays</MDBDropdownItem>
+        <MDBDropdownItem link onClick={() => setCategory("#adultBirthdays")}>#adultBirthdays</MDBDropdownItem>
+        <MDBDropdownItem link onClick={() => setCategory("#anniversary")}>#anniversary</MDBDropdownItem>
+        <MDBDropdownItem link onClick={() => setCategory("#babyShower")}>#babyShower</MDBDropdownItem>
+        <MDBDropdownItem link onClick={() => setCategory("#sculptedCakes")}>#sculptedCakes</MDBDropdownItem>
+        <MDBDropdownItem link onClick={() => setCategory("#cakePops")}>#cakePops</MDBDropdownItem>
+        <MDBDropdownItem link onClick={() => setCategory("#cupcakes")}>#cupcakes</MDBDropdownItem>
+        <MDBDropdownItem link onClick={() => setCategory("#cakeShooters")}>#cakeShooters</MDBDropdownItem>
         
       </MDBDropdownMenu>
     </MDBDropdown>
