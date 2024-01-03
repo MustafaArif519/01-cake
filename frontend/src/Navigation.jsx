@@ -31,14 +31,14 @@ import LoginModal from './login/LoginModal';
 
 
 // eslint-disable-next-line react/prop-types
-function Navigation({ token, resetToken, recievedToken, blastModal }) {
+function Navigation({ token, resetToken, recievedToken, blastModal, backendUrl }) {
   const [basicModal, setBasicModal] = useState(false);
   const toggleShow = () => setBasicModal(!basicModal);
 
   const [showNavNoToggler, setShowNavNoToggler] = useState(false);
   const [centredModal, setCentredModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const backendUrl = "https://faridascakeboutiquesbackend.net/";
+  // const backendUrl = "https://faridascakeboutiquesbackend.net/";
   const toggleErrorShow = () => {
     setCentredModal(!centredModal);
 
@@ -185,7 +185,7 @@ function Navigation({ token, resetToken, recievedToken, blastModal }) {
       </MDBModal>
 
       <LoginModal showModal={showModal} handleSubmit={handleSubmit} display={basicModal}
-        setDisplay={setBasicModal} createAccount={handleRegistrationSubmit} />
+        setDisplay={setBasicModal} createAccount={handleRegistrationSubmit} backendUrl={backendUrl} />
 
 
       <MDBNavbar sticky expand='lg' light className="navigator">

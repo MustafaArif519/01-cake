@@ -66,10 +66,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.str("SECRET_KEY")
+SECRET_KEY = env.str("SECRET_KEY", default="8r(-x&$8c=z=&3$x7!k!oe_m2ew5+hu$ujx)ud9o4!qyo6^l#^")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool("DEBUG", default=False)
+DEBUG = env.bool("DEBUG", default=True)
 
 AWS_CNAME = "cake-env.eba-xjnwqgm6.us-west-2.elasticbeanstalk.com"
 FRONTEND_URL = "faridascakeboutique.com"
@@ -77,7 +77,7 @@ FRONTEND_URL_WWW = "www.faridascakeboutique.com"
 BACKEND_URL = "faridascakeboutiquesbackend.net"
 
 ALLOWED_HOSTS = [AWS_CNAME, FRONTEND_URL, FRONTEND_URL_WWW, BACKEND_URL, "172.31.4.186",
-                 "34.212.220.116", '127.0.0.1']
+                 "34.212.220.116", '127.0.0.1', "localhost"]
 private_ip = get_linux_ec2_private_ip()
 if private_ip:
    ALLOWED_HOSTS.append(private_ip)
@@ -245,17 +245,24 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': "BOUTIQUE",
-        'USER': env.str("DATABASE_USER"),
-        'PASSWORD': env.str("DATABASE_PASSWORD"),
-        'HOST': env.str("DATABASE_HOST"),
-        'PORT': 3306,
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': "BOUTIQUE",
+            'USER': env.str("DATABASE_USER"),
+            'PASSWORD': env.str("DATABASE_PASSWORD"),
+            'HOST': env.str("DATABASE_HOST"),
+            'PORT': 3306,
+        }
+    }
 
 
 # Password validation
@@ -366,8 +373,12 @@ LOGOUT_ON_PASSWORD_CHANGE = False
 # ACCOUNT_EMAIL_CONFIRMATION_URL = FRONTEND_URL + 'verify-email/{}'
 # ACCOUNT_PASSWORD_RESET_CONFIRM = FRONTEND_URL + 'password-reset/confirm/'
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_ACCESS_KEY_ID = env.str("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = env.str("AWS_SECRET_ACCESS_KEY")
-AWS_STORAGE_BUCKET_NAME = env.str("AWS_STORAGE_BUCKET_NAME")
+if DEBUG:
+    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+else:
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_ACCESS_KEY_ID = env.str("AWS_ACCESS_KEY_ID", default="")
+AWS_SECRET_ACCESS_KEY = env.str("AWS_SECRET_ACCESS_KEY", default="")
+AWS_STORAGE_BUCKET_NAME = env.str("AWS_STORAGE_BUCKET_NAME", default="")
 AWS_QUERYSTRING_AUTH = False

@@ -25,7 +25,9 @@ function App() {
   const [modalType, setModalType] = useState('');
   const [centredModal, setCentredModal] = useState(false);
   // const navigate = useNavigate();
-  const backendUrl = "https://faridascakeboutiquesbackend.net/";
+  const prodUrl = "https://faridascakeboutiquesbackend.net/";
+  const devUrl = "http://localhost:8000/";
+  const backendUrl = devUrl;
 
   useEffect(() =>{
     localStorage.setItem('token', token);
@@ -124,13 +126,13 @@ function App() {
         {console.log("App componenet rendered", token)}
         <Router >
           <Navigation token = {token} resetToken = {resetToken} recievedToken={recievedToken}
-          blastModal={blastModal} />
+          blastModal={blastModal} backendUrl={backendUrl} />
           <AdminModal showModal={centredModal} message={modalMessage} type = {modalType} 
          setShowModal={setCentredModal}/>
           <Routes>
             <Route path="/" element={<Home token = {token} recievedToken = {recievedToken}/>} />
             <Route path="/gallery" element={<Gallery user = {user} token = {token} 
-            blastModal={blastModal} />} />
+            blastModal={blastModal} backendUrl={backendUrl} />} />
             <Route path="/view-order" element={<Orders />} />
             <Route path="/order" element={<GuestOrder />} />
             <Route path="/new-order" element={<NewOrder token = {token} blastModal={blastModal} />} />

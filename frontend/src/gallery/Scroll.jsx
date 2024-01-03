@@ -18,12 +18,13 @@ import {
   MDBModalTitle,
   MDBModalBody,
   MDBModalFooter,
-  MDBModal
+  MDBModal,
+  MDBDropdown, MDBDropdownMenu, MDBDropdownToggle, MDBDropdownItem
 } from 'mdb-react-ui-kit';
 
 // The parameter of this function is an object with a string called url inside it.
 // url is a prop for the Cake component.
-export default function Scroll({ url, user, token, searching, blastModal }) {
+export default function Scroll({ url, user, token, searching, blastModal, backendUrl }) {
   const [results, setResults] = useState([]);
   const [next, setNext] = useState("null");
   const [hasMore, setHasMore] = useState(false);
@@ -36,9 +37,11 @@ export default function Scroll({ url, user, token, searching, blastModal }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredItems, setFilteredItems] = useState([]);
 
-  const backendUrl = "https://faridascakeboutiquesbackend.net/";
+  
 
   const [loaded, setLoaded] = useState(false);
+
+  const [category, setCategory] = useState("all");
 
   function removeObjectByCondition(list, conditionObject) {
     return list.filter(item => {
@@ -264,15 +267,38 @@ search(searchTerm);
     <>
 
 <CreateCakeModal token = {token} user = {user} postCake={postCake} blastModal={blastModal}
-toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreate} />
+toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreate}
+backendUrl={backendUrl} />
 
-
+<MDBRow>
 <div style={{
         width: '100%', display: 'flex', justifyContent: 'center',
         alignItems: 'center', paddingBottom: '20px', paddingTop: '40px', 
          top: '60px', zIndex: 2, 
 
       }}>
+      
+
+        
+        <MDBDropdown >
+      <MDBDropdownToggle tag='a' className='btn btn-primary rounded'>
+        #{category}
+      </MDBDropdownToggle>
+      <MDBDropdownMenu>
+      <MDBDropdownItem link onClick={() => setCategory("all")}>#all</MDBDropdownItem>
+        <MDBDropdownItem link onClick={() => setCategory("wedding")}>#wedding</MDBDropdownItem>
+        <MDBDropdownItem link onClick={() => setCategory("babyShower")}>#babyShower</MDBDropdownItem>
+        <MDBDropdownItem link onClick={() => setCategory("kidsBirthdays")}>#kidsBirthdays</MDBDropdownItem>
+        <MDBDropdownItem link onClick={() => setCategory("adultBirthdays")}>#adultBirthdays</MDBDropdownItem>
+        <MDBDropdownItem link onClick={() => setCategory("anniversary")}>#anniversary</MDBDropdownItem>
+        <MDBDropdownItem link onClick={() => setCategory("babyShower")}>#babyShower</MDBDropdownItem>
+        <MDBDropdownItem link onClick={() => setCategory("sculptedCakes")}>#sculptedCakes</MDBDropdownItem>
+        <MDBDropdownItem link onClick={() => setCategory("cakePops")}>#cakePops</MDBDropdownItem>
+        <MDBDropdownItem link onClick={() => setCategory("cupcakes")}>#cupcakes</MDBDropdownItem>
+        <MDBDropdownItem link onClick={() => setCategory("cakeShooters")}>#cakeShooters</MDBDropdownItem>
+        
+      </MDBDropdownMenu>
+    </MDBDropdown>
         <MDBIcon fas icon="search" color = "secondary"/>
         <input
           className="form-control mr-sm-2 border-0"
@@ -289,7 +315,7 @@ toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreat
         </MDBBtn>}
 
       </div>
-      
+      </MDBRow>
       <div className="cakes"
         id="scrollableDiv"
         style={{
@@ -327,7 +353,7 @@ toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreat
     <Cake key={item.id} cake={item} likeData={likeData} user={user} token={token} 
     deleteCake={deleteCake} patchCake = {patchCake} postCake = {postCake}
     postLike = {postLike} deleteLike = {deleteLike}
-    blastModal = {blastModal}
+    blastModal = {blastModal} backendUrl={backendUrl}
     />
   ))}
   </div>

@@ -19,7 +19,7 @@ import {
 
 } from 'mdb-react-ui-kit';
 // Functional Component
-const Login = ({ showModal, showCenteredModal, handleSubmit, display }) => {
+const Login = ({ showModal, showCenteredModal, handleSubmit, display, backendUrl }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showRecovery, setShowRecovery] = useState(false);

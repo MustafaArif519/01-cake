@@ -17,6 +17,7 @@ class CakeSerializer(serializers.ModelSerializer):
             "title",
             "description",
             "image",
+            "created_at",
             "created_at"
         )
         model = Cake
