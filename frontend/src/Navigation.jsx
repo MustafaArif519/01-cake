@@ -161,7 +161,7 @@ function Navigation({ token, resetToken, recievedToken, blastModal, backendUrl }
 
   return (
     <>
-<MDBRow className="mb-3">
+<MDBRow >
       <MDBModal tabIndex='-1' show={centredModal} setShow={setCentredModal}>
         <MDBModalDialog centered>
           <MDBModalContent>

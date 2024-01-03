@@ -28,7 +28,7 @@ const SearchHeader = ({ setCategory, category, user, searchTerm, setSearchTerm,
 
   return (
 <>
-<MDBRow className="mb-3">
+<MDBRow className="mb-3" style={{marginTop: "20px"}}>
 
 <MDBDropdown  style={{
         width: '100%', display: 'flex', justifyContent: 'center',
