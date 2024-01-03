@@ -132,7 +132,7 @@ function App() {
             <Route path="/gallery" element={<Gallery user = {user} token = {token} 
             blastModal={blastModal} />} />
             <Route path="/view-order" element={<Orders />} />
-            <Route path="/order" element={<GuestOrder />} />
+            <Route path="/order" element={<NewOrder />} />
             <Route path="/new-order" element={<NewOrder token = {token} blastModal={blastModal} />} />
             <Route path="/profile" element= {user ? <Profile token = {token} user ={user} 
             retrieveUser = {retrieveUser} resetToken={resetToken} blastModal={blastModal} /> :

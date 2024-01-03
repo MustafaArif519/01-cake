@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import EventPage from "./EventPage.jsx"
+import EventPage2 from "./EventPage2.jsx"
 import DeliveryPage from './DeliveryPage.jsx';
 import PaymentPage from "./PaymentPage.jsx"
 import CakePage from './CakePage.jsx'
@@ -84,7 +85,7 @@ const NewOrder = ({ token }) => {
   const renderPage = () => {
     switch (currentPage) {
       case 1:
-        return <EventPage updateForm={updateForm} form={formValue} />;
+        return <EventPage2 updateForm={updateForm} form={formValue} />;
       case 2:
         return <PasteryPage updateForm={updateForm} form={formValue} />;
       case 3:
@@ -102,10 +103,10 @@ const NewOrder = ({ token }) => {
     <>
     <title>New Order | Farida&#39;s Cake Boutique</title>
     
-    <div className='form'>
+    <div className=''>
 
-      <MDBCard alignment='center'>
-        <MDBCardHeader>
+      <MDBCard >
+        <MDBCardHeader alignment='center'>
         <nav aria-label='...'>
             <MDBPagination circle className='mb-0 container'>
               <MDBPaginationItem disabled={currentPage === 1}>
