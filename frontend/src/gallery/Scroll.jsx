@@ -21,6 +21,7 @@ import {
   MDBModal,
   MDBDropdown, MDBDropdownMenu, MDBDropdownToggle, MDBDropdownItem
 } from 'mdb-react-ui-kit';
+import SearchHeader from "./SearchHeader";
 
 // The parameter of this function is an object with a string called url inside it.
 // url is a prop for the Cake component.
@@ -132,7 +133,8 @@ useEffect(() => {
 
     // Now you can use the filteredResults as needed
     setFilteredItems(categoryCakes);
-    if(filteredResults.length === 0 && hasMore){
+
+    if(categoryCakes.length === 0 && hasMore){
       getcakes();
     }
 
@@ -279,52 +281,12 @@ search(searchTerm);
 toggleCreate={toggleCreate} showCreate={showCreate} setShowCreate ={setShowCreate}
 backendUrl={backendUrl} />
 
-<MDBRow>
-<div style={{
-        width: '100%', display: 'flex', justifyContent: 'center',
-        alignItems: 'center', paddingBottom: '20px', paddingTop: '40px', 
-         top: '60px', zIndex: 2, 
-
-      }}>
-      
-
-        
-        <MDBDropdown >
-      <MDBDropdownToggle tag='a' className='btn btn-primary rounded'>
-        {category}
-      </MDBDropdownToggle>
-      <MDBDropdownMenu>
-      <MDBDropdownItem link onClick={() => setCategory("#all")}>#all</MDBDropdownItem>
-        <MDBDropdownItem link onClick={() => setCategory("#wedding")}>#wedding</MDBDropdownItem>
-        <MDBDropdownItem link onClick={() => setCategory("#babyShower")}>#babyShower</MDBDropdownItem>
-        <MDBDropdownItem link onClick={() => setCategory("#kidsBirthdays")}>#kidsBirthdays</MDBDropdownItem>
-        <MDBDropdownItem link onClick={() => setCategory("#adultBirthdays")}>#adultBirthdays</MDBDropdownItem>
-        <MDBDropdownItem link onClick={() => setCategory("#anniversary")}>#anniversary</MDBDropdownItem>
-        <MDBDropdownItem link onClick={() => setCategory("#babyShower")}>#babyShower</MDBDropdownItem>
-        <MDBDropdownItem link onClick={() => setCategory("#sculptedCakes")}>#sculptedCakes</MDBDropdownItem>
-        <MDBDropdownItem link onClick={() => setCategory("#cakePops")}>#cakePops</MDBDropdownItem>
-        <MDBDropdownItem link onClick={() => setCategory("#cupcakes")}>#cupcakes</MDBDropdownItem>
-        <MDBDropdownItem link onClick={() => setCategory("#cakeShooters")}>#cakeShooters</MDBDropdownItem>
-        
-      </MDBDropdownMenu>
-    </MDBDropdown>
-        <MDBIcon fas icon="search" color = "secondary"/>
-        <input
-          className="form-control mr-sm-2 border-0"
-          type="text"
-          placeholder="Search"
-          aria-label="Search"
-          onChange={(e) => setSearchTerm(e.target.value)}
-          value={searchTerm}
-          style={{ width: '200px' , margin: "20px"}}
-        />
-
-        {user.is_staff && <MDBBtn color = "success"  onClick={() => setShowCreate(!showCreate)}>
-        <MDBIcon fas icon="plus-circle" />
-        </MDBBtn>}
-
-      </div>
-      </MDBRow>
+<SearchHeader
+ setCategory={setCategory} category={category} 
+user={user} searchTerm={searchTerm} setSearchTerm={setSearchTerm}
+showCreate ={showCreate} setShowCreate={setShowCreate}
+ />
+<MDBRow className="mb-3">
       <div className="cakes"
         id="scrollableDiv"
         style={{
@@ -342,6 +304,7 @@ backendUrl={backendUrl} />
   <MDBIcon  icon='angle-double-down' size='10x' color= "info" style= {{height: "200px"}}/>
   
 </div>
+
           }
 
         >
@@ -396,6 +359,7 @@ backendUrl={backendUrl} />
 
         </InfiniteScroll>
       </div>
+      </MDBRow>
     </>
   );
 }

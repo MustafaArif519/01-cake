@@ -164,7 +164,7 @@ export default function MegaCake({ cake, token, user, like, unlike,
         return;
       }
       // Split the string into an array of words
-      const wordsArray = categoryString.split(',');
+      const wordsArray = categoryString.split(' ');
   
       // Add a hashtag in front of each word
       const hashtagsArray = wordsArray.map((word) => `${word.trim()}`);

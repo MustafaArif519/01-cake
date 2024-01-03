@@ -23,7 +23,7 @@ import {
   MDBModalBody,
   MDBModalFooter,
   MDBBadge,
-  MDBNavbarLink,
+  MDBRow,
 
 
 } from 'mdb-react-ui-kit';
@@ -161,7 +161,7 @@ function Navigation({ token, resetToken, recievedToken, blastModal, backendUrl }
 
   return (
     <>
-
+<MDBRow className="mb-3">
       <MDBModal tabIndex='-1' show={centredModal} setShow={setCentredModal}>
         <MDBModalDialog centered>
           <MDBModalContent>
@@ -297,6 +297,7 @@ function Navigation({ token, resetToken, recievedToken, blastModal, backendUrl }
 
       </MDBNavbar>
       <Outlet />
+      </MDBRow>
     </>
   );
 }
