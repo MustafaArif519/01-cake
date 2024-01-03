@@ -19,7 +19,9 @@ import {
   MDBCardGroup,
   MDBInput,
   MDBTextArea,
-  MDBModal
+  MDBModal,
+  MDBListGroup,
+  MDBListGroupItem
 } from 'mdb-react-ui-kit';
 import moment from 'moment'; // Import Moment.js
 import Like from "./Like"
@@ -88,9 +90,11 @@ export default function MegaCake({ cake, token, user, like, unlike,
   const patchCake = async () => {
     const windowName = window.location.hostname;
 
+
     const formData = new FormData();
     formData.append('title', editCake.title);
     formData.append('description', editCake.description);
+    formData.append('category', editCake.category);
     if (selectedFile) {
       formData.append('image', selectedFile);
     }
@@ -152,6 +156,25 @@ export default function MegaCake({ cake, token, user, like, unlike,
     objectFit: 'cover',
     objectPosition: 'center',
   };
+
+
+    const extractHashtags = (categoryString) => {
+      console.log(categoryString);
+      if(categoryString === undefined){
+        return;
+      }
+      // Split the string into an array of words
+      const wordsArray = categoryString.split(',');
+  
+      // Add a hashtag in front of each word
+      const hashtagsArray = wordsArray.map((word) => `${word.trim()}`);
+  
+      // Join the array back into a string
+      const hashtagsString = hashtagsArray.join(' ');
+  
+      return hashtagsString;
+    };
+  
 
   return (
     <>
@@ -221,9 +244,30 @@ export default function MegaCake({ cake, token, user, like, unlike,
                   }
                 </MDBCardText>
 
-
               </MDBCardBody>
+
+              
+              <MDBListGroup flush>
+        <MDBListGroupItem>
+
+          {user.is_staff && !editing &&
+              extractHashtags(cake.category)
+          }
+          {user.is_staff && editing &&
+            <MDBTextArea
+            label='Cake Categories'
+            id='textAreaExamplsdfsdfe'
+            rows={2}
+            name='category'
+            value={editCake.category}
+            onChange={(e) => onChange(e)}
+          />
+          }
+        </MDBListGroupItem>
+
+      </MDBListGroup>
               <MDBCardFooter style={{ display: "flex", justifyContent: "space-between" }}>
+              
                 <small className='text-muted' >
                   Created {moment(cake.created_at).fromNow()}
                   </small>
