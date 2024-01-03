@@ -27,7 +27,7 @@ function App() {
   // const navigate = useNavigate();
   const prodUrl = "https://faridascakeboutiquesbackend.net/";
   const devUrl = "http://localhost:8000/";
-  const backendUrl = devUrl;
+  const backendUrl = prodUrl;
 
   useEffect(() =>{
     localStorage.setItem('token', token);
