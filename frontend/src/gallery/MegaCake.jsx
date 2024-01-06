@@ -250,7 +250,7 @@ export default function MegaCake({ cake, token, user, like, unlike,
               <MDBListGroup flush>
         <MDBListGroupItem>
 
-          {user.is_staff && !editing &&
+          {!editing &&
               extractHashtags(cake.category)
           }
           {user.is_staff && editing &&
