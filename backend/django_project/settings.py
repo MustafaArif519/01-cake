@@ -71,13 +71,34 @@ SECRET_KEY = env.str("SECRET_KEY", default="8r(-x&$8c=z=&3$x7!k!oe_m2ew5+hu$ujx)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", default=True)
 
-AWS_CNAME = "http://cake-env.eba-xjnwqgm6.us-west-2.elasticbeanstalk.com"
+# AWS_CNAME = "publish.j9ufdh16ao422.us-west-2.cs.amazonlightsail.com"
+AWS_CNAME2 = "http://publish.j9ufdh16ao422.us-west-2.cs.amazonlightsail.com"
+AWS_CNAME3 = "https://publish.j9ufdh16ao422.us-west-2.cs.amazonlightsail.com"
 FRONTEND_URL = "https://faridascakeboutique.com"
 FRONTEND_URL_WWW = "https://www.faridascakeboutique.com"
 BACKEND_URL = "https://faridascakeboutiquesbackend.net"
+DEV = "http://68.235.50.254"
+DEV2 = "http://68.235.50.254"
+AWS_CNAME4 = "http://172.26.33.73"
+AWS_CNAME5 = "https://172.26.33.73"
+LOCAL_DNS = "http://localhost"
+LOCAL_DNS2 = "https://localhost"
+LOCAL_DNS3 = "http://127.0.0.1"
+LOCAL_DNS4 = "https://127.0.0.1"
 
-ALLOWED_HOSTS = [AWS_CNAME, FRONTEND_URL, FRONTEND_URL_WWW, BACKEND_URL, "172.31.4.186",
-                 "34.212.220.116", '127.0.0.1', "localhost"]
+CSRF_TRUSTED_ORIGINS = [AWS_CNAME3, AWS_CNAME2,FRONTEND_URL, FRONTEND_URL_WWW, BACKEND_URL, \
+                  DEV, DEV2, AWS_CNAME4, AWS_CNAME5, LOCAL_DNS, LOCAL_DNS2, LOCAL_DNS3, LOCAL_DNS]
+
+HOST_1 = "publish.j9ufdh16ao422.us-west-2.cs.amazonlightsail.com"
+HOST_2 = "faridascakeboutique.com"
+HOST_3 = "www.faridascakeboutique.com"
+HOST_4 = "68.235.50.254"
+HOST_5 = "172.26.33.73"
+HOST_6 = "localhost"
+HOST_7 = "127.0.0.1"
+
+
+ALLOWED_HOSTS = [HOST_1, HOST_2, HOST_3, HOST_4, HOST_5, HOST_6, HOST_7]
 private_ip = get_linux_ec2_private_ip()
 if private_ip:
    ALLOWED_HOSTS.append(private_ip)
@@ -179,7 +200,7 @@ if DEBUG:
         os.path.join(BASE_DIR, 'staticfiles')
     ]
 else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATICFILES_MANIFEST = os.path.join(STATIC_ROOT, 'staticfiles.json')
 
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
@@ -214,7 +235,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 #     'https://cake-testing-1.web.app',  # Add your frontend's URL here
 # ]
 
-CSRF_TRUSTED_ORIGINS = [AWS_CNAME, FRONTEND_URL, FRONTEND_URL_WWW]
+
 
 ROOT_URLCONF = 'django_project.urls'
 

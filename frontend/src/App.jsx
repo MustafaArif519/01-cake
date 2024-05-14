@@ -25,7 +25,7 @@ function App() {
   const [modalType, setModalType] = useState('');
   const [centredModal, setCentredModal] = useState(false);
   // const navigate = useNavigate();
-  const prodUrl = "https://faridascakeboutiquesbackend.net/";
+  const prodUrl = "https://publish.j9ufdh16ao422.us-west-2.cs.amazonlightsail.com/";
   const devUrl = "http://localhost:8000/";
   const backendUrl = prodUrl;
 
