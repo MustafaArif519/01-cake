@@ -71,10 +71,10 @@ SECRET_KEY = env.str("SECRET_KEY", default="8r(-x&$8c=z=&3$x7!k!oe_m2ew5+hu$ujx)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", default=True)
 
-AWS_CNAME = "cake-env.eba-xjnwqgm6.us-west-2.elasticbeanstalk.com"
-FRONTEND_URL = "faridascakeboutique.com"
-FRONTEND_URL_WWW = "www.faridascakeboutique.com"
-BACKEND_URL = "faridascakeboutiquesbackend.net"
+AWS_CNAME = "http://cake-env.eba-xjnwqgm6.us-west-2.elasticbeanstalk.com"
+FRONTEND_URL = "https://faridascakeboutique.com"
+FRONTEND_URL_WWW = "https://www.faridascakeboutique.com"
+BACKEND_URL = "https://faridascakeboutiquesbackend.net"
 
 ALLOWED_HOSTS = [AWS_CNAME, FRONTEND_URL, FRONTEND_URL_WWW, BACKEND_URL, "172.31.4.186",
                  "34.212.220.116", '127.0.0.1', "localhost"]
@@ -166,15 +166,20 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'allauth.account.middleware.AccountMiddleware',  # Add this line
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     # 'social_django.middleware.SocialAuthExceptionMiddleware',  # <--
 ]
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_URL = '/staticfiles/'
+if DEBUG:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'staticfiles')
+    ]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # STATICFILES_MANIFEST = os.path.join(STATIC_ROOT, 'staticfiles.json')
 
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
@@ -245,7 +250,7 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-if DEBUG:
+if False:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
