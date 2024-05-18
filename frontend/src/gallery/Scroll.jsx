@@ -168,8 +168,8 @@ search(searchTerm);
         if (!ignoreStaleRequest) {
           setResults([...results, ...data.results]);
           setFilteredItems([...filteredItems, ...data.results]);
-          console.log(data.next);
           setLoaded(true);
+
           setNext(data.next);
           if (data.next === 'null') {
             setHasMore(false);
@@ -231,7 +231,7 @@ search(searchTerm);
 
   const getcakes = () => {
     // console.log("loading more cakes");
-
+    console.log(next);
     fetch(next, {
       method: 'GET', // or any other HTTP method
       // headers: {

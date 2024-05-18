@@ -97,6 +97,7 @@ HOST_5 = "172.26.33.73"
 HOST_6 = "localhost"
 HOST_7 = "127.0.0.1"
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = [HOST_1, HOST_2, HOST_3, HOST_4, HOST_5, HOST_6, HOST_7]
 private_ip = get_linux_ec2_private_ip()
@@ -271,7 +272,7 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-if False:
+if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
